@@ -14,25 +14,25 @@ import com.tbe.database.UsersRequest;
 public class UserREST {
 
 	@GET
-	@Produces(MediaType.TEXT_PLAIN)
 	public String getAllUsers() {
+		System.out.println("GET ALL USERS");
 		return UsersRequest.getAllUsers();
 	}
 	
 	@GET
 	@Path("/{userid}")
-	@Produces(MediaType.TEXT_PLAIN)
-	public String getUser(@PathParam("id") String id){
+	public String getUser(@PathParam("userid") String id){
+		System.out.println("GET USER "+ id);
 		return UsersRequest.getUser(id);
 		
 	}
 
 	@POST
-	@Produces(MediaType.TEXT_PLAIN)
 	public String addUser(@FormParam("username") String username,
 			@FormParam("password") String password,
 			@FormParam("firstname") String firstName,
-			@FormParam("surName") String surName) {
+			@FormParam("surename") String surName) {
+		System.out.println("Post User");
 		return UsersRequest.addUser(username, password, firstName, surName);
 	}
 }
