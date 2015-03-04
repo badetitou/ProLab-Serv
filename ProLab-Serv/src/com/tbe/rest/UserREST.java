@@ -1,4 +1,4 @@
-package com.tbe;
+package com.tbe.rest;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;

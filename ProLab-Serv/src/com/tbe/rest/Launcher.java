@@ -1,4 +1,4 @@
-package com.tbe;
+package com.tbe.rest;
 
 import java.net.URI;
 
