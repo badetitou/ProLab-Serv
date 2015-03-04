@@ -26,7 +26,7 @@ public class UsersRequest {
 			Statement stmt = DataBase.getConnection().createStatement();
 			ResultSet rs = stmt.executeQuery("Select * from users");
 			while (rs.next()){
-				result += rs.getString("id") +" " +rs.getString("username") + " " + rs.getString("firstname") + " " + rs.getString("surname") + "\n";
+				result += rs.getString("username") + " " + rs.getString("firstname") + " " + rs.getString("surname") + "\n";
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
