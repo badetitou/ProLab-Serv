@@ -7,7 +7,7 @@ public class DataBase {
 	private static Connection c;
 	private static final Integer version = 1;
 
-	private static String strCreateUserTable = "Create table users (username char(20), password char(20), firstname char(20), surname char(20));";
+	private static String strCreateUserTable = "Create table users (id primary key, username char(20), password char(20), firstname char(20), surname char(20));";
 
 	public DataBase() {
 		System.out.println("Init BDD...");
