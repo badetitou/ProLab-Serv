@@ -30,4 +30,18 @@ public class UsersRequest {
 		}
 		return result;
 	}
+
+	public static String getUser(String id) {
+		String result = "";
+		try {
+			Statement stmt = DataBase.getConnection().createStatement();
+			ResultSet rs = stmt.executeQuery("Select * from users where id=" + id);
+			while (rs.next()){
+				result += rs.getString("username") + " " + rs.getString("firstname") + " " + rs.getString("surname") + "\n";
+			}
+		} catch (SQLException e) {
+			return null;
+		}
+		return result;
+	}
 }
