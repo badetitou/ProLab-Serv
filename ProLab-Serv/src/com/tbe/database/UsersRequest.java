@@ -38,6 +38,7 @@ public class UsersRequest {
 	public static String getUser(String username, String password) {
 		String result = "";
 		String sql = "Select * from users where username='" + username + "' and password='" + password + "';";
+		System.out.println(sql);
 		try {
 			Statement stmt = DataBase.getConnection().createStatement();
 			ResultSet rs = stmt.executeQuery(sql);
@@ -47,6 +48,9 @@ public class UsersRequest {
 		} catch (SQLException e) {
 			System.err.println(sql);
 			e.printStackTrace();
+			return null;
+		}
+		if (result.equals("")){
 			return null;
 		}
 		return result;
