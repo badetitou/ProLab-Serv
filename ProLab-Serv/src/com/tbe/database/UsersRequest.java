@@ -35,9 +35,9 @@ public class UsersRequest {
 		return result;
 	}
 
-	public static String getUser(String id) {
+	public static String getUser(String username, String password) {
 		String result = "";
-		String sql = "Select * from users where id=" + id;
+		String sql = "Select * from users where username='" + username + "' and password='" + password + "';";
 		try {
 			Statement stmt = DataBase.getConnection().createStatement();
 			ResultSet rs = stmt.executeQuery(sql);
