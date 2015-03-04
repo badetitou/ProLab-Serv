@@ -20,7 +20,7 @@ public class UserREST {
 	}
 	
 	@GET
-	@Path("/{username}&{userpassword")
+	@Path("/{username}&{userpassword}")
 	public String getUser(@PathParam("username") String username, @PathParam("userpassword") String password){
 		System.out.println("GET USER "+ username + " : " + password);
 		return UsersRequest.getUser(username, password);
