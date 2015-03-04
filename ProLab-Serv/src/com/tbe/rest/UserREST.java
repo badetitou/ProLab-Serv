@@ -26,7 +26,7 @@ public class UserREST {
 		System.out.println("GET USER "+ username + " : " + password);
 		String result =  UsersRequest.getUser(username, password);
 		if (result == null){
-	        return Response.status(Response.Status.BAD_REQUEST).entity("Entity already exist").build();
+	        return Response.status(Response.Status.BAD_REQUEST).entity("User Not Accepted").build();
 		}
 		return Response.status(Response.Status.ACCEPTED).entity("User Accepted").build();
 		

@@ -51,8 +51,7 @@ public class UsersRequest {
 			return null;
 		}
 		if (result.equals("")){
-			return null;
-		}
+			return null;		}
 		return result;
 	}
 }
