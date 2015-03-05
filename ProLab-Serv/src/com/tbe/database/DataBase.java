@@ -7,8 +7,10 @@ public class DataBase {
 	private static Connection c;
 	private static final Integer version = 1;
 
-	private static String strCreateUserTable = "Create table users (username char(20) primary key, password char(20), email text, firstname char(20), surname char(20));";
+	private static String strCreateUserTable = "Create table if not exists users (username char(20) primary key, password char(20), email text, firstname char(20), surname char(20));";
 
+	private static String strCreateProjectTable="Create table if not exists projects (idp integer primary key autoincrement, name char(20), desciption text, url char(20) unique);";
+	
 	public DataBase() {
 		System.out.println("Init BDD...");
 		Connection c = null;
@@ -26,13 +28,24 @@ public class DataBase {
 
 	private void createTable() {
 		System.out.println("Init Table");
+		Statement stmt;
+		//User Table
 		try {
-			Statement stmt;
 			stmt = DataBase.c.createStatement();
 			stmt.executeUpdate(strCreateUserTable);
 		} catch (Exception e) {
-			System.out.println("Table user already exist... No problem");
+			e.printStackTrace();
+			System.out.println("Problem creation user table : " + strCreateUserTable);
 		}
+		//Projects Table
+		try {
+			stmt = DataBase.c.createStatement();
+			stmt.executeUpdate(strCreateProjectTable);
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("Problem creation projects table : " + strCreateUserTable);
+		}
+		
 		System.out.println("Init Table Done");
 	}
 
