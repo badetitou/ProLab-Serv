@@ -6,9 +6,9 @@ import java.sql.Statement;
 
 public class UsersRequest {
 	
-	public static String addUser(String username, String password,
+	public static String addUser(String username, String password, String email,
 			String firstName, String surName) {
-		String sql = "Insert into users(username, password, firstname,surname) values ('"+ username+"','"+ password+ "','"+firstName+"','" + surName+"');";
+		String sql = "Insert into users(username, password, email, firstname,surname) values ('"+ username+"','"+ password+ "','"+email+"','"+firstName+"','" + surName+"');";
 		try {
 			Statement stmt = DataBase.getConnection().createStatement();
 			stmt.executeUpdate(sql);
@@ -38,7 +38,6 @@ public class UsersRequest {
 	public static String getUser(String username, String password) {
 		String result = "";
 		String sql = "Select * from users where username='" + username + "' and password='" + password + "';";
-		System.out.println(sql);
 		try {
 			Statement stmt = DataBase.getConnection().createStatement();
 			ResultSet rs = stmt.executeQuery(sql);

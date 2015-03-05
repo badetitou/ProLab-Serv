@@ -35,10 +35,11 @@ public class UserREST {
 	@POST
 	public Response addUser(@FormParam("username") String username,
 			@FormParam("password") String password,
+			@FormParam("email") String email,
 			@FormParam("firstname") String firstName,
-			@FormParam("surename") String surName) {
+			@FormParam("surname") String surname) {
 		System.out.println("Post User");
-		String result =  UsersRequest.addUser(username, password, firstName, surName);
+		String result =  UsersRequest.addUser(username, password, email, firstName, surname);
 		if (result == null){
 	        return Response.status(Response.Status.BAD_REQUEST).entity("Entity already exist").build();
 		}
