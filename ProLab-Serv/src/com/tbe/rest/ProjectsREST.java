@@ -1,5 +1,8 @@
 package com.tbe.rest;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -8,25 +11,27 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Response;
 
 import com.tbe.database.ProjectsRequest;
+import com.tbe.json.Project;
 
 @Path("/projects")
 public class ProjectsREST {
 
 	@GET
-	public String getAllProjects(){
+	public Project[] getAllProjects(){
 		System.out.println("GET ALL PROJECTS");
-		return ProjectsRequest.getAllProject();
+		List<Project> projects = ProjectsRequest.getAllProject();
+		Project[] p = new Project[projects.size()];
+		for (int i = 0;i<p.length;++i){
+			p[i] = projects.get(i);
+		}
+		return p;
 	}
 	
 	@GET
 	@Path("/{idproject}")
-	public String getProject(@PathParam("idproject") String idp){
+	public Project getProject(@PathParam("idproject") String idp){
 		System.out.println("GET Project "+ idp);
-		String result =  ProjectsRequest.getProject(idp);
-		if (result == null){
-	        return null;
-		}
-		return result;
+		return ProjectsRequest.getProject(idp);
 	}
 	
 	@POST
