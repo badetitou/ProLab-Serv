@@ -1,20 +1,24 @@
 package com.tbe.rest;
 
-import java.net.URI;
-
-import javax.ws.rs.core.UriBuilder;
-
-import org.glassfish.jersey.jdkhttp.JdkHttpServerFactory;
-import org.glassfish.jersey.server.ResourceConfig;
-
 import com.tbe.database.DataBase;
+import com.tbe.rest.ProjectsREST;
+import com.tbe.rest.UserREST;
 
-public class Launcher {
-	public static void main(String[] args) {
-		URI baseUri = UriBuilder.fromUri("http://192.168.43.75/v1").port(9876).build();
-		ResourceConfig config = new ResourceConfig(UserREST.class);
-		JdkHttpServerFactory.createHttpServer(baseUri, config, true);
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.ws.rs.ApplicationPath;
+import javax.ws.rs.core.Application;
+
+@ApplicationPath("/v1/")
+public class Launcher extends Application {
+
+	@Override
+	public Set<Class<?>> getClasses() {
 		new DataBase();
-		System.out.println("Server started");
-	}
+		Set<Class<?>> s = new HashSet<Class<?>>();
+		s.add(ProjectsREST.class);
+		s.add(UserREST.class);
+		return s;
+	}	
 }

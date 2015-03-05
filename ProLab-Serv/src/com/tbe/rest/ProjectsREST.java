@@ -8,7 +8,6 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Response;
 
 import com.tbe.database.ProjectsRequest;
-import com.tbe.database.UsersRequest;
 
 @Path("/projects")
 public class ProjectsREST {

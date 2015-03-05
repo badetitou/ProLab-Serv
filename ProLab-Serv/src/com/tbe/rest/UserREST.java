@@ -1,5 +1,7 @@
 package com.tbe.rest;
 
+import java.util.List;
+
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -10,26 +12,29 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import com.tbe.database.UsersRequest;
+import com.tbe.json.User;
 
 @Path("/users")
 public class UserREST {
 
 	@GET
-	public String getAllUsers() {
-		System.out.println("GET ALL USERS");
-		return UsersRequest.getAllUsers();
+    @Produces(MediaType.APPLICATION_JSON)
+	public User[] getAllUsers() {
+		List<User> users = UsersRequest.getAllUsers();
+		User[] userTab = new User[users.size()];
+		for (int i = 0;i<userTab.length;++i){
+			userTab[i] = users.get(i);
+		}
+		return userTab;
+		
 	}
 	
 	@GET
+    @Produces(MediaType.APPLICATION_JSON)
 	@Path("/{username}&{userpassword}")
-	public Response getUser(@PathParam("username") String username, @PathParam("userpassword") String password){
+	public User getUser(@PathParam("username") String username, @PathParam("userpassword") String password){
 		System.out.println("GET USER "+ username + " : " + password);
-		String result =  UsersRequest.getUser(username, password);
-		if (result == null){
-	        return Response.status(Response.Status.BAD_REQUEST).entity("User Not Accepted").build();
-		}
-		return Response.status(Response.Status.ACCEPTED).entity("User Accepted").build();
-		
+		return UsersRequest.getUser(username, password);
 	}
 
 	@POST

@@ -3,6 +3,10 @@ package com.tbe.database;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.tbe.json.User;
 
 public class UsersRequest {
 	
@@ -20,37 +24,35 @@ public class UsersRequest {
 		return "ok";
 	}
 	
-	public static String getAllUsers(){
-		String result = "id : username : firstname : surname\n";
+	public static List<User> getAllUsers(){
+		List<User> users = new ArrayList<User>();
 		try {
 			Statement stmt = DataBase.getConnection().createStatement();
 			ResultSet rs = stmt.executeQuery("Select * from users");
 			while (rs.next()){
-				result += rs.getString("username") + " " + rs.getString("firstname") + " " + rs.getString("surname") + "\n";
+				users.add(new User(rs.getString("username"), rs.getString("firstname"), rs.getString("email"), rs.getString("firstname"), rs.getString("surname")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-			return null;
+			return users;
 		}
-		return result;
+		return users;
 	}
 
-	public static String getUser(String username, String password) {
-		String result = "";
+	public static User getUser(String username, String password) {
+		User user = null;
 		String sql = "Select * from users where username='" + username + "' and password='" + password + "';";
 		try {
 			Statement stmt = DataBase.getConnection().createStatement();
 			ResultSet rs = stmt.executeQuery(sql);
 			while (rs.next()){
-				result += rs.getString("username") + " " + rs.getString("firstname") + " " + rs.getString("surname") + "\n";
+				user = new User(rs.getString("username"), rs.getString("firstname"), rs.getString("email"), rs.getString("firstname"), rs.getString("surname"));
 			}
 		} catch (SQLException e) {
 			System.err.println(sql);
 			e.printStackTrace();
-			return null;
+			return user;
 		}
-		if (result.equals("")){
-			return null;		}
-		return result;
+		return user;
 	}
 }

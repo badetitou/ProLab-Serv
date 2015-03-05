@@ -6,6 +6,12 @@ import java.sql.Statement;
 
 public class ProjectsRequest {
 	
+	/**
+	pushline
+	logo
+	l'entreprise
+	*/
+	
 	public static String addProject (String name, String description, String url){
 		String sql = "Insert into projects(name, description, url) values ('"+ name+"','"+ description+ "','"+url+"');";
 		try {
