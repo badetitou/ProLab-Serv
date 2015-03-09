@@ -6,16 +6,26 @@ public class Project {
 	private String name;
 	private String description;
 	private String url;
+	private String punchline;
 	
-	public Project(Integer id, String name, String description, String url){
+	public Project(Integer id, String name, String description, String url, String punchline){
 		this.id = id;
 		this.name = name;
 		this.description = description;
 		this.url = url;
+		this.punchline = punchline;
 	}
 	
 	public Integer getId() {
 		return id;
+	}
+
+	public String getPunchline() {
+		return punchline;
+	}
+
+	public void setPunchline(String punchline) {
+		this.punchline = punchline;
 	}
 
 	public void setId(Integer id) {

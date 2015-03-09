@@ -29,15 +29,15 @@ public class ProjectsREST {
 	
 	@GET
 	@Path("/{idproject}")
-	public Project getProject(@PathParam("idproject") String idp){
-		System.out.println("GET Project "+ idp);
-		return ProjectsRequest.getProject(idp);
+	public Project getProject(@PathParam("idproject") String id){
+		System.out.println("GET Project "+ id);
+		return ProjectsRequest.getProject(id);
 	}
 	
 	@POST
-	public Response postProject(@FormParam("name") String name, @FormParam("description") String description, @FormParam("url") String url){
+	public Response postProject(@FormParam("name") String name, @FormParam("description") String description, @FormParam("url") String url, @FormParam("punchline") String punchline){
 		System.out.println("Post Project");
-		String result =  ProjectsRequest.addProject(name, description, url);
+		String result =  ProjectsRequest.addProject(name, description, url, punchline);
 		if (result == null){
 	        return Response.status(Response.Status.BAD_REQUEST).entity("Entity already exist").build();
 		}

@@ -9,7 +9,7 @@ public class DataBase {
 
 	private static String strCreateUserTable = "Create table if not exists users (username char(20) primary key, password char(20), email text, firstname char(20), surname char(20));";
 
-	private static String strCreateProjectTable="Create table if not exists projects (idp integer primary key autoincrement, name char(20), description text, url char(20) unique);";
+	private static String strCreateProjectTable="Create table if not exists projects (id integer primary key autoincrement, name char(20), description text, url char(20) unique not null, punchline char(50));";
 	
 	public DataBase() {
 		System.out.println("Init BDD...");

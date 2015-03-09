@@ -16,8 +16,8 @@ public class ProjectsRequest {
 	l'entreprise
 	*/
 	
-	public static String addProject (String name, String description, String url){
-		String sql = "Insert into projects(name, description, url) values ('"+ name+"','"+ description+ "','"+url+"');";
+	public static String addProject (String name, String description, String url, String punchline){
+		String sql = "Insert into projects(name, description, url, punchline) values ('"+ name+"','"+ description+ "','"+url+"','" +punchline + "');";
 		try {
 			Statement stmt = DataBase.getConnection().createStatement();
 			stmt.executeUpdate(sql);
@@ -33,9 +33,9 @@ public class ProjectsRequest {
 		List<Project> projects = new ArrayList<Project>();
 		try {
 			Statement stmt = DataBase.getConnection().createStatement();
-			ResultSet rs = stmt.executeQuery("Select * from users");
+			ResultSet rs = stmt.executeQuery("Select * from projects");
 			while (rs.next()){
-				projects.add(new Project(rs.getInt("idp"), rs.getString("name"), rs.getString("description"), rs.getString("url")));
+				projects.add(new Project(rs.getInt("id"), rs.getString("name"), rs.getString("description"), rs.getString("url"), rs.getString("punchline")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -46,11 +46,11 @@ public class ProjectsRequest {
 	
 	public static Project getProject(String id){
 		Project project = null;
-		String sql = "Select * from projects where idp='" +id + "';";
+		String sql = "Select * from projects where id='" +id + "';";
 		try {
 			Statement stmt = DataBase.getConnection().createStatement();
 			ResultSet rs = stmt.executeQuery(sql);
-			project = new Project(rs.getInt("idp"), rs.getString("name"), rs.getString("description"), rs.getString("url"));
+			project = new Project(rs.getInt("id"), rs.getString("name"), rs.getString("description"), rs.getString("url"), rs.getString("punchline"));
 		} catch (SQLException e) {
 			System.err.println(sql);
 			e.printStackTrace();
