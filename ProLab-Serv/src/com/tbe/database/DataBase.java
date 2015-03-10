@@ -6,11 +6,43 @@ public class DataBase {
 
 	private static Connection c;
 	private static final Integer version = 1;
+	/* STATICS */
+	private static int MAX_USERNAME_SIZE = 20;
 
-	private static String strCreateUserTable = "Create table if not exists users (username char(20) primary key, password char(20), email text, firstname char(20), surname char(20));";
+	private static String strCreateUserTable = "Create table if not exists users ("
+			+ "username char("
+			+ MAX_USERNAME_SIZE
+			+ ") primary key, "
+			+ "password char(20), "
+			+ "email text, "
+			+ "firstname char(20), "
+			+ "surname char(20));";
 
-	private static String strCreateProjectTable="Create table if not exists projects (id integer primary key autoincrement, name char(20), description text, url char(20) unique not null, punchline char(50));";
+	private static String strCreateProjectTable = "Create table if not exists projects ("
+			+ "id integer primary key autoincrement, "
+			+ "name char("
+			+ MAX_USERNAME_SIZE
+			+ "), "
+			+ "description text, "
+			+ "url char(20) unique not null, " + "punchline char(50));";
+
+	private static String strCreateMembersTable = "Create table if not exists members ("
+			+ "username char("
+			+ MAX_USERNAME_SIZE
+			+ "), "
+			+ "id integer,"
+			+ "foreign key (username) references users(username))";
 	
+	private static String strCreateFonctionnalitiesTable = "Create table if not exists fonctionnalities ("
+			+ "id Integer primary key autoincrement, "
+			+ "name char("
+			+ MAX_USERNAME_SIZE
+			+ "), "
+			+ "description text, "
+			+ "avancement integer, "
+			+ "deadline date, "
+			+ "foreign key (username) references users(username))";
+
 	public DataBase() {
 		System.out.println("Init BDD...");
 		Connection c = null;
@@ -26,26 +58,16 @@ public class DataBase {
 		System.out.println("Opened database successfully");
 	}
 
-	private void createTable() {
+	private void createTable() throws SQLException {
 		System.out.println("Init Table");
 		Statement stmt;
-		//User Table
-		try {
-			stmt = DataBase.c.createStatement();
-			stmt.executeUpdate(strCreateUserTable);
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.out.println("Problem creation user table : " + strCreateUserTable);
-		}
-		//Projects Table
-		try {
-			stmt = DataBase.c.createStatement();
-			stmt.executeUpdate(strCreateProjectTable);
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.out.println("Problem creation projects table : " + strCreateUserTable);
-		}
+		// User Table
 		
+		stmt = DataBase.c.createStatement();
+		stmt.executeUpdate(strCreateUserTable);
+		stmt.executeUpdate(strCreateProjectTable);
+		stmt.executeUpdate(strCreateMembersTable);
+
 		System.out.println("Init Table Done");
 	}
 

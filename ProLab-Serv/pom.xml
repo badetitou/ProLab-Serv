@@ -31,7 +31,7 @@
 				<version>9.3.0.M1</version>
 				<configuration>
 					<httpConnector>
-						<host>192.168.43.75</host>
+						<host>localhost</host>
 						<port>9876</port>
 					</httpConnector>
 					<scanIntervalSeconds>5</scanIntervalSeconds>
