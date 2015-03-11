@@ -5,7 +5,7 @@ import java.sql.*;
 public class DataBase {
 
 	private static Connection c;
-	private static final Integer version = 1;
+	private static final int version = 1;
 	/* STATICS */
 	private static int MAX_USERNAME_SIZE = 20;
 
@@ -19,7 +19,7 @@ public class DataBase {
 			+ "surname char(20));";
 
 	private static String strCreateProjectTable = "Create table if not exists projects ("
-			+ "id integer primary key autoincrement, "
+			+ "id int primary key autoincrement, "
 			+ "name char("
 			+ MAX_USERNAME_SIZE
 			+ "), "
@@ -30,16 +30,16 @@ public class DataBase {
 			+ "username char("
 			+ MAX_USERNAME_SIZE
 			+ "), "
-			+ "id integer,"
+			+ "id int,"
 			+ "foreign key (username) references users(username))";
 	
 	private static String strCreateFonctionnalitiesTable = "Create table if not exists fonctionnalities ("
-			+ "id Integer primary key autoincrement, "
+			+ "id int primary key autoincrement, "
 			+ "name char("
 			+ MAX_USERNAME_SIZE
 			+ "), "
 			+ "description text, "
-			+ "avancement integer, "
+			+ "avancement int, "
 			+ "deadline date, "
 			+ "foreign key (username) references users(username))";
 

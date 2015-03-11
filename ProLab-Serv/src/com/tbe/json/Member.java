@@ -2,19 +2,19 @@ package com.tbe.json;
 
 public class Member {
 
-	private Integer id;
+	private int id;
 	private String username;
 	
-	public Member(Integer id, String username){
+	public Member(int id, String username){
 		this.id = id;
 		this.username = username;
 	}
 
-	public Integer getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 

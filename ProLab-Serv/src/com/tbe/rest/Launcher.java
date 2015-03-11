@@ -13,7 +13,6 @@ import javax.ws.rs.core.Application;
 @ApplicationPath("/v1/")
 public class Launcher extends Application {
 
-	@Override
 	public Set<Class<?>> getClasses() {
 		new DataBase();
 		Set<Class<?>> s = new HashSet<Class<?>>();

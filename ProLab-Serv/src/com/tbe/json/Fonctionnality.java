@@ -4,13 +4,13 @@ import java.util.Date;
 
 public class Fonctionnality {
 	
-	private Integer id;
+	private int id;
 	private String name;
 	private String description;
-	private Integer avancement;
+	private int avancement;
 	private Date deadLine;
 	
-	public Fonctionnality(Integer id, String name, String description, Integer avancement, Date deadLine){
+	public Fonctionnality(int id, String name, String description, int avancement, Date deadLine){
 		this.id = id;
 		this.name = name;
 		this.description = description;
@@ -26,11 +26,11 @@ public class Fonctionnality {
 		this.deadLine = deadLine;
 	}
 
-	public Integer getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -50,11 +50,11 @@ public class Fonctionnality {
 		this.description = description;
 	}
 
-	public Integer getAvancement() {
+	public int getAvancement() {
 		return avancement;
 	}
 
-	public void setAvancement(Integer avancement) {
+	public void setAvancement(int avancement) {
 		this.avancement = avancement;
 	}
 

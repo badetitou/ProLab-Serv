@@ -2,13 +2,13 @@ package com.tbe.json;
 
 public class Project {
 	
-	private Integer id;
+	private int id;
 	private String name;
 	private String description;
 	private String url;
 	private String punchline;
 	
-	public Project(Integer id, String name, String description, String url, String punchline){
+	public Project(int id, String name, String description, String url, String punchline){
 		this.id = id;
 		this.name = name;
 		this.description = description;
@@ -16,7 +16,7 @@ public class Project {
 		this.punchline = punchline;
 	}
 	
-	public Integer getId() {
+	public int getId() {
 		return id;
 	}
 
@@ -28,7 +28,7 @@ public class Project {
 		this.punchline = punchline;
 	}
 
-	public void setId(Integer id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
