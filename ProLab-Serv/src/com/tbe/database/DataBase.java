@@ -14,7 +14,7 @@ public class DataBase {
 			+ MAX_USERNAME_SIZE
 			+ ") primary key, "
 			+ "password char(20), "
-			+ "email text, "
+			+ "email text unique, "
 			+ "firstname char(20), "
 			+ "surname char(20));";
 
