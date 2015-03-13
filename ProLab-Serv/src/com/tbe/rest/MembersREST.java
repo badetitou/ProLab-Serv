@@ -26,7 +26,7 @@ public class MembersREST {
 	}
 	
 	@GET
-	@Path("/{idMember}/{username}")
+	@Path("/{idMember}&{username}")
 	public Member getMember(@PathParam("idMember") String id,@PathParam("username") String username){
 		System.out.println("GET Member "+ id);
 		return MembersRequest.getMember(id, username);

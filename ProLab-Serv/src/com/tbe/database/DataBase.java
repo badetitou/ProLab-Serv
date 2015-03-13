@@ -41,7 +41,16 @@ public class DataBase {
 			+ "description text, "
 			+ "avancement int, "
 			+ "deadline date, "
-			+ "foreign key (username) references users(username))";
+			+ "foreign key (name) references users(username))";
+	
+	private static String strCreateTask = "Create table if not exists tasks ("
+			+ "fonctionnality Integer not null,"
+			+ "name char("
+			+MAX_USERNAME_SIZE
+			+ "), "
+			+"project Integer not null," +
+			"foreign key (fonctionnality) references fonctionnalities(id)," +
+			"foreign key (name) references users(username));";
 
 	public DataBase() {
 		System.out.println("Init BDD...");
@@ -64,9 +73,16 @@ public class DataBase {
 		// User Table
 		
 		stmt = DataBase.c.createStatement();
+		System.out.println(strCreateUserTable);
 		stmt.executeUpdate(strCreateUserTable);
+		System.out.println(strCreateProjectTable);
 		stmt.executeUpdate(strCreateProjectTable);
+		System.out.println(strCreateMembersTable);
 		stmt.executeUpdate(strCreateMembersTable);
+		System.out.println(strCreateFonctionnalitiesTable);
+		stmt.executeUpdate(strCreateFonctionnalitiesTable);
+		System.out.println(strCreateTask);
+		stmt.executeUpdate(strCreateTask);
 
 		System.out.println("Init Table Done");
 	}
