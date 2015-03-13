@@ -7,7 +7,7 @@ public class DataBase {
 	private static Connection c;
 	private static final int version = 1;
 	/* STATICS */
-	private static int MAX_USERNAME_SIZE = 20;
+	private static final int MAX_USERNAME_SIZE = 20;
 
 	private static String strCreateUserTable = "Create table if not exists users ("
 			+ "username char("
