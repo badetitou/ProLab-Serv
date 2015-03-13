@@ -19,7 +19,7 @@ public class DataBase {
 			+ "surname char(20));";
 
 	private static String strCreateProjectTable = "Create table if not exists projects ("
-			+ "id int primary key autoincrement, "
+			+ "id Integer primary key autoincrement, "
 			+ "name char("
 			+ MAX_USERNAME_SIZE
 			+ "), "
@@ -34,7 +34,7 @@ public class DataBase {
 			+ "foreign key (username) references users(username))";
 	
 	private static String strCreateFonctionnalitiesTable = "Create table if not exists fonctionnalities ("
-			+ "id int primary key autoincrement, "
+			+ "id Integer primary key autoincrement, "
 			+ "name char("
 			+ MAX_USERNAME_SIZE
 			+ "), "
