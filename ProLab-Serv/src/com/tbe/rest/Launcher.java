@@ -18,6 +18,7 @@ public class Launcher extends Application {
 		Set<Class<?>> s = new HashSet<Class<?>>();
 		s.add(ProjectsREST.class);
 		s.add(UserREST.class);
+		s.add(MembersREST.class);
 		return s;
 	}	
 }
