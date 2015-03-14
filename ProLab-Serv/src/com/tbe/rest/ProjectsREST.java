@@ -10,7 +10,9 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Response;
 
+import com.tbe.database.MembersRequest;
 import com.tbe.database.ProjectsRequest;
+import com.tbe.json.Member;
 import com.tbe.json.Project;
 
 @Path("/projects")
@@ -35,11 +37,15 @@ public class ProjectsREST {
 	}
 	
 	@POST
-	public Response postProject(@FormParam("name") String name, @FormParam("description") String description, @FormParam("url") String url, @FormParam("punchline") String punchline){
-		System.out.println("Post Project");
-		String result =  ProjectsRequest.addProject(name, description, url, punchline);
-		if (result == null){
+	public Response postProject(@FormParam("name") String name, @FormParam("description") String description, @FormParam("url") String url, @FormParam("punchline") String punchline, @FormParam("username") String username){
+		System.out.println("Post Project :name=" + name + " :username=" + username);
+		int id =  ProjectsRequest.addProject(name, description, url, punchline);
+		if (id == -1){
 	        return Response.status(Response.Status.BAD_REQUEST).entity("Entity already exist").build();
+		}
+		String result = MembersRequest.addMember(username, id +"");
+		if(result == null){
+	        return Response.status(Response.Status.BAD_REQUEST).entity("User no exist").build();
 		}
 		return Response.status(Response.Status.CREATED).entity("Project Created").build();
 	}

@@ -20,18 +20,18 @@ public class DataBase {
 
 	private static String strCreateProjectTable = "Create table if not exists projects ("
 			+ "id Integer primary key autoincrement, "
-			+ "name char("
-			+ MAX_USERNAME_SIZE
-			+ "), "
+			+ "name char(20), "
 			+ "description text, "
-			+ "url char(20) unique not null, " + "punchline char(50));";
+			+ "url char(20) unique not null, " 
+			+ "punchline char(50));";
 
 	private static String strCreateMembersTable = "Create table if not exists members ("
 			+ "username char("
 			+ MAX_USERNAME_SIZE
 			+ "), "
 			+ "id int,"
-			+ "foreign key (username) references users(username))";
+			+ "foreign key (username) references users(username)," +
+			" foreign key (id) references projects(id))";
 	
 	private static String strCreateFonctionnalitiesTable = "Create table if not exists fonctionnalities ("
 			+ "id Integer primary key autoincrement, "
@@ -43,7 +43,7 @@ public class DataBase {
 			+ "deadline date, "
 			+ "foreign key (name) references users(username))";
 	
-	private static String strCreateNewsTable = "Create table if not exists fonctionnalities ("
+	private static String strCreateNewsTable = "Create table if not exists news ("
 			+ "id Integer primary key autoincrement, "
 			+ "title char("
 			+ MAX_USERNAME_SIZE

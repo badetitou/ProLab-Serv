@@ -1,5 +1,6 @@
 package com.tbe.database;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -16,17 +17,24 @@ public class ProjectsRequest {
 	l'entreprise
 	*/
 	
-	public static String addProject (String name, String description, String url, String punchline){
-		String sql = "Insert into projects(name, description, url, punchline) values ('"+ name+"','"+ description+ "','"+url+"','" +punchline + "');";
+	public static int addProject (String name, String description, String url, String punchline){
+		String sql = "Insert into projects(name, description, url, punchline) values (?,?,?,?);";
 		try {
-			Statement stmt = DataBase.getConnection().createStatement();
-			stmt.executeUpdate(sql);
+			PreparedStatement stmt = DataBase.getConnection().prepareStatement(sql);
+			stmt.setString(1, name);
+			stmt.setString(2, description);
+			stmt.setString(3, url);
+			stmt.setString(4, punchline);
+			stmt.execute();
+			stmt.close();
+			Statement stmt2 = DataBase.getConnection().createStatement();
+			ResultSet rs = stmt2.executeQuery("select last_insert_rowid();");
+			return rs.getInt(1);
 		} catch (SQLException e) {
 			e.printStackTrace();
 			System.err.println(sql);
-			return null;
+			return -1;
 		}
-		return "ok";
 	}
 	
 	public static List<Project> getAllProject(){

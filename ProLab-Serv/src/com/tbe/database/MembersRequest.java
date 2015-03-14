@@ -1,5 +1,6 @@
 package com.tbe.database;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -11,11 +12,13 @@ import com.tbe.json.Project;
 
 public class MembersRequest {
 	public static String addMember(String username, String id) {
-		String sql = "Insert into projects(username, id) values ('" + username
-				+ "'," + id + ");";
+		String sql = "Insert into members(username, id) values ( ?, ?);";
 		try {
-			Statement stmt = DataBase.getConnection().createStatement();
-			stmt.executeUpdate(sql);
+			PreparedStatement stmt = DataBase.getConnection().prepareStatement(sql);
+			stmt.setString(1, username);
+			stmt.setInt(2, Integer.parseInt(id));
+			stmt.execute();
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 			System.err.println(sql);
@@ -38,6 +41,22 @@ public class MembersRequest {
 			return null;
 		}
 		return members;
+	}
+	
+	public static List<Project> getUserProject(String username){
+		List<Project> lp = new ArrayList<Project>();
+		String sql = "Select * from members, projects where projects.id=members.id and members.username='" + username+"';";
+		try {
+			Statement stmt = DataBase.getConnection().createStatement();
+			ResultSet rs = stmt.executeQuery(sql);
+			while (rs.next()){
+				lp.add(new Project(rs.getInt("id"), rs.getString("name"), rs.getString("description"), rs.getString("url"), rs.getString("punchline")));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+		return lp;
 	}
 
 	public static Member getMember(String id, String username) {
