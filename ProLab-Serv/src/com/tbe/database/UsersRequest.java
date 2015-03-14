@@ -30,7 +30,7 @@ public class UsersRequest {
 			Statement stmt = DataBase.getConnection().createStatement();
 			ResultSet rs = stmt.executeQuery("Select * from users");
 			while (rs.next()){
-				users.add(new User(rs.getString("username"), rs.getString("firstname"), rs.getString("email"), rs.getString("firstname"), rs.getString("surname")));
+				users.add(new User(rs.getString("username"), rs.getString("password"), rs.getString("email"), rs.getString("firstname"), rs.getString("surname")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -46,7 +46,7 @@ public class UsersRequest {
 			Statement stmt = DataBase.getConnection().createStatement();
 			ResultSet rs = stmt.executeQuery(sql);
 			while (rs.next()){
-				user = new User(rs.getString("username"), rs.getString("firstname"), rs.getString("email"), rs.getString("firstname"), rs.getString("surname"));
+				user = new User(rs.getString("username"), rs.getString("password"), rs.getString("email"), rs.getString("firstname"), rs.getString("surname"));
 			}
 		} catch (SQLException e) {
 			System.err.println(sql);
