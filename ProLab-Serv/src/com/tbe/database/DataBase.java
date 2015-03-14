@@ -43,6 +43,16 @@ public class DataBase {
 			+ "deadline date, "
 			+ "foreign key (name) references users(username))";
 	
+	private static String strCreateNewsTable = "Create table if not exists fonctionnalities ("
+			+ "id Integer primary key autoincrement, "
+			+ "title char("
+			+ MAX_USERNAME_SIZE
+			+ "), "
+			+ "description text, "
+			+ "date date, "
+			+ "author text"
+			+ "foreign key (name) references users(username))";
+	
 	private static String strCreateTask = "Create table if not exists tasks ("
 			+ "fonctionnality Integer not null,"
 			+ "username char("
