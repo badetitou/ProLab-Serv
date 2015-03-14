@@ -45,9 +45,10 @@ public class MembersRequest {
 	
 	public static List<Project> getUserProject(String username){
 		List<Project> lp = new ArrayList<Project>();
-		String sql = "Select * from members, projects where projects.id=members.id and members.username='" + username+"';";
+		String sql = "Select * from members, projects where projects.id=members.id and members.username=?;";
 		try {
-			Statement stmt = DataBase.getConnection().createStatement();
+			PreparedStatement stmt = DataBase.getConnection().prepareStatement(sql);
+			stmt.setString(1, username);
 			ResultSet rs = stmt.executeQuery(sql);
 			while (rs.next()){
 				lp.add(new Project(rs.getInt("id"), rs.getString("name"), rs.getString("description"), rs.getString("url"), rs.getString("punchline")));
