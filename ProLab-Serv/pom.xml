@@ -1,13 +1,17 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-
-
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>ProLab-Serv</groupId>
+	<groupId>fr.iutinfo.2t</groupId>
 	<artifactId>ProLab-Serv</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0-SNAPSHOT</version>
+	<packaging>war</packaging>
+	<name>ProLab-Serv</name>
+	<url>http://maven.apache.org</url>
+	<properties>
+		<jersey.version>2.14</jersey.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
 	<build>
-		<sourceDirectory>src</sourceDirectory>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -82,12 +86,16 @@
 			<artifactId>sqlite-jdbc</artifactId>
 			<version>3.8.7</version>
 		</dependency>
-
+		<dependency>
+			<groupId>org.antlr</groupId>
+			<artifactId>stringtemplate</artifactId>
+			<version>3.2.1</version>
+		</dependency>
+		<!-- envoie d'email -->
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>1.4.7</version>
+		</dependency>
 	</dependencies>
-
-	<properties>
-		<jersey.version>2.16</jersey.version>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	</properties>
-
 </project>
