@@ -2,10 +2,10 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>fr.iutinfo.2t</groupId>
-	<artifactId>Prolab</artifactId>
+	<artifactId>Prolab-Serv</artifactId>
 	<version>1.0-SNAPSHOT</version>
 	<packaging>war</packaging>
-	<name>Prolab</name>
+	<name>Prolab-Serv</name>
 	<url>http://maven.apache.org</url>
 	<properties>
 		<jersey.version>2.14</jersey.version>
