@@ -7,56 +7,91 @@
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  <link href="css/styles.css" rel="stylesheet">
 </head>
-<body>
-
+<body class="login">
   <div class="container">
-    <h2>Project creation</h2>
-    <div class="form-horizontal">
+    <div class="row">
+      <h1 class="text-primary">Project creation wizard</h1>
+      <div class="col-md-8 well">
+        <h2>Step 1 : Project ID card</h2>
+        <div class="form col-md-12 center-block">
+          <!-- Text input-->
+          <div class="control-group">
+            <label class="control-label" for="pro-name">Name</label>
+            <div class="controls">
+              <input id="pro-name" name="pro-name" placeholder="Project's name"
+              class="form-control" maxlength="20" required="" type="text">
+            </div>
+          </div>
 
-      <div id="pro-named"class="form-group has-feedback">
-        <label class="col-sm-2 control-label" for="pro-name">Project name</label>
-        <div class="col-sm-3">
-          <input type="text" class="form-control" id="pro-name">
+          <!-- Text input-->
+          <div class="control-group">
+            <label class="control-label" for="pro-punchline">Punchline</label>
+            <div class="controls">
+              <input id="pro-punchline" name="pro-punchline" placeholder="Project's punchline" class="form-control" required="" type="text">
+              <p class="help-block">Keep it catchy &amp; simple, this is the most important part of the description</p>
+            </div>
+          </div>
+          <!-- Textarea -->
+          <div class="control-group">
+            <label class="control-label" for="pro-description">Description</label>
+            <div class="controls">
+              <textarea id="pro-description" class="form-control" name="pro-description">Project's description, take your time and make it easy and quick to understand.</textarea>
+            </div>
+          </div>
+
+          <!-- Button -->
+          <div class="control-group">
+            <label class="control-label" for="pro-infos-submit"></label>
+            <div class="controls text-right">
+              <button id="pro-infos-submit" name="pro-infos-submit" class="btn btn-success">Seems good !</button>
+            </div>
+          </div>
+        </div>
+        <h2>Step 2 : Add some folks</h2>
+        <div class="form col-md-12 center-block">
+          <!-- Prepended text-->
+          <div class="control-group">
+            <div class="controls">
+              <div class="control-group">
+                <label class="control-label" for="pro-member">Collaborator</label>
+                <div class="controls">
+                  <input id="pro-member" name="pro-member" placeholder="Username" class="form-control" type="text">
+                </div>
+              </div>
+              <!-- Button -->
+              <div class="control-group">
+                <label class="control-label" for="pro-infos-submit"></label>
+                <div class="controls text-right">
+                  <button id="pro-infos-submit" name="pro-infos-submit" class="btn btn-success">Add</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h2>Step 3 : All aboard !</h2>
+        <div class="form-group">
+          <button class="btn btn-primary btn-lg btn-block">Create the project</button>
         </div>
       </div>
 
-      <div class="form-group">
-        <label class="col-sm-2 control-label" for="pro-punchline">Punchline</label>
-        <div class="col-sm-5">
-          <input type="text" class="form-control" id="pro-punchline">
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label class="col-sm-2 control-label" for="pro-punchline">Description</label>
-        <div class="col-sm-5">
-          <textarea type="text" class="form-control" rows="5" id="pro-punchline"></textarea>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label class="col-sm-2 control-label" for="pro-members">Add a member</label>
-        <div class="col-sm-3">
-          <input type="text" class="form-control" id="pro-members">
-          <button class="btn" type="button">Add</button>
-        </div>
-      </div>
-      <div class="text-center" id="pro-members-list">
-        <h3>Actual members</h3>
-        <ul>
-          <li>You</li>
+      <div class="col-md-offset-1 col-md-3 well">
+        <h2>Current project</h2>
+        <h3>Infos</h3>
+        <ul class="list-group">
+          <li class="list-group-item">Name : <span id="display-name"></span></li>
+          <li class="list-group-item">Punchline : <span id="display-punchline"></span></li>
+          <li class="list-group-item">Description : <span id="display-description"></span></li>
         </ul>
-      </div>
-      <div class="form-group text-right">
-        <div class="container">
-          <button class="btn btn-danger">Cancel</button>
-          <button class="btn btn-primary">Go !</button>
-        </div>
+        <h3>Members</h3>
+        <ul class="list-group">
+          <li class="list-group-item">You</li>
+        </ul>
       </div>
     </div>
   </div>
-
   <script src="installation.js"></script>
 </body>
 </html>
