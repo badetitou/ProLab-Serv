@@ -38,12 +38,12 @@ public class UserREST {
 	}
 
 	@POST
-	public Response addUser(User user){
+	public User addUser(User user){
 		System.out.println("Post User");
 		String result =  UsersRequest.addUser(user.getUsername(),user.getPassword(),user.getEmail(), user.getFirstname(), user.getSurname());
 		if (result == null){
-	        return Response.status(Response.Status.BAD_REQUEST).entity("Entity already exist").build();
+	        return null;
 		}
-		return Response.status(Response.Status.CREATED).entity("User Created").build();
+		return user;
 	}
 }
