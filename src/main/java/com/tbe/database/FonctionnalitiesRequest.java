@@ -11,19 +11,13 @@ import com.tbe.json.Fonctionnality;
 
 public class FonctionnalitiesRequest {
 
-	public static String addFonctionnality(String id, String name,
-			String description, String avancement, Date deadLine) {
-		String sql = "Insert into fonctionnalities(id, name, description, avancement, deadLine) values ("
-				+ id
-				+ ",'"
-				+ name
-				+ "','"
-				+ description
-				+ "','"
-				+ avancement
-				+ "',"
-				+ deadLine
-				+ ");";
+	public static String addFonctionnality(String name,
+			String description, int avancement, Date deadLine) {
+		String sql = "Insert into fonctionnalities(name, description, avancement, deadLine) values ('"
+				+ name + "','"
+				+ description + "',"
+				+ avancement + ","
+				+ deadLine+ ");";
 		try {
 			Statement stmt = DataBase.getConnection().createStatement();
 			stmt.executeUpdate(sql);

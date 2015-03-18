@@ -1,6 +1,6 @@
 package com.tbe.json;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class Fonctionnality {
 	

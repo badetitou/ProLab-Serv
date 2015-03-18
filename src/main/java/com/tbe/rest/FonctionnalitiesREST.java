@@ -35,13 +35,13 @@ public class FonctionnalitiesREST {
 	}
 	
 	@POST
-	public Response postMember(@FormParam("id") String id, @FormParam("name") String name, @FormParam("description") String description, @FormParam("avancement") String avancement, @FormParam("deadLine") Date deadLine){
+	public Fonctionnality postMember(Fonctionnality fonctionnality){
 		System.out.println("Post Fonctionnality");
-		String result =  FonctionnalitiesRequest.addFonctionnality(id, name, description, avancement, deadLine);
+		String result =  FonctionnalitiesRequest.addFonctionnality(fonctionnality.getName(), fonctionnality.getDescription(), fonctionnality.getAvancement(), fonctionnality.getDeadLine());
 		if (result == null){
-	        return Response.status(Response.Status.BAD_REQUEST).entity("Entity already exist").build();
+			return null;
 		}
-		return Response.status(Response.Status.CREATED).entity("Fonctionnality Created").build();
+		return fonctionnality;
 	}
 	
 }
