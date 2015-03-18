@@ -60,12 +60,14 @@ public class MembersRequest {
 		return lp;
 	}
 
-	public static Member getMember(String id, String username) {
+	public static Member getMember(int id, String username) {
 		Member m = null;
+		String sql = "Select * from members where id=? and username=?;";
 		try {
-			Statement stmt = DataBase.getConnection().createStatement();
-			ResultSet rs = stmt.executeQuery("Select * from members where id="
-					+ id + " and username='" + username + "';");
+			PreparedStatement stmt = DataBase.getConnection().prepareStatement(sql);
+			stmt.setInt(1, id);
+			stmt.setString(2, username);
+			ResultSet rs = stmt.executeQuery();
 			m = new Member(rs.getInt("id"), rs.getString("username"));
 
 		} catch (SQLException e) {

@@ -2,15 +2,15 @@ package com.tbe.database;
 
 
 
-	import java.sql.ResultSet;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 
 import com.tbe.json.News;
-import com.tbe.json.Project;
 		
 	public class NewsRequest {
 		/**
@@ -20,10 +20,14 @@ import com.tbe.json.Project;
 		*/
 		
 		public static String addNews (String title, String description, Date date, String author){
-			String sql = "Insert into News(name, description, url, punchline) values ('"+ title+"','"+ description+ "','"+author+"'," +date + ");";
+			String sql = "Insert into News(name, description, url, punchline) values (?,?,?,?);";
 			try {
-				Statement stmt = DataBase.getConnection().createStatement();
-				stmt.executeUpdate(sql);
+				PreparedStatement stmt = DataBase.getConnection().prepareStatement(sql);
+				stmt.setString(1, title);
+				stmt.setString(2, description);
+				stmt.setDate(3, date);
+				stmt.setString(4, author);
+				stmt.executeUpdate();
 			} catch (SQLException e) {
 				e.printStackTrace();
 				System.err.println(sql);

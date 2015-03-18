@@ -31,7 +31,7 @@ public class ProjectsREST {
 	
 	@GET
 	@Path("/{idproject}")
-	public Project getProject(@PathParam("idproject") String id){
+	public Project getProject(@PathParam("idproject") int id){
 		System.out.println("GET Project "+ id);
 		return ProjectsRequest.getProject(id);
 	}

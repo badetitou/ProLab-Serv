@@ -1,6 +1,7 @@
 package com.tbe.database;
 
 import java.sql.Date;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -13,13 +14,13 @@ public class FonctionnalitiesRequest {
 
 	public static String addFonctionnality(String name,
 			String description, int avancement, Date deadLine) {
-		String sql = "Insert into fonctionnalities(name, description, avancement, deadLine) values ('"
-				+ name + "','"
-				+ description + "',"
-				+ avancement + ","
-				+ deadLine+ ");";
+		String sql = "Insert into fonctionnalities(name, description, avancement, deadLine) values (?,?,?,?);";
 		try {
-			Statement stmt = DataBase.getConnection().createStatement();
+			PreparedStatement stmt = DataBase.getConnection().prepareStatement(sql);
+			stmt.setString(1, name);
+			stmt.setString(2, description);
+			stmt.setInt(3, avancement);
+			stmt.setDate(4, deadLine);
 			stmt.executeUpdate(sql);
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -46,13 +47,13 @@ public class FonctionnalitiesRequest {
 		return fonctionnalities;
 	}
 
-	public static Fonctionnality getFonctionnality(String id) {
+	public static Fonctionnality getFonctionnality(int id) {
 		Fonctionnality f = null;
+		String sql = "Select * from fonctionnalities where id=?";
 		try {
-			Statement stmt = DataBase.getConnection().createStatement();
-			ResultSet rs = stmt
-					.executeQuery("Select * from fonctionnalities where id="
-							+ id);
+			PreparedStatement stmt = DataBase.getConnection().prepareStatement(sql);
+			stmt.setInt(1, id);
+			ResultSet rs = stmt.executeQuery();
 
 		} catch (SQLException e) {
 			e.printStackTrace();

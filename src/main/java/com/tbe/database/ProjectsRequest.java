@@ -52,12 +52,13 @@ public class ProjectsRequest {
 		return projects;
 	}
 	
-	public static Project getProject(String id){
+	public static Project getProject(int id){
 		Project project = null;
-		String sql = "Select * from projects where id='" +id + "';";
+		String sql = "Select * from projects where id=?;";
 		try {
-			Statement stmt = DataBase.getConnection().createStatement();
-			ResultSet rs = stmt.executeQuery(sql);
+			PreparedStatement stmt = DataBase.getConnection().prepareStatement(sql);
+			stmt.setInt(1, id);
+			ResultSet rs = stmt.executeQuery();
 			project = new Project(rs.getInt("id"), rs.getString("name"), rs.getString("description"), rs.getString("url"), rs.getString("punchline"));
 		} catch (SQLException e) {
 			System.err.println(sql);
