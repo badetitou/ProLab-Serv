@@ -1,4 +1,5 @@
-function register() {;
+function register() {
+	alert('test');
 	$.ajax({
 		type : 'POST',
 		contentType : 'application/json',
@@ -13,6 +14,7 @@ function register() {;
 		}),
 		success : function(data, textStatus, jqXHR) {
 			if (data.username == username) {
+				alert('test2');
 				console.log("User created");
 				window.location.href = "app/hub.html"
 			} else {

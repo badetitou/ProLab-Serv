@@ -38,13 +38,9 @@ public class UserREST {
 	}
 
 	@POST
-	public Response addUser(@FormParam("username") String username,
-			@FormParam("password") String password,
-			@FormParam("email") String email,
-			@FormParam("firstname") String firstName,
-			@FormParam("surname") String surname) {
+	public Response addUser(User user){
 		System.out.println("Post User");
-		String result =  UsersRequest.addUser(username, password, email, firstName, surname);
+		String result =  UsersRequest.addUser(user.getUsername(),user.getPassword(),user.getEmail(), user.getFirstname(), user.getSurname());
 		if (result == null){
 	        return Response.status(Response.Status.BAD_REQUEST).entity("Entity already exist").build();
 		}
