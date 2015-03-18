@@ -37,18 +37,16 @@ public class ProjectsREST {
 	}
 	
 	@POST
-	public Response postProject(Project project){
+	@Path("/{username}")
+	public Response postProject(Project project, @PathParam("username") String username){
 		int id =  ProjectsRequest.addProject(project.getName(), project.getDescription(), project.getUrl(), project.getPunchline());
 		if (id == -1){
 	        return Response.status(Response.Status.BAD_REQUEST).entity("Entity already exist").build();
 		}
-		/*String result = MembersRequest.addMember(username, id +"");
+		String result = MembersRequest.addMember(username, id +"");
 		if(result == null){
 	        return Response.status(Response.Status.BAD_REQUEST).entity("User no exist").build();
 		}
 		return Response.status(Response.Status.CREATED).entity("Project Created").build();
-		*/
-		return null;
 	}
-	
 }
