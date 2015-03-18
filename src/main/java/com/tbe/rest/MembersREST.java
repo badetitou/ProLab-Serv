@@ -40,9 +40,9 @@ public class MembersREST {
 	}
 	
 	@POST
-	public Response postMember(@FormParam("username") String username, @FormParam("id") String id){
+	public Response postMember(Member member){
 		System.out.println("Post Member");
-		String result =  MembersRequest.addMember(username, id);
+		String result =  MembersRequest.addMember(member.getUsername(), member.getId());
 		if (result == null){
 	        return Response.status(Response.Status.BAD_REQUEST).entity("Entity already exist").build();
 		}

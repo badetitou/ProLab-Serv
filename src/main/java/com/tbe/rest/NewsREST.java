@@ -34,11 +34,9 @@ public class NewsREST {
 	}
 
 	@POST
-	public Response postNews(@FormParam("title") String title,
-			@FormParam("description") String description,
-			@FormParam("date") Date date, @FormParam("author") String author) {
+	public Response postNews(News news) {
 		System.out.println("Post News");
-		String result = NewsRequest.addNews(title, description, date, author);
+		String result = NewsRequest.addNews(news.getTitle(), news.getDescription(),news.getDate(), news.getAuthor());
 		if (result == null) {
 			return Response.status(Response.Status.BAD_REQUEST)
 					.entity("Entity already exist").build();

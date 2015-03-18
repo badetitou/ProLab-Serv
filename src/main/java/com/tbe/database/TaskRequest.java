@@ -1,7 +1,7 @@
 package com.tbe.database;
 
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,15 +15,14 @@ public class TaskRequest {
 		return new ArrayList<Task>();
 	}
 
-	public static String addProject(String username, String project,
-			String fonctionnality) {
-		String sql = "insert into tasks (username, fonctionnality, project) values ('" +
-				username + "'," +
-				fonctionnality + "," +
-				project + ");";
+	public static String addProject(String username, int idProject, int idFonctionnality) {
+		String sql = "insert into tasks (username, fonctionnality, project) values (?,?,?);";
 		try {
-			Statement stmt = DataBase.getConnection().createStatement();
-			stmt.executeUpdate(sql);
+			PreparedStatement stmt = DataBase.getConnection().prepareStatement(sql);
+			stmt.setString(1, username);
+			stmt.setInt(2, idProject);
+			stmt.setInt(3, idFonctionnality);
+			stmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 			System.err.println(sql);

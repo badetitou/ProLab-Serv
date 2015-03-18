@@ -11,12 +11,12 @@ import com.tbe.json.Member;
 import com.tbe.json.Project;
 
 public class MembersRequest {
-	public static String addMember(String username, String id) {
+	public static String addMember(String username, int i) {
 		String sql = "Insert into members(username, id) values ( ?, ?);";
 		try {
 			PreparedStatement stmt = DataBase.getConnection().prepareStatement(sql);
 			stmt.setString(1, username);
-			stmt.setInt(2, Integer.parseInt(id));
+			stmt.setInt(2, i);
 			stmt.execute();
 			
 		} catch (SQLException e) {
