@@ -29,7 +29,7 @@ public class FonctionnalitiesREST {
 	
 	@GET
 	@Path("/{idFonctionnality}")
-	public Fonctionnality getFonctionnality(@PathParam("idProject") String id){
+	public Fonctionnality getFonctionnality(@PathParam("idProject") int id){
 		System.out.println("GET Fonctionnality "+ id);
 		return FonctionnalitiesRequest.getFonctionnality(id);
 	}
