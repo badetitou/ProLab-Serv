@@ -37,17 +37,18 @@ public class ProjectsREST {
 	}
 	
 	@POST
-	public Response postProject(@FormParam("name") String name, @FormParam("description") String description, @FormParam("url") String url, @FormParam("punchline") String punchline, @FormParam("username") String username){
-		System.out.println("Post Project :name=" + name + " :username=" + username);
-		int id =  ProjectsRequest.addProject(name, description, url, punchline);
+	public Response postProject(Project project){
+		int id =  ProjectsRequest.addProject(project.getName(), project.getDescription(), project.getUrl(), project.getPunchline());
 		if (id == -1){
 	        return Response.status(Response.Status.BAD_REQUEST).entity("Entity already exist").build();
 		}
-		String result = MembersRequest.addMember(username, id +"");
+		/*String result = MembersRequest.addMember(username, id +"");
 		if(result == null){
 	        return Response.status(Response.Status.BAD_REQUEST).entity("User no exist").build();
 		}
 		return Response.status(Response.Status.CREATED).entity("Project Created").build();
+		*/
+		return null;
 	}
 	
 }
