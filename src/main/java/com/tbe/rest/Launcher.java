@@ -21,6 +21,11 @@ public class Launcher extends Application {
 		s.add(UserREST.class);
 		s.add(MembersREST.class);
 		s.add(ChatREST.class);
+		s.add(FonctionnalitiesREST.class);
+		s.add(TaskREST.class);
+		s.add(ChatREST.class);
+		s.add(NewsREST.class);
+		
 		return s;
 	}	
 }
