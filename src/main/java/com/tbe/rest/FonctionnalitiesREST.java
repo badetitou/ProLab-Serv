@@ -37,7 +37,7 @@ public class FonctionnalitiesREST {
 	@POST
 	public Fonctionnality postMember(Fonctionnality fonctionnality){
 		System.out.println("Post Fonctionnality");
-		String result =  FonctionnalitiesRequest.addFonctionnality(fonctionnality.getName(), fonctionnality.getDescription(), fonctionnality.getAvancement(), fonctionnality.getDeadLine());
+		String result =  FonctionnalitiesRequest.addFonctionnality(fonctionnality.getName(), fonctionnality.getDescription(), 0, fonctionnality.getDeadLine());
 		if (result == null){
 			return null;
 		}
