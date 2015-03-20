@@ -48,11 +48,12 @@ public class DataBase {
 	private static String strCreateNewsTable = "Create table if not exists news ("
 			+ "id Integer primary key autoincrement, "
 			+ "title char("
-			+ MAX_USERNAME_SIZE
+			+ 20
 			+ "), "
 			+ "description text, "
 			+ "date date, "
-			+ "author text"
+			+ "author char("
+			+ MAX_USERNAME_SIZE +"),"
 			+ "foreign key (author) references users(username))";
 	
 	private static String strCreateTask = "Create table if not exists tasks ("
