@@ -46,7 +46,7 @@ public class UserREST {
 			Response response = Response.status(400).type(MediaType.APPLICATION_JSON).entity(user).build();
 	        return response;
 		}
-		Response response = Response.status(400).type(MediaType.APPLICATION_JSON).entity(user).build();
+		Response response = Response.status(201).type(MediaType.APPLICATION_JSON).entity(user).build();
 		return response;
 	}
 }
