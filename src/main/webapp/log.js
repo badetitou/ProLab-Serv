@@ -1,10 +1,10 @@
 function logIn() {
-	var email = $('#email').val(),
-	var pwd =  $('#pwd').val(),
+	var email = $('#email').val();
+	var password =  $('#pwd').val();
 
 $.getJSON("v1/users/" + email + "&" + pwd, function(data) {
     if (data.log != "") {
-      window.location.href = "./install.html"
+      window.location.href = "app/hub.html"
     } else{
       consol.log('erreur');
     }

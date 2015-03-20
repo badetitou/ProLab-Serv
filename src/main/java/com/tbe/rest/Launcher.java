@@ -20,6 +20,7 @@ public class Launcher extends Application {
 		s.add(ProjectsREST.class);
 		s.add(UserREST.class);
 		s.add(MembersREST.class);
+		s.add(ChatREST.class);
 		return s;
 	}	
 }

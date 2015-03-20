@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.tbe.json.Project;
+import com.tbe.json.Salon;
 
 public class ProjectsRequest {
 	

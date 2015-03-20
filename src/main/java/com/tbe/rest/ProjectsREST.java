@@ -12,8 +12,10 @@ import javax.ws.rs.core.Response;
 
 import com.tbe.database.MembersRequest;
 import com.tbe.database.ProjectsRequest;
+import com.tbe.json.Chat;
 import com.tbe.json.Member;
 import com.tbe.json.Project;
+import com.tbe.json.Salon;
 
 @Path("/projects")
 public class ProjectsREST {
@@ -47,6 +49,7 @@ public class ProjectsREST {
 		if(result == null){
 	        return Response.status(Response.Status.BAD_REQUEST).entity("User no exist").build();
 		}
+		Chat.salons.put(id, new Salon(id));
 		return Response.status(Response.Status.CREATED).entity("Project Created").build();
 	}
 }

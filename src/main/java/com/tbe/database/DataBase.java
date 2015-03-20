@@ -9,6 +9,8 @@ public class DataBase {
 	/* STATICS */
 	private static final int MAX_USERNAME_SIZE = 20;
 
+	
+	
 	private static String strCreateUserTable = "Create table if not exists users ("
 			+ "username char("
 			+ MAX_USERNAME_SIZE
