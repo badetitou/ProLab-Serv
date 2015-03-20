@@ -41,7 +41,7 @@ public class UserREST {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response addUser(User user){
 		System.out.println("Post User");
-		String result =  UsersRequest.addUser(user.getUsername(),user.getPassword(),user.getEmail(), user.getFirstname(), user.getSurname());
+		String result =  UsersRequest.addUser(user.getUsername(),user.getPassword(),user.getEmail(), user.getFirstname(), user.getLastname());
 		if (result == null){
 			Response response = Response.status(400).type(MediaType.APPLICATION_JSON).entity(user).build();
 	        return response;

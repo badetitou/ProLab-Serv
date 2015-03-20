@@ -6,17 +6,17 @@ public class User {
 	private String password;
 	private String email;
 	private String firstname;
-	private String surname;
+	private String lastname;
 	
 	//Must have empty constructor
 	public User(){}
 	
-	public User(String username, String password, String email, String firstname, String surname){
+	public User(String username, String password, String email, String firstname, String lastname){
 		this.username = username;
 		this.password = password;
 		this.email = email;
 		this.firstname = firstname;
-		this.surname = surname;
+		this.lastname = lastname;
 	}
 
 	public String getUsername() {
@@ -51,12 +51,12 @@ public class User {
 		this.firstname = firstname;
 	}
 
-	public String getSurname() {
-		return surname;
+	public String getLastname() {
+		return lastname;
 	}
 
-	public void setSurname(String surname) {
-		this.surname = surname;
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
 	}
 
 	

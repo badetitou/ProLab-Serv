@@ -12,15 +12,15 @@ import com.tbe.json.User;
 public class UsersRequest {
 	
 	public static String addUser(String username, String password, String email,
-			String firstName, String surName) {
-		String sql = "Insert into users(username, password, email, firstname,surname) values (?,?,?,?,?);";
+			String firstName, String lastname) {
+		String sql = "Insert into users(username, password, email, firstname,lastname) values (?,?,?,?,?);";
 		try {
 			PreparedStatement stmt = DataBase.getConnection().prepareStatement(sql);
 			stmt.setString(1, username);
 			stmt.setString(2, password);
 			stmt.setString(3, email);
 			stmt.setString(4, firstName);
-			stmt.setString(5, surName);
+			stmt.setString(5, lastname);
 
 			stmt.executeUpdate();
 		} catch (SQLException e) {
@@ -37,7 +37,7 @@ public class UsersRequest {
 			Statement stmt = DataBase.getConnection().createStatement();
 			ResultSet rs = stmt.executeQuery("Select * from users");
 			while (rs.next()){
-				users.add(new User(rs.getString("username"), rs.getString("password"), rs.getString("email"), rs.getString("firstname"), rs.getString("surname")));
+				users.add(new User(rs.getString("username"), rs.getString("password"), rs.getString("email"), rs.getString("firstname"), rs.getString("lastname")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -55,7 +55,7 @@ public class UsersRequest {
 			stmt.setString(2, password);
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()){
-				user = new User(rs.getString("username"), rs.getString("password"), rs.getString("email"), rs.getString("firstname"), rs.getString("surname"));
+				user = new User(rs.getString("username"), rs.getString("password"), rs.getString("email"), rs.getString("firstname"), rs.getString("lastname"));
 			}
 		} catch (SQLException e) {
 			System.err.println(sql);
