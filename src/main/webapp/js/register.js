@@ -1,4 +1,5 @@
 function register() {
+	var username = $('#username').val();
 	alert('test');
 	$.ajax({
 		type : 'POST',

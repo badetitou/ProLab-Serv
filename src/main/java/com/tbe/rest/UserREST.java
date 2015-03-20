@@ -47,6 +47,7 @@ public class UserREST {
 	        return response;
 		}
 		Response response = Response.status(201).type(MediaType.APPLICATION_JSON).entity(user).build();
+		System.out.println("User Created");
 		return response;
 	}
 }
