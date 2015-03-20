@@ -2,6 +2,11 @@ package com.tbe.database;
 
 import java.sql.*;
 
+/**
+ * 
+ * @author badetitou
+ *
+ */
 public class DataBase {
 
 	private static Connection c;
