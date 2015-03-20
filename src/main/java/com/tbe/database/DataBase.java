@@ -53,7 +53,7 @@ public class DataBase {
 			+ "description text, "
 			+ "date date, "
 			+ "author text"
-			+ "foreign key (name) references users(username))";
+			+ "foreign key (author) references users(username))";
 	
 	private static String strCreateTask = "Create table if not exists tasks ("
 			+ "fonctionnality Integer not null,"
