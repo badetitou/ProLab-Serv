@@ -1,6 +1,5 @@
 function register() {
 	var username = $('#username').val();
-	alert('test');
 	$.ajax({
 		type : 'POST',
 		contentType : 'application/json',
@@ -15,9 +14,8 @@ function register() {
 		}),
 		success : function(data, textStatus, jqXHR) {
 			if (data.username == username) {
-				alert('test2');
 				console.log("User created");
-				window.location.href = "app/hub.html"
+				window.location.href = "hub.html"
 			} else {
 				alert("username déjà pris");
 			}
