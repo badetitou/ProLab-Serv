@@ -10,6 +10,9 @@ import java.util.List;
 
 import com.tbe.json.Fonctionnality;
 
+/**
+ * @author badetitou
+ */
 public class FonctionnalitiesRequest {
 
 	public static String addFonctionnality(String name,
