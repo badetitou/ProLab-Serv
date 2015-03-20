@@ -85,17 +85,12 @@ public class DataBase {
 		// User Table
 		
 		stmt = DataBase.c.createStatement();
-		System.out.println(strCreateUserTable);
 		stmt.executeUpdate(strCreateUserTable);
-		System.out.println(strCreateProjectTable);
 		stmt.executeUpdate(strCreateProjectTable);
-		System.out.println(strCreateMembersTable);
 		stmt.executeUpdate(strCreateMembersTable);
-		System.out.println(strCreateFonctionnalitiesTable);
 		stmt.executeUpdate(strCreateFonctionnalitiesTable);
-		System.out.println(strCreateTask);
 		stmt.executeUpdate(strCreateTask);
-
+		stmt.executeUpdate(strCreateNewsTable);
 		System.out.println("Init Table Done");
 	}
 
