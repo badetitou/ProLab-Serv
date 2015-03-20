@@ -10,7 +10,7 @@ function register() {
 			"password" :  $('#pwd').val(),
 			"email" :  $('#email').val(),
 			"firstname" :  $('#firstname').val(),
-			"surname" : $('#lastname').val(),
+			"lastname" : $('#lastname').val(),
 		}),
 		success : function(data, textStatus, jqXHR) {
 			if (data.username == username) {
