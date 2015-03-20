@@ -38,6 +38,7 @@ public class UserREST {
 	}
 
 	@POST
+	@Produces(MediaType.APPLICATION_JSON)
 	public User addUser(User user){
 		System.out.println("Post User");
 		String result =  UsersRequest.addUser(user.getUsername(),user.getPassword(),user.getEmail(), user.getFirstname(), user.getSurname());

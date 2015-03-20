@@ -1,8 +1,9 @@
 function logIn() {
 	var email = $('#email').val();
 	var password =  $('#pwd').val();
+	alert(password);
 
-$.getJSON("v1/users/" + email + "&" + pwd, function(data) {
+$.getJSON("v1/users/" + email + "&" + password, function(data) {
     if (data.log != "") {
       window.location.href = "app/hub.html"
     } else{
