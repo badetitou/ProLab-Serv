@@ -15,7 +15,7 @@ import com.tbe.json.Fonctionnality;
  */
 public class FonctionnalitiesRequest {
 
-	public static String addFonctionnality(String name, String description,
+	public static int addFonctionnality(String name, String description,
 			int avancement, Date deadLine) {
 		String sql = "Insert into fonctionnalities(name, description, avancement, deadLine) values (?,?,?,?);";
 		try {
@@ -26,12 +26,15 @@ public class FonctionnalitiesRequest {
 			stmt.setInt(3, avancement);
 			stmt.setDate(4, deadLine);
 			stmt.executeUpdate();
+			stmt.close();
+			Statement stmt2 = DataBase.getConnection().createStatement();
+			ResultSet rs = stmt2.executeQuery("select last_insert_rowid();");
+			return rs.getInt(1);
 		} catch (SQLException e) {
 			e.printStackTrace();
 			System.err.println(sql);
-			return null;
+			return -1;
 		}
-		return "ok";
 	}
 
 	public static List<Fonctionnality> getAllfonctionnalities() {

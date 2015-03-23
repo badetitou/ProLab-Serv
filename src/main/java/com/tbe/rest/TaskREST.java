@@ -27,9 +27,9 @@ public class TaskREST {
 	@POST
 	public Response postProject(Task task) {
 		System.out.println("Post Task");
-		String result = TaskRequest.addProject(task.getUsername(),
+		int result = TaskRequest.addTask(task.getUsername(),
 				task.getIdProject(), task.getIdFonctionnality());
-		if (result == null) {
+		if (result == -1) {
 			return Response.status(Response.Status.BAD_REQUEST)
 					.entity("Entity already exist").build();
 		}

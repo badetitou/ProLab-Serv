@@ -6,8 +6,11 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
+import javax.ws.rs.core.Response;
 
 import com.tbe.database.FonctionnalitiesRequest;
+import com.tbe.database.MembersRequest;
+import com.tbe.database.TaskRequest;
 import com.tbe.json.Fonctionnality;
 
 @Path("/fonctionnalities")
@@ -33,15 +36,24 @@ public class FonctionnalitiesREST {
 	}
 
 	@POST
-	public Fonctionnality postMember(Fonctionnality fonctionnality) {
+	@Path("/{username}/{idProject}")
+	public Response postFonctionnality(Fonctionnality fonctionnality, @PathParam("username") String username, @PathParam("idProject") int idProject) {
 		System.out.println("Post Fonctionnality");
-		String result = FonctionnalitiesRequest.addFonctionnality(
+		int id = FonctionnalitiesRequest.addFonctionnality(
 				fonctionnality.getName(), fonctionnality.getDescription(), 0,
 				fonctionnality.getDeadLine());
-		if (result == null) {
-			return null;
+		if (id == -1) {
+			return Response.status(Response.Status.BAD_REQUEST)
+					.entity("Unknow Error").build();
 		}
-		return fonctionnality;
+		int result = TaskRequest.addTask(username, idProject, id);
+		System.out.println("ADD PRIMARY TASK");
+		if (result <=0){
+			return Response.status(Response.Status.BAD_REQUEST)
+					.entity("Unknow Error").build();
+		}
+		return Response.status(Response.Status.CREATED)
+				.entity("Fonctionnality Created").build();
 	}
 
 }
