@@ -87,6 +87,13 @@ public class DataBase {
 		// User Table
 
 		stmt = DataBase.c.createStatement();
+		stmt.executeUpdate("drop table users;");
+		stmt.executeUpdate("drop table projects;");
+		stmt.executeUpdate("drop table members;");
+		stmt.executeUpdate("drop table fonctionnalities;");
+		stmt.executeUpdate("drop table news;");
+		stmt.executeUpdate("drop table tasks;");
+
 		stmt.executeUpdate(strCreateUserTable);
 		stmt.executeUpdate(strCreateProjectTable);
 		stmt.executeUpdate(strCreateMembersTable);
