@@ -17,12 +17,11 @@ public class DataBase {
 	private static final int MAX_USERNAME_SIZE = 20;
 
 	private static String strCreateUserTable = "Create table if not exists users ("
-			+ "username char("
-			+ MAX_USERNAME_SIZE
-			+ ") primary key, "
+			+ "username char("+ MAX_USERNAME_SIZE+ ") primary key, "
 			+ "password char(20), "
 			+ "email text unique, "
-			+ "firstname char(20), " + "lastname char(20));";
+			+ "firstname char(20), "
+			+ "lastname char(20));";
 
 	private static String strCreateProjectTable = "Create table if not exists projects ("
 			+ "id Integer primary key autoincrement, "
