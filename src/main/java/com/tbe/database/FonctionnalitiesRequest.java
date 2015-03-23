@@ -24,7 +24,7 @@ public class FonctionnalitiesRequest {
 			stmt.setString(2, description);
 			stmt.setInt(3, avancement);
 			stmt.setDate(4, deadLine);
-			stmt.executeUpdate(sql);
+			stmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 			System.err.println(sql);
