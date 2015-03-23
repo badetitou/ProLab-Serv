@@ -1,9 +1,7 @@
 package com.tbe.rest;
 
-import java.sql.Date;
 import java.util.List;
 
-import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -36,7 +34,8 @@ public class NewsREST {
 	@POST
 	public Response postNews(News news) {
 		System.out.println("Post News");
-		String result = NewsRequest.addNews(news.getTitle(), news.getDescription(),news.getDate(), news.getAuthor());
+		String result = NewsRequest.addNews(news.getTitle(),
+				news.getDescription(), news.getDate(), news.getAuthor());
 		if (result == null) {
 			return Response.status(Response.Status.BAD_REQUEST)
 					.entity("Entity already exist").build();

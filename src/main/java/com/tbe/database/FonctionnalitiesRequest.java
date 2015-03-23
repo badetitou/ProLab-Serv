@@ -15,11 +15,12 @@ import com.tbe.json.Fonctionnality;
  */
 public class FonctionnalitiesRequest {
 
-	public static String addFonctionnality(String name,
-			String description, int avancement, Date deadLine) {
+	public static String addFonctionnality(String name, String description,
+			int avancement, Date deadLine) {
 		String sql = "Insert into fonctionnalities(name, description, avancement, deadLine) values (?,?,?,?);";
 		try {
-			PreparedStatement stmt = DataBase.getConnection().prepareStatement(sql);
+			PreparedStatement stmt = DataBase.getConnection().prepareStatement(
+					sql);
 			stmt.setString(1, name);
 			stmt.setString(2, description);
 			stmt.setInt(3, avancement);
@@ -54,9 +55,10 @@ public class FonctionnalitiesRequest {
 		Fonctionnality f = null;
 		String sql = "Select * from fonctionnalities where id=?";
 		try {
-			PreparedStatement stmt = DataBase.getConnection().prepareStatement(sql);
+			PreparedStatement stmt = DataBase.getConnection().prepareStatement(
+					sql);
 			stmt.setInt(1, id);
-			ResultSet rs = stmt.executeQuery();
+			//ResultSet rs = stmt.executeQuery();
 
 		} catch (SQLException e) {
 			e.printStackTrace();

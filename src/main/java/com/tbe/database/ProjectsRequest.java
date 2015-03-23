@@ -8,20 +8,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.tbe.json.Project;
-import com.tbe.json.Salon;
 
 public class ProjectsRequest {
-	
+
 	/**
-	pushline
-	logo
-	l'entreprise
-	*/
-	
-	public static int addProject (String name, String description, String url, String punchline){
+	 * pushline logo l'entreprise
+	 */
+
+	public static int addProject(String name, String description, String url,
+			String punchline) {
 		String sql = "Insert into projects(name, description, url, punchline) values (?,?,?,?);";
 		try {
-			PreparedStatement stmt = DataBase.getConnection().prepareStatement(sql);
+			PreparedStatement stmt = DataBase.getConnection().prepareStatement(
+					sql);
 			stmt.setString(1, name);
 			stmt.setString(2, description);
 			stmt.setString(3, url);
@@ -37,14 +36,16 @@ public class ProjectsRequest {
 			return -1;
 		}
 	}
-	
-	public static List<Project> getAllProject(){
+
+	public static List<Project> getAllProject() {
 		List<Project> projects = new ArrayList<Project>();
 		try {
 			Statement stmt = DataBase.getConnection().createStatement();
 			ResultSet rs = stmt.executeQuery("Select * from projects");
-			while (rs.next()){
-				projects.add(new Project(rs.getInt("id"), rs.getString("name"), rs.getString("description"), rs.getString("url"), rs.getString("punchline")));
+			while (rs.next()) {
+				projects.add(new Project(rs.getInt("id"), rs.getString("name"),
+						rs.getString("description"), rs.getString("url"), rs
+								.getString("punchline")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -52,15 +53,18 @@ public class ProjectsRequest {
 		}
 		return projects;
 	}
-	
-	public static Project getProject(int id){
+
+	public static Project getProject(int id) {
 		Project project = null;
 		String sql = "Select * from projects where id=?;";
 		try {
-			PreparedStatement stmt = DataBase.getConnection().prepareStatement(sql);
+			PreparedStatement stmt = DataBase.getConnection().prepareStatement(
+					sql);
 			stmt.setInt(1, id);
 			ResultSet rs = stmt.executeQuery();
-			project = new Project(rs.getInt("id"), rs.getString("name"), rs.getString("description"), rs.getString("url"), rs.getString("punchline"));
+			project = new Project(rs.getInt("id"), rs.getString("name"),
+					rs.getString("description"), rs.getString("url"),
+					rs.getString("punchline"));
 		} catch (SQLException e) {
 			System.err.println(sql);
 			e.printStackTrace();

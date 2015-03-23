@@ -1,6 +1,9 @@
 package com.tbe.database;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  * 
@@ -10,26 +13,22 @@ import java.sql.*;
 public class DataBase {
 
 	private static Connection c;
-	private static final int version = 1;
 	/* STATICS */
 	private static final int MAX_USERNAME_SIZE = 20;
 
-	
-	
 	private static String strCreateUserTable = "Create table if not exists users ("
 			+ "username char("
 			+ MAX_USERNAME_SIZE
 			+ ") primary key, "
 			+ "password char(20), "
 			+ "email text unique, "
-			+ "firstname char(20), "
-			+ "lastname char(20));";
+			+ "firstname char(20), " + "lastname char(20));";
 
 	private static String strCreateProjectTable = "Create table if not exists projects ("
 			+ "id Integer primary key autoincrement, "
 			+ "name char(20), "
 			+ "description text, "
-			+ "url char(20) unique not null, " 
+			+ "url char(20) unique not null, "
 			+ "punchline char(50));";
 
 	private static String strCreateMembersTable = "Create table if not exists members ("
@@ -37,9 +36,9 @@ public class DataBase {
 			+ MAX_USERNAME_SIZE
 			+ "), "
 			+ "id int,"
-			+ "foreign key (username) references users(username)," +
-			" foreign key (id) references projects(id))";
-	
+			+ "foreign key (username) references users(username),"
+			+ " foreign key (id) references projects(id))";
+
 	private static String strCreateFonctionnalitiesTable = "Create table if not exists fonctionnalities ("
 			+ "id Integer primary key autoincrement, "
 			+ "name char("
@@ -49,7 +48,7 @@ public class DataBase {
 			+ "avancement int, "
 			+ "deadline date, "
 			+ "foreign key (name) references users(username))";
-	
+
 	private static String strCreateNewsTable = "Create table if not exists news ("
 			+ "id Integer primary key autoincrement, "
 			+ "title char("
@@ -58,17 +57,15 @@ public class DataBase {
 			+ "description text, "
 			+ "date date, "
 			+ "author char("
-			+ MAX_USERNAME_SIZE +"),"
+			+ MAX_USERNAME_SIZE
+			+ "),"
 			+ "foreign key (author) references users(username))";
-	
+
 	private static String strCreateTask = "Create table if not exists tasks ("
-			+ "fonctionnality Integer not null,"
-			+ "username char("
-			+MAX_USERNAME_SIZE
-			+ "), "
-			+"project Integer not null," +
-			"foreign key (fonctionnality) references fonctionnalities(id)," +
-			"foreign key (username) references users(username));";
+			+ "fonctionnality Integer not null," + "username char("
+			+ MAX_USERNAME_SIZE + "), " + "project Integer not null,"
+			+ "foreign key (fonctionnality) references fonctionnalities(id),"
+			+ "foreign key (username) references users(username));";
 
 	public DataBase() {
 		System.out.println("Init BDD...");
@@ -89,7 +86,7 @@ public class DataBase {
 		System.out.println("Init Table");
 		Statement stmt;
 		// User Table
-		
+
 		stmt = DataBase.c.createStatement();
 		stmt.executeUpdate(strCreateUserTable);
 		stmt.executeUpdate(strCreateProjectTable);

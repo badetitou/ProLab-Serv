@@ -6,9 +6,6 @@ import java.util.Set;
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 
-import org.skife.jdbi.v2.DBI;
-import org.sqlite.SQLiteDataSource;
-
 import com.tbe.database.DataBase;
 
 @ApplicationPath("/v1/")
@@ -25,7 +22,7 @@ public class Launcher extends Application {
 		s.add(TaskREST.class);
 		s.add(ChatREST.class);
 		s.add(NewsREST.class);
-		
+
 		return s;
-	}	
+	}
 }
