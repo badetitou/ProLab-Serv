@@ -11,6 +11,7 @@ import javax.ws.rs.core.Response;
 import com.tbe.database.MembersRequest;
 import com.tbe.json.Member;
 import com.tbe.json.Project;
+import com.tbe.json.User;
 
 @Path("/members")
 public class MembersREST {
@@ -24,6 +25,18 @@ public class MembersREST {
 			m[i] = members.get(i);
 		}
 		return m;
+	}
+	
+	@GET
+	@Path("/project/{idProject}")
+	public User[] getProjectUser(@PathParam("idPRoject") int idProject){
+		System.out.println("GET Project users |project:" + idProject);
+		List<User> lp = MembersRequest.getProjectUser(idProject);
+		User[] result = new User[lp.size()];
+		for (int i = 0; i < lp.size(); ++i) {
+			result[i] = lp.get(i);
+		}
+		return result;
 	}
 
 	@GET

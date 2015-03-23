@@ -10,6 +10,7 @@ import java.util.List;
 
 import com.tbe.json.Member;
 import com.tbe.json.Project;
+import com.tbe.json.User;
 
 public class MembersRequest {
 	public static String addMember(String username, int idProject, int role) {
@@ -76,5 +77,22 @@ public class MembersRequest {
 			return null;
 		}
 		return m;
+	}
+
+	public static List<User> getProjectUser(int idProject) {
+		List<User> lp = new ArrayList<User>();
+		String sql = "Select users.username, users.password, users.email, users.firstname, users.lastname from members, users where users.username=members.username and members.idProject=?;";
+		try {
+			PreparedStatement stmt = DataBase.getConnection().prepareStatement(sql);
+			stmt.setInt(1, idProject);
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()){
+				lp.add(new User(rs.getString("username"), rs.getString("password"), rs.getString("email"), rs.getString("firstname"), rs.getString("lastname")));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+		return lp;
 	}
 }
