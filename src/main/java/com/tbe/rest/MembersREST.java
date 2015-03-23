@@ -29,7 +29,7 @@ public class MembersREST {
 	
 	@GET
 	@Path("/project/{idProject}")
-	public User[] getProjectUser(@PathParam("idPRoject") int idProject){
+	public User[] getProjectUser(@PathParam("idProject") int idProject){
 		System.out.println("GET Project users |project:" + idProject);
 		List<User> lp = MembersRequest.getProjectUser(idProject);
 		User[] result = new User[lp.size()];
