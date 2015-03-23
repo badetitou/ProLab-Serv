@@ -9,6 +9,7 @@ import java.util.List;
 
 import com.tbe.json.Fonctionnality;
 import com.tbe.json.Task;
+import com.tbe.json.User;
 
 public class TaskRequest {
 
@@ -55,6 +56,24 @@ public class TaskRequest {
 				fonctionnalities.add(new Fonctionnality(rs.getInt("id"), rs.getString("name"), rs.getString("description"), rs.getInt("avancement"), rs.getDate("deadline")));
 			}
 			return fonctionnalities;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.err.println(sql);
+			return null;
+		}
+	}
+
+	public static List<User> getUserForFonctionnality(int idFonctionnality) {
+		List<User> users = new ArrayList<User>();
+		String sql = "Select * from users, tasks where tasks.fonctionnality=?";
+		try {
+			PreparedStatement stmt = DataBase.getConnection().prepareStatement(sql);
+			stmt.setInt(1, idFonctionnality);
+			ResultSet rs = stmt.executeQuery();
+			while(rs.next()){
+				users.add(new User(rs.getString("username"), rs.getString("password"), rs.getString("email"), rs.getString("firstname"), rs.getString("lastname")));
+			}
+			return users;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			System.err.println(sql);

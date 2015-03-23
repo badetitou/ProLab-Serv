@@ -1,6 +1,5 @@
 package com.tbe.rest;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.ws.rs.GET;
@@ -31,8 +30,12 @@ public class TaskREST {
 	@GET
 	@Path("/users/{idFonctionnality}")
 	public User[] getUserForFonctionnality(@PathParam("idFonctionnality") int idFonctionnality){
-		//TODO all
-		return null;
+		List<User> users = TaskRequest.getUserForFonctionnality(idFonctionnality);
+		User[] m = new User[users.size()];
+		for (int i = 0; i < m.length; ++i) {
+			m[i] = users.get(i);
+		}
+		return m;		
 	}
 	
 	@GET
