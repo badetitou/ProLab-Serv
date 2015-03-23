@@ -7,91 +7,51 @@
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-  <link href="css/styles.css" rel="stylesheet">  
+  <link href="css/styles.css" rel="stylesheet">
   <script src="cookieHandler.js"></script>
   <script src="/js/project.js"></script>
 </head>
 <body class="login">
 <script>checkCookie();</script>
-  <div class="container">
-    <div class="row">
-      <h1 class="text-primary">Project creation wizard</h1>
-      <div class="col-md-8 well">
-        <h2>Step 1 : Project ID card</h2>
-        <div class="form col-md-12 center-block">
-          <!-- Text input-->
-          <div class="control-group">
-            <label class="control-label" for="pro-name">Name</label>
-            <div class="controls">
-              <input id="pro-name" name="pro-name" placeholder="Project's name"
-              class="form-control" maxlength="20" required="" type="text">
-            </div>
-          </div>
-
-          <!-- Text input-->
-          <div class="control-group">
-            <label class="control-label" for="pro-punchline">Punchline</label>
-            <div class="controls">
-              <input id="pro-punchline" name="pro-punchline" placeholder="Project's punchline" class="form-control" required="" type="text">
-              <p class="help-block">Keep it catchy &amp; simple, this is the most important part of the description</p>
-            </div>
-          </div>
-          <!-- Textarea -->
-          <div class="control-group">
-            <label class="control-label" for="pro-description">Description</label>
-            <div class="controls">
-              <textarea id="pro-description" class="form-control" name="pro-description">Project's description, take your time and make it easy and quick to understand.</textarea>
-            </div>
-          </div>
-
-          <!-- Button -->
-          <div class="control-group">
-            <label class="control-label" for="pro-infos-submit"></label>
-
-          </div>
-        </div>
-        <h2>Step 2 : Add some folks</h2>
-        <div class="form col-md-12 center-block">
-          <!-- Prepended text-->
-          <div class="control-group">
-            <div class="controls">
-              <div class="control-group">
-                <label class="control-label" for="pro-member">Collaborator</label>
-                <div class="controls">
-                  <input id="pro-member" name="pro-member" placeholder="Username" class="form-control" type="text">
-                </div>
-              </div>
-              <!-- Button -->
-              <div class="control-group">
-                <label class="control-label" for="pro-infos-submit"></label>
-                <div class="controls text-right">
-                  <button id="pro-infos-submit" name="pro-infos-submit" class="btn btn-success">Add</button>
-                </div>
-              </div>
-            </div>
+<div class="container">
+  <div class="row well">
+    <h1 class="text-primary">Project creation wizard</h1>
+      <h2>Step 1 : Project ID card</h2>
+      <div class="form col-md-12 center-block">
+        <!-- Text input-->
+        <div class="control-group">
+          <label class="control-label" for="pro-name">Name</label>
+          <div class="controls">
+            <input id="pro-name" name="pro-name" placeholder="Project's name"
+            class="form-control" maxlength="20" required="" type="text">
           </div>
         </div>
 
-        <h2>Step 3 : All aboard !</h2>
+        <!-- Text input-->
+        <div class="control-group">
+          <label class="control-label" for="pro-punchline">Punchline</label>
+          <div class="controls">
+            <input id="pro-punchline" name="pro-punchline" placeholder="Project's punchline" class="form-control" required="" type="text">
+            <p class="help-block">Keep it catchy &amp; simple, this is the most important part of the description</p>
+          </div>
+        </div>
+        <!-- Textarea -->
+        <div class="control-group">
+          <label class="control-label" for="pro-description">Description</label>
+          <div class="controls">
+            <textarea id="pro-description" class="form-control" name="pro-description">Project's description, take your time and make it easy and quick to understand.</textarea>
+          </div>
+        </div>
+
+        <!-- Button -->
+        <div class="control-group">
+          <label class="control-label" for="pro-infos-submit"></label>
+        </div>
         <div class="form-group">
           <input type="submit" onclick="create()" class="btn btn-primary btn-lg btn-block" id="send" value="Create the project">
         </div>
-      </div>
-
-      <div class="col-md-offset-1 col-md-3 well">
-        <h2>Current project</h2>
-        <h3>Infos</h3>
-        <ul class="list-group">
-          <li class="list-group-item">Name : <span id="display-name"></span></li>
-          <li class="list-group-item">Punchline : <span id="display-punchline"></span></li>
-          <li class="list-group-item">Description : <span id="display-description"></span></li>
-        </ul>
-        <h3>Members</h3>
-        <ul class="list-group">
-          <li class="list-group-item">You</li>
-        </ul>
-      </div>
     </div>
   </div>
+</div>
 </body>
 </html>
