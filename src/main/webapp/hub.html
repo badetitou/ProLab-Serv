@@ -14,8 +14,10 @@
 
   <!-- Latest compiled JavaScript -->
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  <script src="cookieHandler.js"></script>
 </head>
 <body class="alt">
+<script>checkCookie();</script>
   <nav class="navbar navbar-default">
     <div class="container">
       <div class="navbar-header">
@@ -27,7 +29,7 @@
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li><a href="about.html"><span class="glyphicon glyphicon-heart-empty"></span> About</a></li>
-          <li><a href="#"><span class="text-danger glyphicon glyphicon-off"></span> Logout</a></li>
+          <li><a onclick="deleteCookie('log')"><span class="text-danger glyphicon glyphicon-off"></span> Logout</a></li>
         </ul>
       </div>
     </div>

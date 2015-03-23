@@ -1,6 +1,6 @@
 .modal-footer {   border-top: 0px; }
 .login {
-  background: url(http://nathansgibson.org/wp-content/uploads/2015/03/VQXYE2ZEHC.jpg) no-repeat center center fixed;
+  background: url(bg.jpg) no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -8,7 +8,7 @@
 }
 
 .alt {
-  background: url(http://nathansgibson.org/wp-content/uploads/2015/03/VQXYE2ZEHC.jpg) no-repeat center center fixed;
+  background: url(bg2.jpg) no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;

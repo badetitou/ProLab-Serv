@@ -14,6 +14,7 @@ function register() {
 		}),
 		success : function(data, textStatus, jqXHR) {
 			if (data.username == username) {
+				setCookie('log', username, 265);
 				console.log("User created");
 				window.location.href = "hub.html"
 			} else {
@@ -24,4 +25,11 @@ function register() {
 			alert("Error Creat User");
 		}
 	});
+}
+
+function setCookie(cname, cvalue, exdays) {
+	var d = new Date();
+	d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+	var expires = "expires=" + d.toUTCString();
+	document.cookie = cname + "=" + cvalue + "; " + expires +";path=/";
 }
