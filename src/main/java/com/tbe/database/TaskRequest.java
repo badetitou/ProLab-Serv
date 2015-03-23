@@ -7,7 +7,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.tbe.json.Project;
 import com.tbe.json.Task;
 
 public class TaskRequest {
@@ -18,7 +17,7 @@ public class TaskRequest {
 		ArrayList<Task> tasks= new ArrayList<Task>();
 		try {
 			Statement stmt = DataBase.getConnection().createStatement();
-			ResultSet rs = stmt.executeQuery("Select * from projects");
+			ResultSet rs = stmt.executeQuery("Select * from tasks");
 			while (rs.next()) {
 				tasks.add(new Task(rs.getString("username"), rs.getInt("fonctionnality"), rs.getInt("project")));
 			}
