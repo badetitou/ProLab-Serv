@@ -1,16 +1,18 @@
 function logIn() {
 	var pseudo = $('#pseudo').val();
 	var password =  $('#pwd').val();
-
-$.getJSON("v1/users/" + pseudo + "&" + password, function(data) {
-    if (data.log != "") {
-    setCookie('log', pseudo, 265);
-      window.location.href = "hub.html"
-    } else{
-      alert('identifiant ou mdp invalid')
-      consol.log('erreur');
-    }
-  });
+	if(password == "")
+	$('#errorBox').text('Enter a password');
+	else{
+		$.getJSON("v1/users/" + pseudo + "&" + password, function(data) {
+			if (typeof data === "undefined") {
+				$('#errorBox').text('Verify your username and password.');
+			} else{
+				setCookie('log', pseudo, 265);
+				window.location.href = "hub.html"
+			}
+		});
+	}
 }
 
 function setCookie(cname, cvalue, exdays) {

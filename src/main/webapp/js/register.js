@@ -5,9 +5,11 @@ function register() {
 	var email =  $('#email').val();
 	var firstname =  $('#firstname').val();
 	var lastname =   $('#lastname').val();
-	
+
 	if(password != password2){
 		$('#errorBox').text('Passwords doesn\'t match.');
+	} else if(password == "") {
+		$('#errorBox').text('Enter a password.');
 	} else {
 		$.ajax({
 			type : 'POST',
