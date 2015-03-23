@@ -12,6 +12,7 @@ import javax.ws.rs.core.Response;
 import com.tbe.database.MembersRequest;
 import com.tbe.json.Member;
 import com.tbe.json.Project;
+import com.tbe.tools.Mailer;
 
 @Path("/members")
 public class MembersREST {

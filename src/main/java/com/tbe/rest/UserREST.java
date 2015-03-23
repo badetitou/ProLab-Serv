@@ -13,41 +13,69 @@ import javax.ws.rs.core.Response;
 
 import com.tbe.database.UsersRequest;
 import com.tbe.json.User;
+import com.tbe.tools.Mailer;
 
 @Path("/users")
 public class UserREST {
 
 	@GET
-    @Produces(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
 	public User[] getAllUsers() {
 		List<User> users = UsersRequest.getAllUsers();
 		User[] userTab = new User[users.size()];
-		for (int i = 0;i<userTab.length;++i){
+		for (int i = 0; i < userTab.length; ++i) {
 			userTab[i] = users.get(i);
 		}
 		return userTab;
-		
+
 	}
-	
+
 	@GET
-    @Produces(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/{username}&{userpassword}")
-	public User getUser(@PathParam("username") String username, @PathParam("userpassword") String password){
-		System.out.println("GET USER "+ username + " : " + password);
+	public User getUser(@PathParam("username") String username,
+			@PathParam("userpassword") String password) {
+		System.out.println("GET USER " + username + " : " + password);
 		return UsersRequest.getUser(username, password);
 	}
 
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response addUser(User user){
+	public Response addUser(User user) {
 		System.out.println("Post User");
-		String result =  UsersRequest.addUser(user.getUsername(),user.getPassword(),user.getEmail(), user.getFirstname(), user.getLastname());
-		if (result == null){
-			Response response = Response.status(400).type(MediaType.APPLICATION_JSON).entity(user).build();
-	        return response;
+
+		String username = user.getUsername().toLowerCase();
+		String password = user.getPassword();
+		String email = user.getEmail().toLowerCase();
+		String firstname = user.getFirstname().substring(0, 1).toUpperCase()
+				+ user.getFirstname().substring(1).toLowerCase();
+		String lastname = user.getLastname().substring(0, 1).toUpperCase()
+				+ user.getLastname().substring(1).toLowerCase();
+		System.out.println("New user : " + username + "/" + password + "/"
+				+ email + "/" + firstname + "/" + lastname);
+		String result = UsersRequest.addUser(username, password, email,
+				firstname, lastname);
+		if (result == null) {
+			Response response = Response.status(400)
+					.type(MediaType.APPLICATION_JSON).entity(user).build();
+			return response;
 		}
-		Response response = Response.status(201).type(MediaType.APPLICATION_JSON).entity(user).build();
+		Response response = Response.status(201)
+				.type(MediaType.APPLICATION_JSON).entity(user).build();
 		System.out.println("User Created");
+		try {
+			Mailer.sendMail(user.getEmail(), "ProLab - Registration",
+					"Welcome to ProLab, " + user.getFirstname()
+							+ " ! Check out your profile infos :\n"
+							+ " - Username : "
+							+ user.getUsername().toLowerCase() + "\n"
+							+ " - Password : " + user.getPassword() + "\n"
+							+ "\nWe hope you'll enjoy using our platform !\n"
+							+ "\n\nAlexandre Beaudet\n" + "www.prolab.com\n");
+		} catch (Exception e) {
+			System.out.println("Mail not sent");
+			e.printStackTrace();
+		}
 		return response;
 	}
 }
