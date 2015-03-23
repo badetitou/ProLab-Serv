@@ -41,7 +41,7 @@ public class UserREST {
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response addUser(User user) {
-		System.out.println("Post User");
+		System.out.println("Post User\nusername:" + user.getUsername()+"\npassword:" + user.getPassword() + "\nemail:" + user.getEmail() +"\nfirstname:"+user.getFirstname() + "\nlastname:"+user.getLastname());
 
 		String username = user.getUsername().toLowerCase();
 		String password = user.getPassword();
@@ -73,7 +73,6 @@ public class UserREST {
 							+ "\n\nAlexandre Beaudet\n" + "www.prolab.com\n");
 		} catch (Exception e) {
 			System.out.println("Mail not sent");
-			e.printStackTrace();
 		}
 		return response;
 	}

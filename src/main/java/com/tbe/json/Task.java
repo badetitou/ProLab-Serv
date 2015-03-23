@@ -7,6 +7,12 @@ public class Task {
 	
 	public Task(){}
 
+	public Task(String username, int idProject, int idFonctionnality) {
+		this.username = username;
+		this.idProject = idProject;
+		this.idFonctionnality = idFonctionnality;
+	}
+
 	public String getUsername() {
 		return username;
 	}

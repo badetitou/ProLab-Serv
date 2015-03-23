@@ -62,8 +62,9 @@ public class DataBase {
 			+ "foreign key (author) references users(username))";
 
 	private static String strCreateTask = "Create table if not exists tasks ("
-			+ "fonctionnality Integer not null," + "username char("
-			+ MAX_USERNAME_SIZE + "), " + "project Integer not null,"
+			+ "fonctionnality Integer not null," + 
+			"username char("+ MAX_USERNAME_SIZE + "), " + 
+			"project Integer not null,"
 			+ "foreign key (fonctionnality) references fonctionnalities(id),"
 			+ "foreign key (username) references users(username));";
 
