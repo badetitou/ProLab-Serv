@@ -18,11 +18,11 @@ function register() {
 				console.log("User created");
 				window.location.href = "hub.html"
 			} else {
-				alert("username déjà pris");
+				$('#errorBox').text('Username/Email already taken.');
 			}
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
-			alert("Error Creat User");
+			$('#errorBox').text('Username/Email already taken.');
 		}
 	});
 }
