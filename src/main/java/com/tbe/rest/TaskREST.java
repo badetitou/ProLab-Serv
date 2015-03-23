@@ -12,6 +12,7 @@ import javax.ws.rs.core.Response;
 import com.tbe.database.TaskRequest;
 import com.tbe.json.Fonctionnality;
 import com.tbe.json.Task;
+import com.tbe.json.User;
 
 @Path("/task")
 public class TaskREST {
@@ -25,6 +26,13 @@ public class TaskREST {
 			p[i] = tasks.get(i);
 		}
 		return p;
+	}
+	
+	@GET
+	@Path("/users/{idFonctionnality}")
+	public User[] getUserForFonctionnality(@PathParam("idFonctionnality") int idFonctionnality){
+		//TODO all
+		return null;
 	}
 	
 	@GET
