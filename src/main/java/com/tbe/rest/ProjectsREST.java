@@ -6,6 +6,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import com.tbe.database.MembersRequest;
@@ -52,7 +53,9 @@ public class ProjectsREST {
 					.entity("User no exist").build();
 		}
 		Chat.salons.put(id, new Salon(id));
-		return Response.status(Response.Status.CREATED)
-				.entity("Project Created").build();
+		Response response = Response.status(201)
+				.type(MediaType.APPLICATION_JSON).entity(project).build();
+		System.out.println("Project Created");
+		return response;
 	}
 }
