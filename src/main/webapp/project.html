@@ -7,9 +7,12 @@
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-  <link href="css/styles.css" rel="stylesheet">
+  <link href="css/styles.css" rel="stylesheet">  
+  <script src="cookieHandler.js"></script>
+  <script src="/js/project.js"></script>
 </head>
 <body class="login">
+<script>checkCookie();</script>
   <div class="container">
     <div class="row">
       <h1 class="text-primary">Project creation wizard</h1>
@@ -71,7 +74,7 @@
 
         <h2>Step 3 : All aboard !</h2>
         <div class="form-group">
-          <button class="btn btn-primary btn-lg btn-block">Create the project</button>
+          <input type="submit" onclick="create()" class="btn btn-primary btn-lg btn-block" id="send" value="Create the project">
         </div>
       </div>
 
@@ -90,6 +93,5 @@
       </div>
     </div>
   </div>
-  <script src="/js/installation.js"></script>
 </body>
 </html>
