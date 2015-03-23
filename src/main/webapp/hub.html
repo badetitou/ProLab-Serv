@@ -15,6 +15,7 @@
   <!-- Latest compiled JavaScript -->
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
   <script src="cookieHandler.js"></script>
+  <script src="/js/hub.js"></script>
 </head>
 <body class="alt">
 <script>checkCookie();</script>
@@ -44,14 +45,10 @@
           <button class="btn btn-primary"><span class="glyphicon glyphicon-plus-sign"></span></button>
         </form>
         <ul class="list-group">
-          <li class="list-group-item">
-            <span class="badge">2 tasks to do</span>
-            <a href="#">JRStudio</a> <span class="text-muted">20/01/15</span>
-          </li>
-            <li class="list-group-item">
-              <span class="badge">2 tasks to do</span>
-              <a href="#">Rutabagaland</a> <span class="text-muted">23/03/15</span>
-            </li>
+          <div class="jumbotron">
+					<script>getProject();</script>
+					<div id="result"></div>
+		</div>
         </ul>
       </div>
 
