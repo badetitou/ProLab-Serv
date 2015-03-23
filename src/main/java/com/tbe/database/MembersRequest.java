@@ -13,7 +13,7 @@ import com.tbe.json.Project;
 
 public class MembersRequest {
 	public static String addMember(String username, int i) {
-		String sql = "Insert into members(username, id) values ( ?, ?);";
+		String sql = "Insert into members(username, idProject) values ( ?, ?);";
 		try {
 			PreparedStatement stmt = DataBase.getConnection().prepareStatement(sql);
 			stmt.setString(1, username);
@@ -47,7 +47,7 @@ public class MembersRequest {
 	
 	public static List<Project> getUserProject(String username){
 		List<Project> lp = new ArrayList<Project>();
-		String sql = "Select projects.id, projects.name, projects.description, projects.url, projects.punchline from members, projects where projects.id=members.id and members.username=?;";
+		String sql = "Select projects.id, projects.name, projects.description, projects.url, projects.punchline from members, projects where projects.id=members.idProject and members.username=?;";
 		try {
 			PreparedStatement stmt = DataBase.getConnection().prepareStatement(sql);
 			stmt.setString(1, username);

@@ -30,6 +30,7 @@ public class TaskREST {
 	@GET
 	@Path("/users/{idFonctionnality}")
 	public User[] getUserForFonctionnality(@PathParam("idFonctionnality") int idFonctionnality){
+		System.out.println("idFocntionnality : " + idFonctionnality);
 		List<User> users = TaskRequest.getUserForFonctionnality(idFonctionnality);
 		User[] m = new User[users.size()];
 		for (int i = 0; i < m.length; ++i) {

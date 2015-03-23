@@ -31,13 +31,14 @@ public class DataBase {
 			+ "url char(20) unique not null, "
 			+ "punchline char(50));";
 
-	private static String strCreateMembersTable = "Create table if not exists members ("
-			+ "username char("
-			+ MAX_USERNAME_SIZE
-			+ "), "
-			+ "id int,"
+	private static String strCreateMembersTable = 
+			  "Create table if not exists members ("
+			+ "idMember integer primary key autoincrement, "
+			+ "username char("+ MAX_USERNAME_SIZE+ "), "
+			+ "idProject integer,"
+			+ "role integer, "
 			+ "foreign key (username) references users(username),"
-			+ " foreign key (id) references projects(id))";
+			+ "foreign key (idProject) references projects(id))";
 
 	private static String strCreateFonctionnalitiesTable = "Create table if not exists fonctionnalities ("
 			+ "id Integer primary key autoincrement, "
@@ -51,14 +52,10 @@ public class DataBase {
 
 	private static String strCreateNewsTable = "Create table if not exists news ("
 			+ "id Integer primary key autoincrement, "
-			+ "title char("
-			+ 20
-			+ "), "
+			+ "title char("+ 20+ "), "
 			+ "description text, "
 			+ "date date, "
-			+ "author char("
-			+ MAX_USERNAME_SIZE
-			+ "),"
+			+ "author char("+ MAX_USERNAME_SIZE+ "),"
 			+ "foreign key (author) references users(username))";
 
 	private static String strCreateTask = "Create table if not exists tasks ("
@@ -66,7 +63,9 @@ public class DataBase {
 			"username char("+ MAX_USERNAME_SIZE + "), " + 
 			"project Integer not null,"
 			+ "foreign key (fonctionnality) references fonctionnalities(id),"
-			+ "foreign key (username) references users(username));";
+			+ "foreign key (username) references users(username)"
+			+ "foreign key (project) references projects(id)"
+			+ "primary key(fonctionnality, username,project));";
 
 	public DataBase() {
 		System.out.println("Init BDD...");

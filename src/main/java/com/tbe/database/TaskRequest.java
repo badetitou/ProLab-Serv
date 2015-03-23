@@ -47,7 +47,10 @@ public class TaskRequest {
 
 	public static List<Fonctionnality> getProjectFonctionnality(int idProject) {
 		List<Fonctionnality> fonctionnalities = new ArrayList<Fonctionnality>();
-		String sql = "Select * from tasks, fonctionnalities where tasks.project=? and tasks.fonctionnality=fonctionnalities.id";
+		String sql = "Select fonctionnalities.id, fonctionnalities.name, fonctionnalities.description, fonctionnalities.avancement, fonctionnalities.deadline " +
+				"from tasks, fonctionnalities " +
+				"where tasks.project=? and tasks.fonctionnality=fonctionnalities.id " +
+				"group by fonctionnalities.id, fonctionnalities.name, fonctionnalities.description, fonctionnalities.avancement, fonctionnalities.deadline;";
 		try {
 			PreparedStatement stmt = DataBase.getConnection().prepareStatement(sql);
 			stmt.setInt(1, idProject);
@@ -58,14 +61,16 @@ public class TaskRequest {
 			return fonctionnalities;
 		} catch (SQLException e) {
 			e.printStackTrace();
+			System.out.println("SQL:\n");
 			System.err.println(sql);
+			System.out.println("\n\n");
 			return null;
 		}
 	}
 
 	public static List<User> getUserForFonctionnality(int idFonctionnality) {
 		List<User> users = new ArrayList<User>();
-		String sql = "Select * from users, tasks where tasks.fonctionnality=?";
+		String sql = "Select users.username, users.password, users.email, users.firstname, users.lastname from users, tasks where tasks.fonctionnality=? and users.username=tasks.username";
 		try {
 			PreparedStatement stmt = DataBase.getConnection().prepareStatement(sql);
 			stmt.setInt(1, idFonctionnality);
