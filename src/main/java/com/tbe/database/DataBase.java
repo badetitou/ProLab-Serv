@@ -70,7 +70,8 @@ public class DataBase {
 		Connection c = null;
 		try {
 			Class.forName("org.sqlite.JDBC");
-			c = DriverManager.getConnection("jdbc:sqlite:prolab.db");
+			c = DriverManager.getConnection("jdbc:sqlite:"+System.getProperty("java.io.tmpdir")
+							+System.getProperty("file.separator")+"prolab.db");
 			DataBase.c = c;
 			createTable();
 		} catch (Exception e) {
