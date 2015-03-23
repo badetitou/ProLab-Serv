@@ -55,18 +55,15 @@ public class FonctionnalitiesRequest {
 	}
 
 	public static Fonctionnality getFonctionnality(int id) {
-		Fonctionnality f = null;
 		String sql = "Select * from fonctionnalities where id=?";
 		try {
-			PreparedStatement stmt = DataBase.getConnection().prepareStatement(
-					sql);
+			PreparedStatement stmt = DataBase.getConnection().prepareStatement(sql);
 			stmt.setInt(1, id);
-			//ResultSet rs = stmt.executeQuery();
-
+			ResultSet rs = stmt.executeQuery();
+			return new Fonctionnality(rs.getInt("id"), rs.getString("name"), rs.getString("description"), rs.getInt("avancement"), rs.getDate("deadline"));
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
 		}
-		return f;
 	}
 }

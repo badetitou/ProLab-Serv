@@ -20,7 +20,6 @@ public class MembersRequest {
 			stmt.setInt(2, idProject);
 			stmt.setInt(3, role);
 			stmt.execute();
-			
 		} catch (SQLException e) {
 			e.printStackTrace();
 			
@@ -36,8 +35,7 @@ public class MembersRequest {
 			Statement stmt = DataBase.getConnection().createStatement();
 			ResultSet rs = stmt.executeQuery("Select * from members");
 			while (rs.next()) {
-				members.add(new Member(rs.getInt("id"), rs
-						.getString("username")));
+				members.add(new Member(rs.getInt("id"), rs.getString("username"), rs.getInt("role")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -71,7 +69,7 @@ public class MembersRequest {
 			stmt.setInt(1, id);
 			stmt.setString(2, username);
 			ResultSet rs = stmt.executeQuery();
-			m = new Member(rs.getInt("id"), rs.getString("username"));
+			m = new Member(rs.getInt("id"), rs.getString("username"), rs.getInt("role"));
 
 		} catch (SQLException e) {
 			e.printStackTrace();

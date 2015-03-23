@@ -2,20 +2,39 @@ package com.tbe.json;
 
 public class Member {
 
-	private int id;
+	private int idMember;
+	private int idProject;
 	private String username;
+	private int role;
 	
-	public Member(int id, String username){
-		this.id = id;
+	public Member(int id, String username, int role){
+		this.idProject = id;
 		this.username = username;
+		this.role = role;
 	}
 
-	public int getId() {
-		return id;
+	public int getIdMember() {
+		return idMember;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setIdMember(int idMember) {
+		this.idMember = idMember;
+	}
+
+	public int getIdProject() {
+		return idProject;
+	}
+
+	public void setIdProject(int idProject) {
+		this.idProject = idProject;
+	}
+
+	public int getRole() {
+		return role;
+	}
+
+	public void setRole(int role) {
+		this.role = role;
 	}
 
 	public String getUsername() {
