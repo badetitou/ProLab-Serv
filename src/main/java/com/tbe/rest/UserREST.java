@@ -67,7 +67,7 @@ public class UserREST {
 		
 		if (result == null) {
 			Response response = Response.status(400)
-					.type(MediaType.APPLICATION_JSON).entity(user).build();
+					.type(MediaType.APPLICATION_JSON).build();
 			return response;
 		}
 		Response response = Response.status(201)
