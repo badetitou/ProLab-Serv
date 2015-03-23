@@ -9,7 +9,6 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Response;
 
 import com.tbe.database.FonctionnalitiesRequest;
-import com.tbe.database.MembersRequest;
 import com.tbe.database.TaskRequest;
 import com.tbe.json.Fonctionnality;
 
