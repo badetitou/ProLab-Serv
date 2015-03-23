@@ -64,6 +64,7 @@ public class UserREST {
 				+ email + "/" + firstname + "/" + lastname);
 		String result = UsersRequest.addUser(username, password, email,
 				firstname, lastname);
+		
 		if (result == null) {
 			Response response = Response.status(400)
 					.type(MediaType.APPLICATION_JSON).entity(user).build();
