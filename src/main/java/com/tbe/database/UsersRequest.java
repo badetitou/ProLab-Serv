@@ -10,12 +10,13 @@ import java.util.List;
 import com.tbe.json.User;
 
 public class UsersRequest {
-	
-	public static String addUser(String username, String password, String email,
-			String firstName, String lastname) {
+
+	public static String addUser(String username, String password,
+			String email, String firstName, String lastname) {
 		String sql = "Insert into users(username, password, email, firstname,lastname) values (?,?,?,?,?);";
 		try {
-			PreparedStatement stmt = DataBase.getConnection().prepareStatement(sql);
+			PreparedStatement stmt = DataBase.getConnection().prepareStatement(
+					sql);
 			stmt.setString(1, username);
 			stmt.setString(2, password);
 			stmt.setString(3, email);
@@ -30,14 +31,16 @@ public class UsersRequest {
 		}
 		return "ok";
 	}
-	
-	public static List<User> getAllUsers(){
+
+	public static List<User> getAllUsers() {
 		List<User> users = new ArrayList<User>();
 		try {
 			Statement stmt = DataBase.getConnection().createStatement();
 			ResultSet rs = stmt.executeQuery("Select * from users");
-			while (rs.next()){
-				users.add(new User(rs.getString("username"), rs.getString("password"), rs.getString("email"), rs.getString("firstname"), rs.getString("lastname")));
+			while (rs.next()) {
+				users.add(new User(rs.getString("username"), rs
+						.getString("password"), rs.getString("email"), rs
+						.getString("firstname"), rs.getString("lastname")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -50,12 +53,15 @@ public class UsersRequest {
 		User user = null;
 		String sql = "Select * from users where username=? and password=?;";
 		try {
-			PreparedStatement stmt = DataBase.getConnection().prepareStatement(sql);
+			PreparedStatement stmt = DataBase.getConnection().prepareStatement(
+					sql);
 			stmt.setString(1, username);
 			stmt.setString(2, password);
 			ResultSet rs = stmt.executeQuery();
-			while (rs.next()){
-				user = new User(rs.getString("username"), rs.getString("password"), rs.getString("email"), rs.getString("firstname"), rs.getString("lastname"));
+			while (rs.next()) {
+				user = new User(rs.getString("username"),
+						rs.getString("password"), rs.getString("email"),
+						rs.getString("firstname"), rs.getString("lastname"));
 			}
 		} catch (SQLException e) {
 			System.err.println(sql);
@@ -63,5 +69,23 @@ public class UsersRequest {
 			return user;
 		}
 		return user;
+	}
+
+	public static User getUser(String username) {
+		User user = null;
+		String sql = "Select * from users where username=?;";
+		try {
+			PreparedStatement stmt = DataBase.getConnection().prepareStatement(
+					sql);
+			stmt.setString(1, username);
+			ResultSet rs = stmt.executeQuery();
+			return new User(rs.getString("username"), rs.getString("password"),
+					rs.getString("email"), rs.getString("firstname"),
+					rs.getString("lastname"));
+		} catch (SQLException e) {
+			System.err.println(sql);
+			e.printStackTrace();
+			return user;
+		}
 	}
 }

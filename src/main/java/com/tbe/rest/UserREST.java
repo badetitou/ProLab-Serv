@@ -38,6 +38,15 @@ public class UserREST {
 		System.out.println("GET USER " + username + " : " + password);
 		return UsersRequest.getUser(username, password);
 	}
+	
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("/{username}")
+	public User getUser(@PathParam("username") String username) {
+		username = username.toLowerCase();
+		System.out.println("GET USER " + username);
+		return UsersRequest.getUser(username);
+	}
 
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
