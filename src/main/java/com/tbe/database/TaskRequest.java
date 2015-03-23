@@ -30,7 +30,7 @@ public class TaskRequest {
 	}
 
 	public static int addTask(String username, int idProject, int idFonctionnality) {
-		String sql = "insert into tasks (username, fonctionnality, project) values (?,?,?);";
+		String sql = "insert into tasks (username, project, fonctionnality) values (?,?,?);";
 		try {
 			PreparedStatement stmt = DataBase.getConnection().prepareStatement(sql);
 			stmt.setString(1, username);

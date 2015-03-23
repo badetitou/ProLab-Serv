@@ -30,6 +30,9 @@ public class TaskREST {
 	@GET
 	@Path("/{idProject}")
 	public Fonctionnality[] getFonctionnalityForProject(@PathParam("idProject") int idProject){
+		
+		System.out.println("GET PROJECT FONCTIONNALITY for project :" + idProject);
+		
 		List<Fonctionnality> fonctionnalities = TaskRequest.getProjectFonctionnality(idProject);
 		Fonctionnality[] m = new Fonctionnality[fonctionnalities.size()];
 		for (int i = 0; i < m.length; ++i) {
