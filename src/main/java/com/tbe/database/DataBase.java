@@ -23,7 +23,7 @@ public class DataBase {
 			+ "password char(20), "
 			+ "email text unique, "
 			+ "firstname char(20), "
-			+ "surname char(20));";
+			+ "lastname char(20));";
 
 	private static String strCreateProjectTable = "Create table if not exists projects ("
 			+ "id Integer primary key autoincrement, "
