@@ -34,6 +34,7 @@ public class UserREST {
 	@Path("/{username}&{userpassword}")
 	public User getUser(@PathParam("username") String username,
 			@PathParam("userpassword") String password) {
+		username = username.toLowerCase();
 		System.out.println("GET USER " + username + " : " + password);
 		return UsersRequest.getUser(username, password);
 	}
