@@ -43,7 +43,17 @@ function getCookie(cname) {
 	}
 	return "";
 }
-
+function deleteCookie(name) {
+	alert('test');
+	var exp=new Date();
+	exp.setTime(exp.getTime() - 100000);
+	var cval=getCookie(name);
+	alert(cval);
+	alert(exp);
+	document.cookie=name+"="+cval+"; expires="+exp.toGMTString();
+	alert('test2');
+	window.location.href = "index.html";
+}
 function getLog() {
 	var log = getCookie('log');
 	log = log.charAt(0).toUpperCase() + log.slice(1);
