@@ -7,7 +7,8 @@ public class Member {
 	private String username;
 	private int role;
 	
-	public Member(int id, String username, int role){
+	public Member(int idMember, int id, String username, int role){
+		this.idMember = idMember;
 		this.idProject = id;
 		this.username = username;
 		this.role = role;
