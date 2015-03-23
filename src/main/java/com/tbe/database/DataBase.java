@@ -42,9 +42,7 @@ public class DataBase {
 
 	private static String strCreateFonctionnalitiesTable = "Create table if not exists fonctionnalities ("
 			+ "id Integer primary key autoincrement, "
-			+ "name char("
-			+ MAX_USERNAME_SIZE
-			+ "), "
+			+ "name char("+ MAX_USERNAME_SIZE+ "), "
 			+ "description text, "
 			+ "avancement int, "
 			+ "deadline date, "

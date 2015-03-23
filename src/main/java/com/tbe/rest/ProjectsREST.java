@@ -46,7 +46,7 @@ public class ProjectsREST {
 			return Response.status(Response.Status.BAD_REQUEST)
 					.entity("Entity already exist").build();
 		}
-		String result = MembersRequest.addMember(username, id);
+		String result = MembersRequest.addMember(username, id, 1);
 		if (result == null) {
 			return Response.status(Response.Status.BAD_REQUEST)
 					.entity("User no exist").build();
