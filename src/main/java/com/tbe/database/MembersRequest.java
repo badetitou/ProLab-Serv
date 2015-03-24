@@ -29,6 +29,24 @@ public class MembersRequest {
 		}
 		return "ok";
 	}
+	
+	public static Member getMemberFromIdMember(int idMember){
+		String sql = "Select * from members where idMember=?";
+		try {
+			PreparedStatement stmt = DataBase.getConnection().prepareStatement(sql);
+			stmt.setInt(1, idMember);
+			ResultSet rs = stmt.executeQuery();
+			if (rs.next()) {
+				return new Member(rs.getInt("idMember"), rs
+						.getInt("idProject"), rs.getString("username"), rs
+						.getInt("role"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+
+	}
 
 	public static List<Member> getAllMembers() {
 		List<Member> members = new ArrayList<Member>();
