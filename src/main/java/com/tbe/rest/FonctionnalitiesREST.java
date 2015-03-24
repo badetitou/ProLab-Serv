@@ -37,7 +37,6 @@ public class FonctionnalitiesREST {
 	@POST
 	@Path("/{username}/{idProject}")
 	public Response postFonctionnality(Fonctionnality fonctionnality, @PathParam("username") String username, @PathParam("idProject") int idProject) {
-		System.out.println("Post Fonctionnality :\nname:"+fonctionnality.getName()+"\ndescription:"+fonctionnality.getDescription()+"\ndate:"+fonctionnality.getDeadLine() );
 		int id = FonctionnalitiesRequest.addFonctionnality(
 				fonctionnality.getName(), fonctionnality.getDescription(), 0,
 				fonctionnality.getDeadLine());

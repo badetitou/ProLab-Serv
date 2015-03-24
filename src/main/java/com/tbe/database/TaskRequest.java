@@ -14,14 +14,13 @@ import com.tbe.json.User;
 public class TaskRequest {
 
 
-
 	public static List<Task> getAllTask() {
 		ArrayList<Task> tasks= new ArrayList<Task>();
 		try {
 			Statement stmt = DataBase.getConnection().createStatement();
 			ResultSet rs = stmt.executeQuery("Select * from tasks");
 			while (rs.next()) {
-				tasks.add(new Task(rs.getString("username"), rs.getInt("fonctionnality"), rs.getInt("project")));
+				tasks.add(new Task(rs.getString("username"), rs.getInt("project"), rs.getInt("fonctionnality")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
