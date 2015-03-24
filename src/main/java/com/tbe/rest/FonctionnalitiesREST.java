@@ -11,6 +11,7 @@ import javax.ws.rs.core.Response;
 import com.tbe.database.FonctionnalitiesRequest;
 import com.tbe.database.TaskRequest;
 import com.tbe.json.Fonctionnality;
+import com.tbe.json.Member;
 
 @Path("/fonctionnalities")
 public class FonctionnalitiesREST {
@@ -32,6 +33,17 @@ public class FonctionnalitiesREST {
 	public Fonctionnality getFonctionnality(@PathParam("idFonctionnality") int id) {
 		System.out.println("GET Fonctionnality " + id);
 		return FonctionnalitiesRequest.getFonctionnality(id);
+	}
+	
+	@GET
+	@Path("/member/{idFonctionnality}")
+	public Member[] getFonctionnalityMember(@PathParam("idFonctionnality") int id){
+		List<Member> members = FonctionnalitiesRequest.getFonctionnalityMember(id);
+		Member[] m = new Member[members.size()];
+		for (int i = 0; i < m.length; ++i) {
+			m[i] = members.get(i);
+		}
+		return m;
 	}
 
 	@POST

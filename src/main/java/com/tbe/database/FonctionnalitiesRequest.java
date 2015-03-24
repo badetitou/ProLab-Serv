@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.tbe.json.Fonctionnality;
+import com.tbe.json.Member;
 
 /**
  * @author badetitou
@@ -63,6 +64,24 @@ public class FonctionnalitiesRequest {
 			return new Fonctionnality(rs.getInt("id"), rs.getString("name"), rs.getString("description"), rs.getInt("avancement"), rs.getDate("deadline"));
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return null;
+		}
+	}
+
+	public static List<Member> getFonctionnalityMember(int idFonctionnality) {
+		List<Member> members = new ArrayList<Member>();
+		String sql = "Select members.idMember, members.idProject, members.username, members.role " +
+				"from members, tasks " +
+				"where tasks.fonctionnality=? and members.idMember=tasks.idMember;";
+		try{
+			PreparedStatement stmt = DataBase.getConnection().prepareStatement(sql);
+			stmt.setInt(1, idFonctionnality);
+			ResultSet rs = stmt.executeQuery();
+			while(rs.next()){
+				members.add(new Member(rs.getInt("idMember"), rs.getInt("idProject"), rs.getString("username"), rs.getInt("role")));
+			}
+			return members;
+		} catch (Exception e){
 			return null;
 		}
 	}
