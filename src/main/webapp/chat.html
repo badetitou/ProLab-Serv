@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta charset="utf-8">
+	<title>ProLab - Chat</title>
+	<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<!--[if lt IE 9]>
+	<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	<link href="css/chat.css" rel="stylesheet">
+</head>
+<body class="login">
+	<div class="page-wrap">
+		<div class="container">
+			<h1>Chat room</h1>
+			<div class="chatroom">
+				<ul class="list-group">
+				<div id="printer"></div>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<div class="container well inputBox">
+		<div class="input-group">
+			<input type="text" class="form-control" id="msg" placeholder="Message">
+			<span class="input-group-btn">
+				<button class="btn btn-default" onclick="send()" type="button">Send</button>
+			</span>
+		</div><!-- /input-group -->
+	</div>
+
+
+
+	<script src="https://cdn.firebase.com/js/client/2.2.1/firebase.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/chat.js"></script>
+	<script>
+	init();
+	</script>
+</body>
+
+</html>

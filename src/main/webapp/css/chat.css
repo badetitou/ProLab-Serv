@@ -1,0 +1,32 @@
+* {
+  margin: 0;
+}
+html, body {
+  height: 100%;
+}
+.page-wrap {
+  min-height: 100%;
+  /* equal to footer height */
+  margin-bottom: -100px;
+}
+.page-wrap:after {
+  content: "";
+  display: block;
+}
+.inputBox, .page-wrap:after {
+  height: 50px;
+}
+.inputBox {
+  text-align: center;
+}
+.inputBox input {
+  display: inline-block;
+  float: left;
+  width: 100%;
+}
+
+.inputBox button {
+    display: inline-block;
+    float: right;
+    width: 100px;
+}
