@@ -51,6 +51,7 @@ public class UserREST {
 	@GET
 	@Path("/password/{username}")
 	public void getUsernamePassword(@PathParam("username") String username) {
+		System.out.println("OUI BADETITOU VOILA JE EFAIT MA ERQUETE");
 		username = username.toLowerCase();
 		System.out.println("GET USER " + username);
 		User user =  UsersRequest.getUser(username);
