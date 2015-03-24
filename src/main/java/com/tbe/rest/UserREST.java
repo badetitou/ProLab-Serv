@@ -47,6 +47,19 @@ public class UserREST {
 		System.out.println("GET USER " + username);
 		return UsersRequest.getUser(username);
 	}
+	
+	@GET
+	@Path("/password/{username}")
+	public void getUsernamePassword(@PathParam("username") String username) {
+		username = username.toLowerCase();
+		System.out.println("GET USER " + username);
+		User user =  UsersRequest.getUser(username);
+		try {
+			Mailer.sendMail(user.getEmail(), "ProLab-Password recovery", user.getPassword());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)

@@ -1,3 +1,6 @@
+/*
+	Register a new user
+*/
 function register() {
 	var username = $('#username').val();
 	var password =  $('#pwd').val();
@@ -26,7 +29,6 @@ function register() {
 			success : function(data, textStatus, jqXHR) {
 				if (data.username == username) {
 					setCookie('log', username, 265);
-					console.log("User created");
 					window.location.href = "hub.html"
 				} else {
 					$('#errorBox').text('Username/Email already taken.');
@@ -37,11 +39,4 @@ function register() {
 			}
 		});
 	}
-}
-
-function setCookie(cname, cvalue, exdays) {
-	var d = new Date();
-	d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
-	var expires = "expires=" + d.toUTCString();
-	document.cookie = cname + "=" + cvalue + "; " + expires +";path=/";
 }
