@@ -62,7 +62,7 @@ public class DataBase {
 			+ "foreign key (fonctionnality) references fonctionnalities(id),"
 			+ "foreign key (username) references users(username),"
 			+ "foreign key (project) references projects(id),"
-			+ "primary key(fonctionnality, username,project));";
+			+ "primary key(fonctionnality,username,project));";
 
 	public DataBase() {
 		System.out.println("Init BDD...");

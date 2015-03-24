@@ -28,8 +28,8 @@ public class FonctionnalitiesRequest {
 			stmt.executeUpdate();
 			stmt.close();
 			Statement stmt2 = DataBase.getConnection().createStatement();
-			ResultSet rs = stmt2.executeQuery("select * from fonctionnalities;");
-			return rs.getInt("id");
+			ResultSet rs = stmt2.executeQuery("select max(id) from fonctionnalities;");
+			return rs.getInt(1);
 		} catch (SQLException e) {
 			e.printStackTrace();
 			System.err.println(sql);
