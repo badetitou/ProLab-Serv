@@ -103,6 +103,6 @@ public class MembersRequest {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return null;
+		return members;
 	}
 }
