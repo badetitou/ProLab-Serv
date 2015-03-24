@@ -60,8 +60,8 @@ public class DataBase {
 			"username char("+ MAX_USERNAME_SIZE + "), " + 
 			"project Integer not null,"
 			+ "foreign key (fonctionnality) references fonctionnalities(id),"
-			+ "foreign key (username) references users(username)"
-			+ "foreign key (project) references projects(id)"
+			+ "foreign key (username) references users(username),"
+			+ "foreign key (project) references projects(id),"
 			+ "primary key(fonctionnality, username,project));";
 
 	public DataBase() {
