@@ -41,6 +41,18 @@ public class MembersREST {
 		}
 		return m;
 	}
+	
+	@GET
+	@Path("/member/{idProject}")
+	public Member[] getProjectMember(@PathParam("idProject") int idProject){
+		System.out.println("GET Member |project:" + idProject);
+		List<Member> lp = MembersRequest.getProjectMember(idProject);
+		Member[] result = new Member[lp.size()];
+		for (int i = 0; i < lp.size(); ++i) {
+			result[i] = lp.get(i);
+		}
+		return result;
+	}
 
 	@GET
 	@Path("/project/{idProject}")
@@ -81,8 +93,8 @@ public class MembersREST {
 				.type(MediaType.APPLICATION_JSON).entity(member).build();
 		System.out.println("members Created");
 		try {
-			String mail = executePost(username);
-			System.out.println(mail);
+			//String mail = executePost(username);
+			//System.out.println(mail);
 			// Mailer.sendMail(mail, "Prolab  -  Project update",
 			// "You've been assigned to a project !\nwww.iut.azae.net/Prolab");
 		} catch (Exception e) {
