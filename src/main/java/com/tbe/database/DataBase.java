@@ -29,6 +29,9 @@ public class DataBase {
 			+ "description text, "
 			+ "url char(20) unique not null, "
 			+ "punchline char(50));";
+	
+	private static String strCreateIndex = "Create unique if not exists index duplicata on members (username collate nocase ,idProject collate nocase);";
+
 
 	private static String strCreateMembersTable = 
 			  "Create table if not exists members ("
@@ -89,6 +92,7 @@ public class DataBase {
 		stmt.executeUpdate(strCreateFonctionnalitiesTable);
 		stmt.executeUpdate(strCreateTask);
 		stmt.executeUpdate(strCreateNewsTable);
+		stmt.executeUpdate(strCreateIndex);
 		System.out.println("Init Table Done");
 	}
 

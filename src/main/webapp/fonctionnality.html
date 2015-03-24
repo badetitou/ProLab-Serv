@@ -12,6 +12,27 @@
   <script src="/js/fonctionnality.js"></script>
 </head>
 <body class="login">
+<script>init();</script>
+<script>isConnected();</script>
+<nav class="navbar navbar-default">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="hub.html">ProLab</a>
+    </div>
+    <div>
+      <ul class="nav navbar-nav">
+        <li><a href="hub.html"><span class="glyphicon glyphicon-home"></span> Hub</a></li>
+        <li ><a href="members.html"><span class="glyphicon glyphicon-user"></span> Members</a></li>
+        <li class="active"><a href="fonctionnality.html"><span class="glyphicon glyphicon-user"></span> Fonctionnality</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="about.html"><span class="glyphicon glyphicon-heart-empty"></span> About</a></li>
+        <li><a onclick="deleteCookie('log')"><span class="text-danger glyphicon glyphicon-off"></span> Logout</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
 <div class="container">
   <div class="row well">
     <h1 class="text-primary">Fonctionnality creation wizard</h1>
