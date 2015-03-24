@@ -28,6 +28,13 @@ public class ProjectsREST {
 		}
 		return p;
 	}
+	
+	@GET
+	@Path("/{URLproject}")
+	public int getIdProjects(@PathParam("URLproject") String url) {
+		System.out.println("GET ID PROJECTS");
+		return ProjectsRequest.getId(url); 
+	}
 
 	@GET
 	@Path("/{idproject}")

@@ -73,4 +73,23 @@ public class ProjectsRequest {
 		return project;
 	}
 
+	public static int getId (String url) {
+		Project project = null;
+		String sql = "Select * from projects where url=?;";
+		try {
+			PreparedStatement stmt = DataBase.getConnection().prepareStatement(
+					sql);
+			stmt.setString(1, url);
+			ResultSet rs = stmt.executeQuery();
+			project = new Project(rs.getInt("id"), rs.getString("name"),
+					rs.getString("description"), rs.getString("url"),
+					rs.getString("punchline"));
+		} catch (SQLException e) {
+			System.err.println(sql);
+			e.printStackTrace();
+			return project.getId();
+		}
+		return project.getId();
+	}
+
 }

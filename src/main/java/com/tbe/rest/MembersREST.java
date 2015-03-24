@@ -6,6 +6,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import com.tbe.database.MembersRequest;
@@ -59,8 +60,10 @@ public class MembersREST {
 			return Response.status(Response.Status.BAD_REQUEST)
 					.entity("Entity already exist").build();
 		}
-		return Response.status(Response.Status.CREATED)
-				.entity("Member Created").build();
+		Response response = Response.status(201)
+				.type(MediaType.APPLICATION_JSON).entity(member).build();
+		System.out.println("Project Created");
+		return response;
 	}
 
 }

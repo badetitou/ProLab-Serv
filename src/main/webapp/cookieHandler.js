@@ -59,3 +59,8 @@ function getLog() {
 	log = log.charAt(0).toUpperCase() + log.slice(1);
 	return log;
 }
+function getProject() {
+	var project = getCookie('project');
+	project = project.charAt(0) + project.slice(1);
+	return project;
+}
