@@ -42,4 +42,24 @@ public class TaskRequest {
 			return -1;
 		}
 	}
+
+	public static List<Fonctionnality> getFonctionnalityFromIdProject(int idProject) {
+		List<Fonctionnality> fonctionnalities = new ArrayList<Fonctionnality>();
+		String sql = "select fonctionnalities.id, fonctionnalities.name, fonctionnalities.description, fonctionnalities.avancement, fonctionnalities.deadline " +
+				"from fonctionnalities, tasks, members " +
+				"where tasks.fonctionnality=fonctionnalities.id and tasks.idMember=members.idMember and members.idProject=?";
+		try {
+			PreparedStatement stmt = DataBase.getConnection().prepareStatement(sql);
+			stmt.setInt(1, idProject);
+			ResultSet rs = stmt.executeQuery();
+			while(rs.next()){
+				fonctionnalities.add(new Fonctionnality(rs.getInt("id"), rs.getString("name"), rs.getString("description"), rs.getInt("avancement"), rs.getDate("deadline")));
+			}
+			return fonctionnalities;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.err.println(sql);
+		}
+		return null;
+	}
 }

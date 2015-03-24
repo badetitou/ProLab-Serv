@@ -8,8 +8,10 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Response;
 
+import com.tbe.database.MembersRequest;
 import com.tbe.database.TaskRequest;
 import com.tbe.json.Fonctionnality;
+import com.tbe.json.Member;
 import com.tbe.json.Task;
 import com.tbe.json.User;
 
@@ -23,6 +25,21 @@ public class TaskREST {
 		Task[] p = new Task[tasks.size()];
 		for (int i = 0; i < p.length; ++i) {
 			p[i] = tasks.get(i);
+		}
+		return p;
+	}
+	
+	@GET
+	@Path("/allfonctionnalities/{idMember}")
+	public Fonctionnality[] getAllFonctionnalities(@PathParam("idMember") int idMember){
+		Member member = MembersRequest.getMemberFromIdMember(idMember);
+		if (member == null){
+			return null;
+		}
+		List<Fonctionnality> fonctionnalities = TaskRequest.getFonctionnalityFromIdProject(member.getIdProject());
+		Fonctionnality[] p = new Fonctionnality[fonctionnalities.size()];
+		for (int i = 0; i < p.length; ++i) {
+			p[i] = fonctionnalities.get(i);
 		}
 		return p;
 	}
