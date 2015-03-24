@@ -47,7 +47,7 @@ public class TaskREST {
 
 	@POST
 	public Response postTask(Task task) {
-		System.out.println("Post Task");
+		System.out.println("Post Task\nidFonc:" + task.getIdFonctionnality() + "\nidMember" + task.getIdMember());
 		int result = TaskRequest.addTask(task.getIdMember(), task.getIdFonctionnality());
 		if (result == -1) {
 			return Response.status(Response.Status.BAD_REQUEST)

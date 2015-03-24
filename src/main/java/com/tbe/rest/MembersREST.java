@@ -89,8 +89,7 @@ public class MembersREST {
 
 	@POST
 	public Response postMember(Member member) {
-		System.out.println("Post Member");
-		
+		System.out.println("Post Member");	
 		String result = MembersRequest.addMember(member.getUsername().toLowerCase(),
 				member.getIdProject(), member.getRole());
 		if (result == null) {

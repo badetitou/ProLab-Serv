@@ -47,7 +47,8 @@ public class TaskRequest {
 		List<Fonctionnality> fonctionnalities = new ArrayList<Fonctionnality>();
 		String sql = "select fonctionnalities.id, fonctionnalities.name, fonctionnalities.description, fonctionnalities.avancement, fonctionnalities.deadline " +
 				"from fonctionnalities, tasks, members " +
-				"where tasks.fonctionnality=fonctionnalities.id and tasks.idMember=members.idMember and members.idProject=?";
+				"where tasks.fonctionnality=fonctionnalities.id and tasks.idMember=members.idMember and members.idProject=? " +
+				"group by fonctionnalities.id, fonctionnalities.name, fonctionnalities.description, fonctionnalities.avancement, fonctionnalities.deadline;";
 		try {
 			PreparedStatement stmt = DataBase.getConnection().prepareStatement(sql);
 			stmt.setInt(1, idProject);
