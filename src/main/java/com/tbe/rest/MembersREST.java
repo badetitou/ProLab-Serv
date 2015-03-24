@@ -43,8 +43,9 @@ public class MembersREST {
 	@GET
 	@Path("/{username}")
 	public Project[] getUserProject(@PathParam("username") String username) {
-		System.out.println("GET User project :username=" + username);
-		List<Project> lp = MembersRequest.getUserProject(username);
+		String name = username.toLowerCase();
+		System.out.println("GET User project :username=" + name);
+		List<Project> lp = MembersRequest.getUserProject(name);
 		Project[] result = new Project[lp.size()];
 		for (int i = 0; i < lp.size(); ++i) {
 			result[i] = lp.get(i);
@@ -56,6 +57,7 @@ public class MembersREST {
 	public Response postMember(Member member) {
 		System.out.println("Post Member");
 		String result = MembersRequest.addMember(member.getUsername(),member.getIdProject(), member.getRole());
+		String username = member.getUsername().toLowerCase();
 		if (result == null) {
 			return Response.status(Response.Status.BAD_REQUEST)
 					.entity("Entity already exist").build();
