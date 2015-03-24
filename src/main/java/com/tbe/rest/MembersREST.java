@@ -83,7 +83,7 @@ public class MembersREST {
 	@Path("/{username}&{idProject}")
 	public Member getUserProject(@PathParam("username") String username, @PathParam("idProject") int idProject) {
 		String name = username.toLowerCase();
-		System.out.println("GET User project :username=" + name);
+		System.out.println("GET Member id");
 		return MembersRequest.getMember(username,idProject);
 	}
 
