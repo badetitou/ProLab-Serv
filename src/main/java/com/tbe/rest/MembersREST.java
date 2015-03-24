@@ -19,8 +19,9 @@ import com.tbe.json.User;
 public class MembersREST {
 	
 	@DELETE
-	public void removeMembers(Member member){
-		MembersRequest.removeMembers(member.getIdMember());
+	@Path("/{idMember}")
+	public void removeMembers(@PathParam("idMember") int idMember){
+		MembersRequest.removeMembers(idMember);
 	}
 
 	@GET
