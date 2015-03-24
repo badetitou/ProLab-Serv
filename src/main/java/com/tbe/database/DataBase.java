@@ -30,7 +30,7 @@ public class DataBase {
 			+ "url char(20) unique not null, "
 			+ "punchline char(50));";
 	
-	private static String strCreateIndex = "Create unique if not exists index duplicata on members (username collate nocase ,idProject collate nocase);";
+	private static String strCreateIndex = "Create unique index if not exists duplicata on members (username collate nocase ,idProject collate nocase);";
 
 
 	private static String strCreateMembersTable = 
