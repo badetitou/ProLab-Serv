@@ -2,6 +2,7 @@ package com.tbe.rest;
 
 import java.util.List;
 
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -16,6 +17,11 @@ import com.tbe.json.User;
 
 @Path("/members")
 public class MembersREST {
+	
+	@DELETE
+	public void removeMembers(Member member){
+		MembersRequest.removeMembers(member.getIdMember());
+	}
 
 	@GET
 	public Member[] getAllMembers() {

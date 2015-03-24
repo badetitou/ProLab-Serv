@@ -95,4 +95,15 @@ public class MembersRequest {
 		}
 		return lp;
 	}
+
+	public static void removeMembers(int idMember) {
+		String sql = "delete from members where idMember=?";
+		try {
+			PreparedStatement stmt = DataBase.getConnection().prepareStatement(sql);
+			stmt.setInt(1, idMember);
+			stmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 }
