@@ -27,37 +27,11 @@ public class TaskREST {
 		return p;
 	}
 	
-	@GET
-	@Path("/users/{idFonctionnality}")
-	public User[] getUserForFonctionnality(@PathParam("idFonctionnality") int idFonctionnality){
-		System.out.println("idFocntionnality : " + idFonctionnality);
-		List<User> users = TaskRequest.getUserForFonctionnality(idFonctionnality);
-		User[] m = new User[users.size()];
-		for (int i = 0; i < m.length; ++i) {
-			m[i] = users.get(i);
-		}
-		return m;		
-	}
-	
-	@GET
-	@Path("/{idProject}")
-	public Fonctionnality[] getFonctionnalityForProject(@PathParam("idProject") int idProject){
-		
-		System.out.println("GET PROJECT FONCTIONNALITY for project :" + idProject);
-		
-		List<Fonctionnality> fonctionnalities = TaskRequest.getProjectFonctionnality(idProject);
-		Fonctionnality[] m = new Fonctionnality[fonctionnalities.size()];
-		for (int i = 0; i < m.length; ++i) {
-			m[i] = fonctionnalities.get(i);
-		}
-		return m;
-	}
 
 	@POST
-	public Response postProject(Task task) {
+	public Response postTask(Task task) {
 		System.out.println("Post Task");
-		int result = TaskRequest.addTask(task.getUsername(),
-				task.getIdProject(), task.getIdFonctionnality());
+		int result = TaskRequest.addTask(task.getIdMember(), task.getIdFonctionnality());
 		if (result == -1) {
 			return Response.status(Response.Status.BAD_REQUEST)
 					.entity("Entity already exist").build();

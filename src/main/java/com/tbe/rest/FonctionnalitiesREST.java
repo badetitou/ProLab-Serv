@@ -35,8 +35,8 @@ public class FonctionnalitiesREST {
 	}
 
 	@POST
-	@Path("/{username}/{idProject}")
-	public Response postFonctionnality(Fonctionnality fonctionnality, @PathParam("username") String username, @PathParam("idProject") int idProject) {
+	@Path("/{idMember}")
+	public Response postFonctionnality(Fonctionnality fonctionnality, @PathParam("idMember") int idMember) {
 		int id = FonctionnalitiesRequest.addFonctionnality(
 				fonctionnality.getName(), fonctionnality.getDescription(), 0,
 				fonctionnality.getDeadLine());
@@ -44,7 +44,7 @@ public class FonctionnalitiesREST {
 			return Response.status(Response.Status.BAD_REQUEST)
 					.entity("Unknow Error").build();
 		}
-		int result = TaskRequest.addTask(username, idProject, id);
+		int result = TaskRequest.addTask(idMember, id);
 		System.out.println("ADD PRIMARY TASK : " + result);
 		if (result <=0){
 			return Response.status(Response.Status.BAD_REQUEST)

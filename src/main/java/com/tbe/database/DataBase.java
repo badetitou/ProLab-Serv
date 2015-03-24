@@ -57,12 +57,9 @@ public class DataBase {
 
 	private static String strCreateTask = "Create table if not exists tasks ("
 			+ "fonctionnality Integer not null," + 
-			"username char("+ MAX_USERNAME_SIZE + "), " + 
-			"project Integer not null,"
+			 " idMember Integer not null,"
 			+ "foreign key (fonctionnality) references fonctionnalities(id),"
-			+ "foreign key (username) references users(username),"
-			+ "foreign key (project) references projects(id),"
-			+ "primary key(fonctionnality,username,project));";
+			+ "primary key(idMember, project));";
 
 	public DataBase() {
 		System.out.println("Init BDD...");
