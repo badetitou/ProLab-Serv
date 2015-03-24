@@ -29,7 +29,7 @@ public class FonctionnalitiesRequest {
 			stmt.close();
 			Statement stmt2 = DataBase.getConnection().createStatement();
 			ResultSet rs = stmt2.executeQuery("select * from fonctionnalities;");
-			return rs.getInt(1);
+			return rs.getInt("id");
 		} catch (SQLException e) {
 			e.printStackTrace();
 			System.err.println(sql);
