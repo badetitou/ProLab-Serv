@@ -62,23 +62,6 @@ public class MembersRequest {
 		return lp;
 	}
 
-	public static Member getMember(int id, String username) {
-		Member m = null;
-		String sql = "Select * from members where id=? and username=?;";
-		try {
-			PreparedStatement stmt = DataBase.getConnection().prepareStatement(sql);
-			stmt.setInt(1, id);
-			stmt.setString(2, username);
-			ResultSet rs = stmt.executeQuery();
-			m = new Member(rs.getInt("idMember"),rs.getInt("idProject"), rs.getString("username"), rs.getInt("role"));
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return null;
-		}
-		return m;
-	}
-
 	public static List<User> getProjectUser(int idProject) {
 		List<User> lp = new ArrayList<User>();
 		String sql = "Select users.username, users.password, users.email, users.firstname, users.lastname from members, users where users.username=members.username and members.idProject=?;";
@@ -105,5 +88,21 @@ public class MembersRequest {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+
+	public static List<Member> getProjectMember(int idProject) {
+		List<Member> members = new ArrayList<Member>();
+		String sql = "select * from members where idProject=?";
+		try {
+			PreparedStatement stmt = DataBase.getConnection().prepareStatement(sql);
+			stmt.setInt(1, idProject);
+			ResultSet rs = stmt.executeQuery();
+			while(rs.next()){
+				members.add(new Member(rs.getInt("idMember"), rs.getInt("idProject"), rs.getString("username"), rs.getInt("role")));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 }
