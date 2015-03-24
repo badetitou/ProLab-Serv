@@ -93,15 +93,17 @@ public class ProjectsRequest {
 	}
 
 	public static int update(int id, String name, String punchline,String description, String url) {
-		String sql = "update project set name=?, punchline=?,description=?,url=? where id=?;";
+		String sql = "update projects set name=?, punchline=?,description=?,url=? where id=?;";
 		try{
 			PreparedStatement stmt = DataBase.getConnection().prepareStatement(sql);
 			stmt.setString(1, name);
 			stmt.setString(2, punchline);
 			stmt.setString(3, description);
 			stmt.setString(4, url);
+			stmt.setInt(5, id);
 			return stmt.executeUpdate();
 		} catch (Exception e){
+			e.printStackTrace();
 			return 0;
 		}
 	}

@@ -7,6 +7,7 @@ import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -45,8 +46,17 @@ public class ProjectsREST {
 	}
 	
 	@PUT
-	public int updateProject(Project project){
-		return ProjectsRequest.update(project.getId(), project.getName(), project.getPunchline(), project.getDescription(), project.getUrl());
+	public Response updateProject(Project project){
+		System.out.println("Update Project : \nid: " + project.getId() +"\nname: " + project.getName() + "\npunchline: " + project.getDescription() + "\ndescription: " + project.getDescription() + "\nurl: " + project.getUrl());
+		
+		int i =  ProjectsRequest.update(project.getId(), project.getName(), project.getPunchline(), project.getDescription(), project.getUrl());
+		if (i>0){
+			return Response.status(Response.Status.OK)
+					.entity("update").build();
+		} else {
+			return Response.status(Response.Status.BAD_REQUEST)
+					.entity("Project no exist").build();
+		}
 	}
 
 	@POST
