@@ -59,7 +59,7 @@ public class DataBase {
 			+ "fonctionnality Integer not null," + 
 			 " idMember Integer not null,"
 			+ "foreign key (fonctionnality) references fonctionnalities(id),"
-			+ "primary key(idMember, project));";
+			+ "primary key(fonctionnality, idMember));";
 
 	public DataBase() {
 		System.out.println("Init BDD...");
@@ -80,17 +80,9 @@ public class DataBase {
 	private void createTable() throws SQLException {
 		System.out.println("Init Table");
 		Statement stmt;
-		// User Table
 
 		stmt = DataBase.c.createStatement();
-		/*
-		stmt.executeUpdate("drop table if exists users;");
-		stmt.executeUpdate("drop table if exists projects;");
-		stmt.executeUpdate("drop table if exists members;");
-		stmt.executeUpdate("drop table if exists fonctionnalities;");
-		stmt.executeUpdate("drop table if exists news;");
-		stmt.executeUpdate("drop table if exists tasks;");
-		*/
+
 		stmt.executeUpdate(strCreateUserTable);
 		stmt.executeUpdate(strCreateProjectTable);
 		stmt.executeUpdate(strCreateMembersTable);
