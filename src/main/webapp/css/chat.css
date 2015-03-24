@@ -1,0 +1,56 @@
+html, body {
+  height: 100%;
+}
+
+.page-wrap {
+  min-height: 100%;
+  margin-bottom: -100px;
+}
+
+.page-wrap:after {
+  content: "";
+  display: block;
+}
+
+/* Breaking long lines */
+li {
+  -ms-word-break: break-all;
+  -epub-word-break: break-all;
+  word-break: break-all;
+  -webkit-hyphens: auto;
+  -epub-hyphens: auto;
+  -moz-hyphens: auto;
+  hyphens: auto;
+}
+
+/* Add a scrollbar */
+.chatroom {
+  overflow-y: scroll;
+  height: 70vh;
+}
+
+.inputBox, .page-wrap:after {
+  height: 50px;
+}
+
+.inputBox {
+  text-align: center;
+}
+
+.inputBox input {
+  display: inline-block;
+}
+
+.inputBox button {
+  display: inline-block;
+}
+
+/* Smileys are fun. */
+.smiley {
+  transition: 2s;
+}
+
+.smiley:hover {
+  transform: rotate(180deg);
+  transition: 2s;
+}
