@@ -123,4 +123,20 @@ public class MembersRequest {
 		}
 		return members;
 	}
+
+	public static Member getMember(String username, int idProject) {
+		String sql = "select * from members where username=? and idProject=?";
+		try{
+			PreparedStatement stmt =  DataBase.getConnection().prepareStatement(sql);
+			stmt.setString(1, username);
+			stmt.setInt(2, idProject);
+			ResultSet rs = stmt.executeQuery();
+			if (rs.next()){
+				return new Member(rs.getInt("idMember"), rs.getInt("idProject"), rs.getString("username"), rs.getInt("role"));
+			}
+		} catch (Exception e){
+			
+		}
+		return null;
+	}
 }
