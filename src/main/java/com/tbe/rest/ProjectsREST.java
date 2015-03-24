@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.MediaType;
@@ -41,6 +42,11 @@ public class ProjectsREST {
 	public Project getProject(@PathParam("idproject") int id) {
 		System.out.println("GET Project " + id);
 		return ProjectsRequest.getProject(id);
+	}
+	
+	@PUT
+	public int updateProject(Project project){
+		return ProjectsRequest.update(project.getId(), project.getName(), project.getPunchline(), project.getDescription(), project.getUrl());
 	}
 
 	@POST

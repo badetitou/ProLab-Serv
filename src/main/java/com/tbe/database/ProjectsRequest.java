@@ -92,4 +92,18 @@ public class ProjectsRequest {
 		return project.getId();
 	}
 
+	public static int update(int id, String name, String punchline,String description, String url) {
+		String sql = "update project set name=?, punchline=?,description=?,url=? where id=?;";
+		try{
+			PreparedStatement stmt = DataBase.getConnection().prepareStatement(sql);
+			stmt.setString(1, name);
+			stmt.setString(2, punchline);
+			stmt.setString(3, description);
+			stmt.setString(4, url);
+			return stmt.executeUpdate();
+		} catch (Exception e){
+			return 0;
+		}
+	}
+
 }
