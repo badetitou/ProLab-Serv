@@ -1,7 +1,14 @@
-function checkCookie() {
+function isConnected() {
 	var username = getCookie('log');
 	if (username == "") {
 		window.location.href = "index.html";
+	}
+}
+
+function isntConnected() {
+	var username = getCookie('log');
+	if (username != "") {
+		window.location.href = "hub.html";
 	}
 }
 
