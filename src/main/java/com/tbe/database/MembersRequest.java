@@ -14,6 +14,7 @@ import com.tbe.json.User;
 
 public class MembersRequest {
 	public static String addMember(String username, int idProject, int role) {
+		System.out.println(username);
 		String sql = "Insert into members(username, idProject, role) values ( ?, ?, ?);";
 		try {
 			PreparedStatement stmt = DataBase.getConnection().prepareStatement(sql);
@@ -88,7 +89,7 @@ public class MembersRequest {
 			stmt.setInt(1, idProject);
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()){
-				lp.add(new User(rs.getString("username"), rs.getString("password"), rs.getString("email"), rs.getString("firstname"), rs.getString("lastname")));
+				lp.add(new User(rs.getString("username").toLowerCase(), rs.getString("password"), rs.getString("email"), rs.getString("firstname"), rs.getString("lastname")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

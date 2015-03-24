@@ -1,5 +1,5 @@
 var id = -1;
-function init() {
+function init(){
 	var url = getProject();
 	getId(url);
 }
@@ -16,6 +16,7 @@ function getId(url) {
 }
 
 function addMember(){
+
 	var username = $('#username').val();
 	var role = 0;
 	$.ajax({
@@ -44,7 +45,6 @@ function addMember(){
 
 function getCollabotators(){
 	$.getJSON("../v1/members/project/"+ id, function(data) {
-		alert(data.length);
 		var text = "";
 		for ( var i = 0; i< data.length; ++i){
 			text +=	"<li class='list-group-item'>   "  +
@@ -52,7 +52,6 @@ function getCollabotators(){
 					"<div class='collapse'  id='" + i  + "'>"+
 					"<span>" + data[i].firstname + " " + data[i].lastname + "</span><br/></div></li></ul>" ;
 		}
-		alert('maj' + text)
 		document.getElementById("result").innerHTML = text;
 	});
 }

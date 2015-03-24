@@ -70,15 +70,16 @@ public class ProjectsREST {
 			return Response.status(Response.Status.BAD_REQUEST)
 					.entity("Entity already exist").build();
 		}
-		String result = MembersRequest.addMember(username, id, 1);
+		String result = MembersRequest.addMember(username.toLowerCase(), id, 1);
 		if (result == null) {
+			System.out.println("bug");
 			return Response.status(Response.Status.BAD_REQUEST)
 					.entity("User no exist").build();
-		}
+		} else{
 		Chat.salons.put(id, new Salon(id));
 		Response response = Response.status(201)
 				.type(MediaType.APPLICATION_JSON).entity(project).build();
 		System.out.println("Project Created");
-		return response;
+		return response;}
 	}
 }

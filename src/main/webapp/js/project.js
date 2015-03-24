@@ -2,6 +2,7 @@
 	Create a new project
 */
 function create() {
+	var username = getCookie('log');
 	var name = $('#pro-name').val();
 	var description =  $('#pro-description').val();
 	var url = $('#pro-name').val();
@@ -10,7 +11,7 @@ function create() {
 	$.ajax({
 		type : 'POST',
 		contentType : 'application/json',
-		url : "v1/projects/" + name,
+		url : "v1/projects/" + username,
 		dataType : "json",
 		data : JSON.stringify({
 			"name" : name,
