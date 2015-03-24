@@ -30,7 +30,7 @@ public class ProjectsREST {
 	}
 	
 	@GET
-	@Path("/{URLproject}")
+	@Path("/url/{URLproject}")
 	public int getIdProjects(@PathParam("URLproject") String url) {
 		System.out.println("GET ID PROJECTS");
 		return ProjectsRequest.getId(url); 
