@@ -83,6 +83,14 @@ public class DataBase {
 		// User Table
 
 		stmt = DataBase.c.createStatement();
+		
+		stmt.executeUpdate("drop table if exists users;");
+		stmt.executeUpdate("drop table if exists projects;");
+		stmt.executeUpdate("drop table if exists members;");
+		stmt.executeUpdate("drop table if exists fonctionnalities;");
+		stmt.executeUpdate("drop table if exists news;");
+		stmt.executeUpdate("drop table if exists tasks;");
+		
 		stmt.executeUpdate(strCreateUserTable);
 		stmt.executeUpdate(strCreateProjectTable);
 		stmt.executeUpdate(strCreateMembersTable);
