@@ -5,7 +5,7 @@ function init() {
 }
 
 function getId(url) {
-	$.getJSON("/v1/projects/" + url, function(data) {
+	$.getJSON("/v1/projects/url/" + url, function(data) {
 		if (typeof data === "undefined") {
 			alert('bug')
 			$('#errorBox').text('Verify your username and password.');
@@ -50,8 +50,7 @@ function getCollabotators(){
 			text +=	"<li class='list-group-item'>   "  +
 					"<span class='text-primary' data-toggle='collapse' href='#" +  i   +"'>" + data[i].username + "</span>" +
 					"<div class='collapse'  id='" + i  + "'>"+
-					"<span>" + data[i].firstname + "</span><br/>" +
-					"<span>" + data[i].firstname + "</span><br/></div></li></ul>" ;
+					"<span>" + data[i].firstname + " " + data[i].lastname + "</span><br/></div></li></ul>" ;
 		}
 		alert('maj' + text)
 		document.getElementById("result").innerHTML = text;

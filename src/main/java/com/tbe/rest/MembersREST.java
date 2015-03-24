@@ -82,9 +82,8 @@ public class MembersREST {
 	@POST
 	public Response postMember(Member member) {
 		System.out.println("Post Member");
-		String result = MembersRequest.addMember(member.getUsername(),
+		String result = MembersRequest.addMember(member.getUsername().toLowerCase(),
 				member.getIdProject(), member.getRole());
-		String username = member.getUsername().toLowerCase();
 		if (result == null) {
 			return Response.status(Response.Status.BAD_REQUEST)
 					.entity("Entity already exist").build();
