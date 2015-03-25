@@ -1,5 +1,6 @@
 package com.tbe.rest;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.ws.rs.DELETE;
@@ -15,6 +16,7 @@ import javax.ws.rs.core.Response;
 import com.tbe.database.FonctionnalitiesRequest;
 import com.tbe.database.UsersRequest;
 import com.tbe.json.User;
+import com.tbe.tools.GitHubManager;
 import com.tbe.tools.Mailer;
 
 @Path("/users")
@@ -54,7 +56,7 @@ public class UserREST {
 	@PUT
 	@Path("/{username}")
 	public Response update(User user, @PathParam("username") String username) {
-		int i = UsersRequest.update(user,username);
+		int i = UsersRequest.update(user, username);
 		if (i > 0) {
 			return Response.status(Response.Status.OK).entity("update").build();
 		} else {
@@ -63,10 +65,10 @@ public class UserREST {
 		}
 
 	}
-	
+
 	@DELETE
 	@Path("/{username}")
-	public Response delete(@PathParam("username") String username){
+	public Response delete(@PathParam("username") String username) {
 		int i = UsersRequest.delete(username);
 		if (i > 0) {
 			return Response.status(Response.Status.OK).entity("delete").build();
@@ -86,6 +88,17 @@ public class UserREST {
 
 		String username = user.getUsername().toLowerCase();
 		String password = user.getPassword();
+
+		try {
+			if (!GitHubManager.userExists(username, password)) {
+				Response response = Response.status(400)
+						.type(MediaType.APPLICATION_JSON).build();
+				return response;
+			}
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+
 		String email = user.getEmail().toLowerCase();
 		String firstname = user.getFirstname().substring(0, 1).toUpperCase()
 				+ user.getFirstname().substring(1).toLowerCase();
