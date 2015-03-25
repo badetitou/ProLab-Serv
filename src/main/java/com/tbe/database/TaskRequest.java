@@ -74,8 +74,8 @@ public class TaskRequest {
 		try {
 			PreparedStatement stmt = DataBase.getConnection().prepareStatement(
 					sql);
-			stmt.setInt(1, idFonctionnality);
-			stmt.setInt(2, idMember);
+			stmt.setInt(1, idMember);
+			stmt.setInt(2, idFonctionnality);
 			return stmt.executeUpdate();
 		} catch (Exception e) {
 			return 0;
