@@ -29,12 +29,13 @@ function scrolldown(){
 function send(){
   var msgstr = $("#msg").val();
   var authorstr = getCookie("log");
+  var ID = getCookie("idProject");
   var datestr = new Date().toUTCString();
 
   $("#msg").val(""); // empty the input
 
   // Get the Firebase server
-  var chat1 = new Firebase("https://prolab.firebaseio.com/Messages/1");
+  var chat1 = new Firebase("https://prolab.firebaseio.com/Messages/"+ID);
   // Add a message to it
   chat1.push(
     {
@@ -47,8 +48,9 @@ function send(){
   /* General stuff */
   init();
 
+  var ID = getCookie("idProject");
   // Get the Firebase server
-  var chat1 = new Firebase("https://prolab.firebaseio.com/Messages/1");
+  var chat1 = new Firebase("https://prolab.firebaseio.com/Messages/"+ID);
   // When a new message is received on the Firebase server...
   chat1.on("child_added", function(snapshot){
     var newMsg = snapshot.val(); // Get the new item
