@@ -13,14 +13,14 @@ import com.tbe.json.User;
 
 public class TaskRequest {
 
-
 	public static List<Task> getAllTask() {
-		ArrayList<Task> tasks= new ArrayList<Task>();
+		ArrayList<Task> tasks = new ArrayList<Task>();
 		try {
 			Statement stmt = DataBase.getConnection().createStatement();
 			ResultSet rs = stmt.executeQuery("Select * from tasks");
 			while (rs.next()) {
-				tasks.add(new Task(rs.getInt("idMember"), rs.getInt("fonctionnality")));
+				tasks.add(new Task(rs.getInt("idMember"), rs
+						.getInt("fonctionnality")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -32,7 +32,8 @@ public class TaskRequest {
 	public static int addTask(int idMember, int idFonctionnality) {
 		String sql = "insert into tasks (idMember, fonctionnality) values (?,?);";
 		try {
-			PreparedStatement stmt = DataBase.getConnection().prepareStatement(sql);
+			PreparedStatement stmt = DataBase.getConnection().prepareStatement(
+					sql);
 			stmt.setInt(1, idMember);
 			stmt.setInt(2, idFonctionnality);
 			return stmt.executeUpdate();
@@ -43,18 +44,22 @@ public class TaskRequest {
 		}
 	}
 
-	public static List<Fonctionnality> getFonctionnalityFromIdProject(int idProject) {
+	public static List<Fonctionnality> getFonctionnalityFromIdProject(
+			int idProject) {
 		List<Fonctionnality> fonctionnalities = new ArrayList<Fonctionnality>();
-		String sql = "select fonctionnalities.id, fonctionnalities.name, fonctionnalities.description, fonctionnalities.avancement, fonctionnalities.deadline " +
-				"from fonctionnalities, tasks, members " +
-				"where tasks.fonctionnality=fonctionnalities.id and tasks.idMember=members.idMember and members.idProject=? " +
-				"group by fonctionnalities.id, fonctionnalities.name, fonctionnalities.description, fonctionnalities.avancement, fonctionnalities.deadline;";
+		String sql = "select fonctionnalities.id, fonctionnalities.name, fonctionnalities.description, fonctionnalities.avancement, fonctionnalities.deadline "
+				+ "from fonctionnalities, tasks, members "
+				+ "where tasks.fonctionnality=fonctionnalities.id and tasks.idMember=members.idMember and members.idProject=? "
+				+ "group by fonctionnalities.id, fonctionnalities.name, fonctionnalities.description, fonctionnalities.avancement, fonctionnalities.deadline;";
 		try {
-			PreparedStatement stmt = DataBase.getConnection().prepareStatement(sql);
+			PreparedStatement stmt = DataBase.getConnection().prepareStatement(
+					sql);
 			stmt.setInt(1, idProject);
 			ResultSet rs = stmt.executeQuery();
-			while(rs.next()){
-				fonctionnalities.add(new Fonctionnality(rs.getInt("id"), rs.getString("name"), rs.getString("description"), rs.getInt("avancement"), rs.getDate("deadline")));
+			while (rs.next()) {
+				fonctionnalities.add(new Fonctionnality(rs.getInt("id"), rs
+						.getString("name"), rs.getString("description"), rs
+						.getInt("avancement"), rs.getDate("deadline")));
 			}
 			return fonctionnalities;
 		} catch (SQLException e) {
@@ -62,5 +67,18 @@ public class TaskRequest {
 			System.err.println(sql);
 		}
 		return null;
+	}
+
+	public static int delete(int idFonctionnality, int idMember) {
+		String sql = "delete from tasks where idMember=? and fonctionnality=?";
+		try {
+			PreparedStatement stmt = DataBase.getConnection().prepareStatement(
+					sql);
+			stmt.setInt(1, idFonctionnality);
+			stmt.setInt(2, idMember);
+			return stmt.executeUpdate();
+		} catch (Exception e) {
+			return 0;
+		}
 	}
 }

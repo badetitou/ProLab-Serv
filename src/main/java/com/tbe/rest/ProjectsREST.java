@@ -2,12 +2,12 @@ package com.tbe.rest;
 
 import java.util.List;
 
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -45,10 +45,22 @@ public class ProjectsREST {
 		return ProjectsRequest.getProject(id);
 	}
 	
+	@DELETE
+	@Path("/{idProject}")
+	public Response delete(@PathParam("idProject") int idProject){
+		int i =  ProjectsRequest.delete(idProject);
+		if (i>0){
+			return Response.status(Response.Status.OK)
+					.entity("update").build();
+		} else {
+			return Response.status(Response.Status.BAD_REQUEST)
+					.entity("Project no exist").build();
+		}
+	}
+	
 	@PUT
 	public Response updateProject(Project project){
 		System.out.println("Update Project : \nid: " + project.getId() +"\nname: " + project.getName() + "\npunchline: " + project.getDescription() + "\ndescription: " + project.getDescription() + "\nurl: " + project.getUrl());
-		
 		int i =  ProjectsRequest.update(project.getId(), project.getName(), project.getPunchline(), project.getDescription(), project.getUrl());
 		if (i>0){
 			return Response.status(Response.Status.OK)

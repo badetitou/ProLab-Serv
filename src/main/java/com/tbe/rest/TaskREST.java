@@ -2,6 +2,7 @@ package com.tbe.rest;
 
 import java.util.List;
 
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -13,7 +14,6 @@ import com.tbe.database.TaskRequest;
 import com.tbe.json.Fonctionnality;
 import com.tbe.json.Member;
 import com.tbe.json.Task;
-import com.tbe.json.User;
 
 @Path("/task")
 public class TaskREST {
@@ -44,6 +44,17 @@ public class TaskREST {
 		return p;
 	}
 	
+	@DELETE
+	@Path("/{idFonctionnality}&{idMember}")
+	public Response delete(@PathParam("idFonctionnality") int idFonctionnality, @PathParam("idMember") int idMember) {
+		int result = TaskRequest.delete(idFonctionnality, idMember);
+		if (result == -1) {
+			return Response.status(Response.Status.BAD_REQUEST)
+					.entity("Entity already exist").build();
+		}
+		return Response.status(Response.Status.CREATED)
+				.entity("Project Created").build();
+	}
 
 	@POST
 	public Response postTask(Task task) {

@@ -2,6 +2,7 @@ package com.tbe.rest;
 
 import java.util.List;
 
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -11,6 +12,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import com.tbe.database.FonctionnalitiesRequest;
 import com.tbe.database.UsersRequest;
 import com.tbe.json.User;
 import com.tbe.tools.Mailer;
@@ -50,8 +52,9 @@ public class UserREST {
 	}
 
 	@PUT
-	public Response update(User user) {
-		int i = UsersRequest.update(user);
+	@Path("/{username}")
+	public Response update(User user, @PathParam("username") String username) {
+		int i = UsersRequest.update(user,username);
 		if (i > 0) {
 			return Response.status(Response.Status.OK).entity("update").build();
 		} else {
@@ -59,6 +62,18 @@ public class UserREST {
 					.entity("User already exist or no exists").build();
 		}
 
+	}
+	
+	@DELETE
+	@Path("/{username}")
+	public Response delete(@PathParam("username") String username){
+		int i = UsersRequest.delete(username);
+		if (i > 0) {
+			return Response.status(Response.Status.OK).entity("delete").build();
+		} else {
+			return Response.status(Response.Status.BAD_REQUEST)
+					.entity("can't delete users : " + username).build();
+		}
 	}
 
 	@POST

@@ -7,6 +7,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.xml.crypto.Data;
+
 import com.tbe.json.Project;
 
 public class ProjectsRequest {
@@ -104,6 +106,17 @@ public class ProjectsRequest {
 			return stmt.executeUpdate();
 		} catch (Exception e){
 			e.printStackTrace();
+			return 0;
+		}
+	}
+
+	public static int delete(int idProject) {
+		String sql = "delete from projects where id=?";
+		try{
+			PreparedStatement stmt = DataBase.getConnection().prepareStatement(sql);
+			stmt.setInt(1, idProject);
+			return stmt.executeUpdate();
+		} catch (Exception e){
 			return 0;
 		}
 	}

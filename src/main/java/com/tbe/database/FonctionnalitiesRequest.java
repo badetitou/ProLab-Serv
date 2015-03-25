@@ -108,4 +108,15 @@ public class FonctionnalitiesRequest {
 			return 0;
 		}
 	}
+
+	public static int delete(int idFonctionnality) {
+		String sql = "Delete from fonctionnalities where id=?";	
+		try {
+			PreparedStatement stmt = DataBase.getConnection().prepareStatement(sql);
+			stmt.setInt(1, idFonctionnality);
+			return stmt.executeUpdate();
+		} catch (Exception e) {
+			return 0;
+		}
+	}
 }

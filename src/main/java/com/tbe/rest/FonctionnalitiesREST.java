@@ -2,6 +2,7 @@ package com.tbe.rest;
 
 import java.util.List;
 
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -48,6 +49,18 @@ public class FonctionnalitiesREST {
 			m[i] = members.get(i);
 		}
 		return m;
+	}
+	
+	@DELETE
+	@Path("/{idFonctionnality}")
+	public Response delete(@PathParam("idFonctionnality") int idFonctionnality){
+		int i = FonctionnalitiesRequest.delete(idFonctionnality);
+		if (i > 0) {
+			return Response.status(Response.Status.OK).entity("delete").build();
+		} else {
+			return Response.status(Response.Status.BAD_REQUEST)
+					.entity("can't delete fonctionnality : " + idFonctionnality).build();
+		}
 	}
 
 	@PUT

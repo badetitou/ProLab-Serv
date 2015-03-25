@@ -85,11 +85,11 @@ public class UsersRequest {
 		}
 	}
 
-	public static int update(User user) {
+	public static int update(User user, String username) {
 		String sql = "update users set username=?, email=?,password=?,firstname=?, lastname=? where id=?;";
 		try{
 			PreparedStatement stmt = DataBase.getConnection().prepareStatement(sql);
-			stmt.setString(1, user.getUsername());
+			stmt.setString(1, username);
 			stmt.setString(2, user.getEmail());
 			stmt.setString(3, user.getPassword());
 			stmt.setString(4, user.getFirstname());
@@ -98,6 +98,17 @@ public class UsersRequest {
 			return stmt.executeUpdate();
 		} catch (Exception e){
 			e.printStackTrace();
+			return 0;
+		}
+	}
+
+	public static int delete(String username) {
+		String sql = "delete from users where username=?";
+		try{
+			PreparedStatement stmt = DataBase.getConnection().prepareStatement(sql);
+			stmt.setString(1, username);
+			return stmt.executeUpdate();
+		} catch (Exception e){
 			return 0;
 		}
 	}
