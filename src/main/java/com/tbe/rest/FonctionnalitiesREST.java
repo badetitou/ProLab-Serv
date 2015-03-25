@@ -67,6 +67,8 @@ public class FonctionnalitiesREST {
 	@PUT
 	public Response update(Fonctionnality fonctionnality) {
 		int i = FonctionnalitiesRequest.update(fonctionnality);
+		System.out.println("update fonctionnality\nnom: " + fonctionnality.getName() + "\ndescription: " + fonctionnality.getDescription() + "\ndate: " + fonctionnality.getDeadLine() + "\navancement: " + fonctionnality.getAvancement() + "\nresult : " + i);
+
 		if (i > 0) {
 			return Response.status(Response.Status.OK).entity("update").build();
 		} else {
