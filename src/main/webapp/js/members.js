@@ -11,6 +11,7 @@ function getId(url) {
 			$('#errorBox').text('Verify your username and password.');
 		} else {
 			id = data;
+			setCookie('idProject', id, 265);
 		}
 	});
 }

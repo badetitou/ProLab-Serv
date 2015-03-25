@@ -48,12 +48,12 @@ public class TaskREST {
 	@Path("/{idFonctionnality}&{idMember}")
 	public Response delete(@PathParam("idFonctionnality") int idFonctionnality, @PathParam("idMember") int idMember) {
 		int result = TaskRequest.delete(idFonctionnality, idMember);
-		if (result == -1) {
-			return Response.status(Response.Status.BAD_REQUEST)
-					.entity("Entity already exist").build();
+		if (result > 0) {
+			return Response.status(Response.Status.OK)
+					.entity("delete").build();
 		}
 		return Response.status(Response.Status.CREATED)
-				.entity("Project Created").build();
+				.entity("Can't delete task").build();
 	}
 
 	@POST

@@ -39,8 +39,8 @@ public class DataBase {
 			+ "username char("+ MAX_USERNAME_SIZE+ "), "
 			+ "idProject integer,"
 			+ "role integer, "
-			+ "foreign key (username) references users(username),"
-			+ "foreign key (idProject) references projects(id))";
+			+ "foreign key (username) references users(username) ON DELETE CASCADE ON UPDATE CASCADE,"
+			+ "foreign key (idProject) references projects(id) ON DELETE CASCADE ON UPDATE CASCADE)";
 
 	private static String strCreateFonctionnalitiesTable = "Create table if not exists fonctionnalities ("
 			+ "id Integer primary key autoincrement, "
@@ -48,7 +48,7 @@ public class DataBase {
 			+ "description text, "
 			+ "avancement int, "
 			+ "deadline date, "
-			+ "foreign key (name) references users(username))";
+			+ "foreign key (name) references users(username) ON DELETE CASCADE ON UPDATE CASCADE)";
 
 	private static String strCreateNewsTable = "Create table if not exists news ("
 			+ "id Integer primary key autoincrement, "
@@ -56,12 +56,12 @@ public class DataBase {
 			+ "description text, "
 			+ "date date, "
 			+ "author char("+ MAX_USERNAME_SIZE+ "),"
-			+ "foreign key (author) references users(username))";
+			+ "foreign key (author) references users(username) ON DELETE CASCADE ON UPDATE CASCADE)";
 
 	private static String strCreateTask = "Create table if not exists tasks ("
 			+ "fonctionnality Integer not null," + 
 			 " idMember Integer not null,"
-			+ "foreign key (fonctionnality) references fonctionnalities(id),"
+			+ "foreign key (fonctionnality) references fonctionnalities(id) ON DELETE CASCADE ON UPDATE CASCADE,"
 			+ "primary key(fonctionnality, idMember));";
 
 	public DataBase() {
