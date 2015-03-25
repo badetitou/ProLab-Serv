@@ -8,6 +8,7 @@ import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import com.tbe.database.FonctionnalitiesRequest;
@@ -80,7 +81,7 @@ public class FonctionnalitiesREST {
 	public Response postFonctionnality(Fonctionnality fonctionnality,
 			@PathParam("idMember") int idMember) {
 		int id = FonctionnalitiesRequest.addFonctionnality(
-				fonctionnality.getName(), fonctionnality.getDescription(), 0,
+				fonctionnality.getName(), fonctionnality.getDescription(), fonctionnality.getAvancement(),
 				fonctionnality.getDeadLine());
 		if (id == -1) {
 			return Response.status(Response.Status.BAD_REQUEST)
@@ -92,8 +93,8 @@ public class FonctionnalitiesREST {
 			return Response.status(Response.Status.BAD_REQUEST)
 					.entity("Unknow Error").build();
 		}
-		return Response.status(Response.Status.CREATED)
-				.entity("Fonctionnality Created").build();
+		return Response.status(201)
+				.type(MediaType.APPLICATION_JSON).entity(fonctionnality).build();
 	}
 
 }

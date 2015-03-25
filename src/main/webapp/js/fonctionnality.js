@@ -2,27 +2,48 @@ function showValue(newValue) {
 	document.getElementById("range").innerHTML = newValue + "%";
 }
 
-var nowTemp = new Date();
-var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(),
-		nowTemp.getDate(), 0, 0, 0, 0);
+var idMember = -1;
+function init(){
+	getIdMember();
+}
 
-var checkin = $('#dpd1').datepicker({
-	onRender : function(date) {
-		return date.valueOf() < now.valueOf() ? 'disabled' : '';
-	}
-}).on('changeDate', function(ev) {
-	if (ev.date.valueOf() > checkout.date.valueOf()) {
-		var newDate = new Date(ev.date)
-		newDate.setDate(newDate.getDate() + 1);
-		checkout.setValue(newDate);
-	}
-	checkin.hide();
-	$('#dpd2')[0].focus();
-}).data('datepicker');
-var checkout = $('#dpd2').datepicker({
-	onRender : function(date) {
-		return date.valueOf() <= checkin.date.valueOf() ? 'disabled' : '';
-	}
-}).on('changeDate', function(ev) {
-	checkout.hide();
-}).data('datepicker');
+function addFonctionnality() {
+	var name = $('#name').val();
+	var description = $('#description').val();
+	var avancement = $('#avancement').val();
+	var deadLine = new Date($('#deadLine').val());
+	$.ajax({
+		type : 'POST',
+		contentType : 'application/json',
+		url : "v1/fonctionnalities/" + idMember,
+		dataType : "json",
+		data : JSON.stringify({
+			"name" : name,
+			"description" : description,
+			"avancement" : avancement,
+			"deadLine" : deadLine,
+		}),
+		success : function(data, textStatus, jqXHR) {
+			if (data.name == name) {
+				alert('GJ');
+			} else {
+				alert('FAIL NAME');
+			}
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			alert('FAIL');
+		}
+	});
+}
+
+function getIdMember() {
+	var username = getCookie('log');
+	var idproject = getCookie('idProject');
+	$.getJSON("v1/members/" + username + "&" + idproject, function(data) {
+		if (typeof data === "undefined") {
+			alert('bug idMember');
+		} else {
+			idMember = data.idMember;
+		}
+	});
+}
