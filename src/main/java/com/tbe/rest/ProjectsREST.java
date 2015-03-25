@@ -1,5 +1,6 @@
 package com.tbe.rest;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.ws.rs.DELETE;
@@ -13,9 +14,11 @@ import javax.ws.rs.core.Response;
 
 import com.tbe.database.MembersRequest;
 import com.tbe.database.ProjectsRequest;
+import com.tbe.database.UsersRequest;
 import com.tbe.json.Chat;
 import com.tbe.json.Project;
 import com.tbe.json.Salon;
+import com.tbe.tools.GitHubManager;
 
 @Path("/projects")
 public class ProjectsREST {
@@ -75,12 +78,19 @@ public class ProjectsREST {
 	@Path("/{username}")
 	public Response postProject(Project project,
 			@PathParam("username") String username) {
+		username = username.toLowerCase();
 		int id = ProjectsRequest.addProject(project.getName(),
 				project.getDescription(), project.getUrl(),
 				project.getPunchline());
 		if (id == -1) {
 			return Response.status(Response.Status.BAD_REQUEST)
 					.entity("Entity already exist").build();
+		}
+		System.out.println(">---- " + username);
+		try {
+			GitHubManager.createRepo(username, UsersRequest.getUser(username).getPassword(), project.getName(), project.getPunchline(), project.getDescription());
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 		String result = MembersRequest.addMember(username.toLowerCase(), id, 1);
 		if (result == null) {
