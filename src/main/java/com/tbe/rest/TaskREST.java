@@ -44,6 +44,17 @@ public class TaskREST {
 		return p;
 	}
 	
+	@GET
+	@Path("/allProjectFonctionnalities/{idproject}")
+	public Fonctionnality[] getProjectFonctionnalities(@PathParam("idProject") int idProject){
+		List<Fonctionnality> fonctionnalities = TaskRequest.getFonctionnalityFromIdProject(idProject);
+		Fonctionnality[] p = new Fonctionnality[fonctionnalities.size()];
+		for (int i = 0; i < p.length; ++i) {
+			p[i] = fonctionnalities.get(i);
+		}
+		return p;
+	}
+	
 	@DELETE
 	@Path("/{idFonctionnality}&{idMember}")
 	public Response delete(@PathParam("idFonctionnality") int idFonctionnality, @PathParam("idMember") int idMember) {
