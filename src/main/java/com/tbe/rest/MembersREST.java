@@ -26,10 +26,19 @@ import com.tbe.tools.Mailer;
 @Path("/members")
 public class MembersREST {
 
+	
 	@DELETE
-	public void removeMembers(Member member) {
-		MembersRequest.removeMembers(member.getIdMember());
+	@Path("/{idMember}")
+	public Response removeMembers(@PathParam("idMember") int idMember) {
+		int i = MembersRequest.removeMembers(idMember);
+		if (i>0){
+			return Response.status(Response.Status.OK)
+					.entity("delete").build();
+		}
+		return Response.status(Response.Status.CREATED)
+				.entity("Can't delete member").build();
 	}
+	
 
 	@GET
 	public Member[] getAllMembers() {

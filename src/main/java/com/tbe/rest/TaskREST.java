@@ -47,6 +47,7 @@ public class TaskREST {
 	@DELETE
 	@Path("/{idFonctionnality}&{idMember}")
 	public Response delete(@PathParam("idFonctionnality") int idFonctionnality, @PathParam("idMember") int idMember) {
+		System.out.println("\nidFonctionnality:" + idFonctionnality + "\nidMember:" + idMember);
 		int result = TaskRequest.delete(idFonctionnality, idMember);
 		if (result > 0) {
 			return Response.status(Response.Status.OK)
@@ -60,6 +61,7 @@ public class TaskREST {
 	public Response postTask(Task task) {
 		System.out.println("Post Task\nidFonc:" + task.getIdFonctionnality() + "\nidMember" + task.getIdMember());
 		int result = TaskRequest.addTask(task.getIdMember(), task.getIdFonctionnality());
+		
 		if (result == -1) {
 			return Response.status(Response.Status.BAD_REQUEST)
 					.entity("Entity already exist").build();
