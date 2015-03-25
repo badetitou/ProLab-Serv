@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Response;
@@ -30,15 +31,18 @@ public class FonctionnalitiesREST {
 
 	@GET
 	@Path("/{idFonctionnality}")
-	public Fonctionnality getFonctionnality(@PathParam("idFonctionnality") int id) {
+	public Fonctionnality getFonctionnality(
+			@PathParam("idFonctionnality") int id) {
 		System.out.println("GET Fonctionnality " + id);
 		return FonctionnalitiesRequest.getFonctionnality(id);
 	}
-	
+
 	@GET
 	@Path("/member/{idFonctionnality}")
-	public Member[] getFonctionnalityMember(@PathParam("idFonctionnality") int id){
-		List<Member> members = FonctionnalitiesRequest.getFonctionnalityMember(id);
+	public Member[] getFonctionnalityMember(
+			@PathParam("idFonctionnality") int id) {
+		List<Member> members = FonctionnalitiesRequest
+				.getFonctionnalityMember(id);
 		Member[] m = new Member[members.size()];
 		for (int i = 0; i < m.length; ++i) {
 			m[i] = members.get(i);
@@ -46,9 +50,22 @@ public class FonctionnalitiesREST {
 		return m;
 	}
 
+	@PUT
+	public Response update(Fonctionnality fonctionnality) {
+		int i = FonctionnalitiesRequest.update(fonctionnality);
+		if (i > 0) {
+			return Response.status(Response.Status.OK).entity("update").build();
+		} else {
+			return Response.status(Response.Status.BAD_REQUEST)
+					.entity("Fonctionnality already exist or no exists").build();
+		}
+
+	}
+
 	@POST
 	@Path("/{idMember}")
-	public Response postFonctionnality(Fonctionnality fonctionnality, @PathParam("idMember") int idMember) {
+	public Response postFonctionnality(Fonctionnality fonctionnality,
+			@PathParam("idMember") int idMember) {
 		int id = FonctionnalitiesRequest.addFonctionnality(
 				fonctionnality.getName(), fonctionnality.getDescription(), 0,
 				fonctionnality.getDeadLine());
@@ -58,7 +75,7 @@ public class FonctionnalitiesREST {
 		}
 		int result = TaskRequest.addTask(idMember, id);
 		System.out.println("ADD PRIMARY TASK : " + result);
-		if (result <=0){
+		if (result <= 0) {
 			return Response.status(Response.Status.BAD_REQUEST)
 					.entity("Unknow Error").build();
 		}

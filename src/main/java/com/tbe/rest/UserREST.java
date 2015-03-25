@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -38,7 +39,7 @@ public class UserREST {
 		System.out.println("GET USER " + username + " : " + password);
 		return UsersRequest.getUser(username, password);
 	}
-	
+
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/{username}")
@@ -48,10 +49,25 @@ public class UserREST {
 		return UsersRequest.getUser(username);
 	}
 
+	@PUT
+	public Response update(User user) {
+		int i = UsersRequest.update(user);
+		if (i > 0) {
+			return Response.status(Response.Status.OK).entity("update").build();
+		} else {
+			return Response.status(Response.Status.BAD_REQUEST)
+					.entity("User already exist or no exists").build();
+		}
+
+	}
+
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response addUser(User user) {
-		System.out.println("Post User\nusername:" + user.getUsername()+"\npassword:" + user.getPassword() + "\nemail:" + user.getEmail() +"\nfirstname:"+user.getFirstname() + "\nlastname:"+user.getLastname());
+		System.out.println("Post User\nusername:" + user.getUsername()
+				+ "\npassword:" + user.getPassword() + "\nemail:"
+				+ user.getEmail() + "\nfirstname:" + user.getFirstname()
+				+ "\nlastname:" + user.getLastname());
 
 		String username = user.getUsername().toLowerCase();
 		String password = user.getPassword();
@@ -64,7 +80,7 @@ public class UserREST {
 				+ email + "/" + firstname + "/" + lastname);
 		String result = UsersRequest.addUser(username, password, email,
 				firstname, lastname);
-		
+
 		if (result == null) {
 			Response response = Response.status(400)
 					.type(MediaType.APPLICATION_JSON).build();

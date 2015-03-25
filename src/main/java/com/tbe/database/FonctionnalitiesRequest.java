@@ -29,7 +29,8 @@ public class FonctionnalitiesRequest {
 			stmt.executeUpdate();
 			stmt.close();
 			Statement stmt2 = DataBase.getConnection().createStatement();
-			ResultSet rs = stmt2.executeQuery("select max(id) from fonctionnalities;");
+			ResultSet rs = stmt2
+					.executeQuery("select max(id) from fonctionnalities;");
 			return rs.getInt(1);
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -58,10 +59,13 @@ public class FonctionnalitiesRequest {
 	public static Fonctionnality getFonctionnality(int id) {
 		String sql = "Select * from fonctionnalities where id=?";
 		try {
-			PreparedStatement stmt = DataBase.getConnection().prepareStatement(sql);
+			PreparedStatement stmt = DataBase.getConnection().prepareStatement(
+					sql);
 			stmt.setInt(1, id);
 			ResultSet rs = stmt.executeQuery();
-			return new Fonctionnality(rs.getInt("id"), rs.getString("name"), rs.getString("description"), rs.getInt("avancement"), rs.getDate("deadline"));
+			return new Fonctionnality(rs.getInt("id"), rs.getString("name"),
+					rs.getString("description"), rs.getInt("avancement"),
+					rs.getDate("deadline"));
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
@@ -70,19 +74,38 @@ public class FonctionnalitiesRequest {
 
 	public static List<Member> getFonctionnalityMember(int idFonctionnality) {
 		List<Member> members = new ArrayList<Member>();
-		String sql = "Select members.idMember, members.idProject, members.username, members.role " +
-				"from members, tasks " +
-				"where tasks.fonctionnality=? and members.idMember=tasks.idMember;";
-		try{
-			PreparedStatement stmt = DataBase.getConnection().prepareStatement(sql);
+		String sql = "Select members.idMember, members.idProject, members.username, members.role "
+				+ "from members, tasks "
+				+ "where tasks.fonctionnality=? and members.idMember=tasks.idMember;";
+		try {
+			PreparedStatement stmt = DataBase.getConnection().prepareStatement(
+					sql);
 			stmt.setInt(1, idFonctionnality);
 			ResultSet rs = stmt.executeQuery();
-			while(rs.next()){
-				members.add(new Member(rs.getInt("idMember"), rs.getInt("idProject"), rs.getString("username"), rs.getInt("role")));
+			while (rs.next()) {
+				members.add(new Member(rs.getInt("idMember"), rs
+						.getInt("idProject"), rs.getString("username"), rs
+						.getInt("role")));
 			}
 			return members;
-		} catch (Exception e){
+		} catch (Exception e) {
 			return null;
+		}
+	}
+
+	public static int update(Fonctionnality fonctionnality) {
+		String sql = "update fonctionnalities set avancement=?,description=?,deadline=?,name=? where id=? ";
+		try {
+			PreparedStatement stmt = DataBase.getConnection().prepareStatement(
+					sql);
+			stmt.setInt(1, fonctionnality.getAvancement());
+			stmt.setString(2, fonctionnality.getDescription());
+			stmt.setDate(3, fonctionnality.getDeadLine());
+			stmt.setString(4, fonctionnality.getName());
+			stmt.setInt(5, fonctionnality.getId());
+			return stmt.executeUpdate();
+		} catch (Exception e) {
+			return 0;
 		}
 	}
 }

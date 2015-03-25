@@ -84,4 +84,21 @@ public class UsersRequest {
 			return user;
 		}
 	}
+
+	public static int update(User user) {
+		String sql = "update users set username=?, email=?,password=?,firstname=?, lastname=? where id=?;";
+		try{
+			PreparedStatement stmt = DataBase.getConnection().prepareStatement(sql);
+			stmt.setString(1, user.getUsername());
+			stmt.setString(2, user.getEmail());
+			stmt.setString(3, user.getPassword());
+			stmt.setString(4, user.getFirstname());
+			stmt.setString(5, user.getLastname());
+			stmt.setString(6, user.getUsername());
+			return stmt.executeUpdate();
+		} catch (Exception e){
+			e.printStackTrace();
+			return 0;
+		}
+	}
 }
