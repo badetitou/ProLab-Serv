@@ -77,7 +77,7 @@ public class UsersRequest {
 			PreparedStatement stmt = DataBase.getConnection().prepareStatement(sql);
 			stmt.setString(1, username);
 			ResultSet rs = stmt.executeQuery();
-			return new User(rs.getString("username"), "" ,rs.getString("email"), rs.getString("firstname"),rs.getString("lastname"));
+			return new User(rs.getString("username"), rs.getString("password") ,rs.getString("email"), rs.getString("firstname"),rs.getString("lastname"));
 		} catch (SQLException e) {
 			System.err.println(sql);
 			e.printStackTrace();

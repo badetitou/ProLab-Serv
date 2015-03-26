@@ -88,13 +88,18 @@ public class ProjectsREST {
 		}
 		System.out.println(">---- " + username);
 		try {
-			GitHubManager.createRepo(username, UsersRequest.getUser(username).getPassword(), project.getName(), project.getPunchline(), project.getDescription());
+			
+			if (!GitHubManager.createRepo(username, UsersRequest.getUser(username).getPassword(), project.getName(), project.getPunchline(), project.getDescription())){
+				return Response.status(Response.Status.BAD_REQUEST)
+						.entity("Git Erreur").build();
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
+			return Response.status(Response.Status.BAD_REQUEST)
+					.entity("Git Erreur").build();
 		}
 		String result = MembersRequest.addMember(username.toLowerCase(), id, 1);
 		if (result == null) {
-			System.out.println("bug");
 			return Response.status(Response.Status.BAD_REQUEST)
 					.entity("User no exist").build();
 		} else{
