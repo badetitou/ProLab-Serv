@@ -13,8 +13,7 @@ $.getJSON("../v1/members/" + username, function(data) {
 		document.getElementById("result").innerHTML = text;
 	});
 function projectCookie(id,url){
-	alert(id);
-	setCookie('project', url, 265);	
-	setCookie('idProject', id, 265);	
+	setCookie('project', url, 265);
+	setCookie('idProject', id, 265);
 	window.location.href = "members.html"
 }

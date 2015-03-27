@@ -24,6 +24,7 @@ function create() {
 				window.location.href = "members.html"
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
+			$('#errorBox').text('Fail, retry.');
 		}
 	});
 }

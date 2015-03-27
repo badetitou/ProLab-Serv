@@ -21,6 +21,8 @@
 		init();
 		isConnected();
 	</script>
+	
+	
 	<nav class="navbar navbar-default">
 		<div class="container">
 			<div class="navbar-header">
@@ -33,6 +35,8 @@
 					<li><a href="members.html"><span
 							class="glyphicon glyphicon-user"></span> Members</a></li>
 			        <li ><a href="fonctionnality.html"><i class="fa fa-paper-plane"></i> Fonctionnality</a></li>
+			        <li><a href="chat.html"><span class="glyphicon glyphicon-chat"></span> Chat</a></li>
+			        
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="about.html"><span
@@ -49,6 +53,9 @@
 			<h1 class="text-primary">Fonctionnality creation wizard</h1>
 			<h2>Step 1 : Fonctionnality ID card</h2>
 			<div class="form col-md-12 center-block">
+				<!-- Error box will display connection errors -->
+				<p class="text-danger" id="errorBox"></p>
+				<!-- form -->
 				<!-- Text input-->
 				<div class="control-group">
 					<label class="control-label" for="pro-name">Name</label>

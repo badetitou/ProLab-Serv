@@ -7,8 +7,7 @@ function init(){
 function getId(url) {
 	$.getJSON("/v1/projects/url/" + url, function(data) {
 		if (typeof data === "undefined") {
-			alert('bug')
-			$('#errorBox').text('Verify your username and password.');
+			$('#errorBox').text('Verify the username.');
 		} else {
 			id = data;
 			setCookie('idProject', id, 265);
@@ -34,12 +33,11 @@ function addMember(){
 			if (data.username == username) {
 				getCollabotators();
 			} else {
-				$('#errorBox').text('Username/Email already taken.');
+				$('#errorBox').text('Verify the username.');
 			}
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
-			alert('FAIL ADDMEMBERS')
-			$('#errorBox').text('Username/Email already taken.');
+			$('#errorBox').text('Verify the username.');
 		}
 	});
 }

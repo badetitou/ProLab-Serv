@@ -25,13 +25,13 @@ function addFonctionnality() {
 		}),
 		success : function(data, textStatus, jqXHR) {
 			if (data.name == name) {
-				alert('GJ');
+				$('#errorBox').text('Fonctionnality added');
 			} else {
-				alert('FAIL NAME');
+				$('#errorBox').text('Fail, check the name');
 			}
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
-			alert('FAIL');
+			$('#errorBox').text('Fail connexion with server');
 		}
 	});
 }
@@ -41,7 +41,7 @@ function getIdMember() {
 	var idproject = getCookie('idProject');
 	$.getJSON("v1/members/" + username + "&" + idproject, function(data) {
 		if (typeof data === "undefined") {
-			alert('bug idMember');
+			$('#errorBox').text('Fail');
 		} else {
 			idMember = data.idMember;
 		}
