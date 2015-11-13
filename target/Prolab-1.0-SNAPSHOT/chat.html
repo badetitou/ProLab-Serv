@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>ProLab - Chat</title>
+
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="stylesheet" href="css/font-awesome.min.css">
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/bootstrap-theme.min.css">
+		<link rel="stylesheet" href="css/chat.css" >
+		<!--[if lt IE 9]>
+		<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+		<!-- page wrap -->
+		<div class="page-wrap">
+			<!-- container -->
+			<div class="container">
+				<h1><i class="fa fa-weixin"></i>Chat room</h1>
+				<!-- chatroom -->
+				<div class="chatroom" id="chatroom">
+					<ul id="printer" class="list-group">
+						<!-- Messages will be print here -->
+					</ul>
+				</div> <!-- /chatroom -->
+			</div> <!-- /container -->
+		</div> <!-- /page wrap -->
+
+		<!-- input box -->
+		<div class="container inputBox">
+			<div class="input-group">
+				<input type="text" class="form-control" id="msg" placeholder="Message">
+				<span class="input-group-btn">
+					<button class="btn btn-default" onclick="send()" type="button">Send</button>
+				</span>
+			</div><!-- /input-group -->
+		</div> <!-- /input box -->
+
+
+		<!-- Firebase API -->
+		<script src="https://cdn.firebase.com/js/client/2.2.1/firebase.js"></script>
+		<!-- JQuery API -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+		<!-- Bootstrap -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+		<!-- Linkify API -->
+		<script src="js/linkify.js"></script>
+		<!-- Used for cookies -->
+		<script src="cookieHandler.js"></script>
+		<!-- Chat -->
+		<script src="js/chat.js"></script>
+	</body>
+</html>

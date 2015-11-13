@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>ProLab - Project creation</title>
+
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <link rel="stylesheet" href="css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+  <link href="css/styles.css" rel="stylesheet">
+</head>
+
+<body class="login">
+<script src="cookieHandler.js"></script>
+<script>isConnected();</script>
+
+<!-- container -->
+<div class="container">
+  <!-- row -->
+  <div class="row well">
+    <h1 class="text-primary">Project creation wizard</h1>
+    <h2>Step 1 : Project ID card</h2>
+    <!-- form -->
+    <div class="form col-md-12 center-block">
+      <!-- Text input-->
+
+
+			<!-- Error box will display connection errors -->
+			<p class="text-danger" id="errorBox"></p>
+			<!-- form -->
+      <div class="control-group">
+        <label class="control-label" for="pro-name">Name</label>
+        <div class="controls">
+          <input id="pro-name" name="pro-name" placeholder="Project's name"
+          class="form-control" maxlength="20" required="" type="text">
+        </div>
+      </div> <!-- /Text input -->
+
+      <!-- Text input-->
+      <div class="control-group">
+        <label class="control-label" for="pro-punchline">Punchline</label>
+        <div class="controls">
+          <input id="pro-punchline" name="pro-punchline" placeholder="Project's punchline" class="form-control" required="" type="text">
+          <p class="help-block">Keep it catchy &amp; simple, this is the most important part of the description</p>
+        </div>
+      </div> <!-- /Text input -->
+
+      <!-- Textarea -->
+      <div class="control-group">
+        <label class="control-label" for="pro-description">Description</label>
+        <div class="controls">
+          <textarea id="pro-description" class="form-control" name="pro-description">Project's description, take your time and make it easy and quick to understand.</textarea>
+        </div>
+      </div> <!-- /Textarea -->
+
+      <!-- Button -->
+      <div class="control-group">
+        <label class="control-label" for="pro-infos-submit"></label>
+      </div> <!-- /Button -->
+
+      <!-- form group -->
+      <div class="form-group">
+        <input type="submit" onclick="create()" class="btn btn-primary btn-lg btn-block" id="send" value="Create the project">
+      </div> <!-- form group -->
+    </div> <!-- /form -->
+  </div> <!-- /row -->
+</div> <!-- /container -->
+
+<!-- JQuery API -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<!-- Bootstrap -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script src="js/project.js"></script>
+</body>
+</html>

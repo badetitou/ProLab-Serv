@@ -1,0 +1,17 @@
+<head>
+
+</head>
+
+<body>
+
+  		<!-- Firebase API -->
+  		<script src="https://cdn.firebase.com/js/client/2.2.1/firebase.js"></script>
+  <script>    var ref = new Firebase("https://prolab.firebaseio.com");
+    ref.authWithOAuthPopup("github", function(error, authData) {
+    if (error) {
+    console.log("Login Failed!", error);
+    } else {
+    console.log("Authenticated successfully with payload:", authData);
+    }
+  });</script>
+</body>

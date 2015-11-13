@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <title>ProLab - Members</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="stylesheet" href="css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="css/styles.css">
+
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+  <!-- Latest compiled JavaScript -->
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  <script src="cookieHandler.js"></script>
+    <script src="/js/members.js"></script>
+
+</head>
+<body class="alt">
+<script>init();</script>
+<script>isConnected();</script>
+<nav class="navbar navbar-default">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="hub.html">ProLab</a>
+    </div>
+    <div>
+      <ul class="nav navbar-nav">
+        <li><a href="hub.html"><span class="glyphicon glyphicon-home"></span> Hub</a></li>
+        <li class="active"><a href="members.html"><span class="glyphicon glyphicon-user"></span> Members</a></li>
+        <li><a href="fonctionnality.html"><span class="glyphicon glyphicon-user"></span> Fonctionnality</a></li>
+        <li><a href="chat.html"><span class="glyphicon glyphicon-chat"></span> Chat</a></li>
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="about.html"><span class="glyphicon glyphicon-heart-empty"></span> About</a></li>
+        <li><a onclick="deleteCookie('log')"><span class="text-danger glyphicon glyphicon-off"></span> Logout</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="row" >
+    <div class="well col-xs-5">
+      <h2>Add a collaborator</h2>
+      <p>Enter a ProLab username to add a collaborator</p>
+      <div class="form-horizontal">
+        <div class="form-group">
+          <div class="col-md-12">
+            <div class="input-group">
+            <p class="text-danger" id="errorBox"></p>
+              <input id="username" name="buttondropdown" class="form-control" placeholder="Username" type="text">
+              <div class="input-group-btn">
+                <input type="submit" onclick="addMember()" class="btn btn-primary" id="send" value="Add">
+              </div>
+            </div>
+          </div>
+        </div>
+      </fieldset>
+      </div>
+
+    </div>
+    <div class="well col-md-offset-1 col-xs-6">
+      <h2>Your collaborators</h2>
+			<div id="result" ><p>You are the only member at this moment</p></div>
+    </div>
+  </div>
+
+</div>
+<!-- script references -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+</body>
+</html>

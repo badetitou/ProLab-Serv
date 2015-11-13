@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>ProLab - Creation</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/font-awesome.min.css">
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/bootstrap-theme.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script
+	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<link href="css/styles.css" rel="stylesheet">
+<script src="cookieHandler.js"></script>
+<script src="/js/fonctionnality.js"></script>
+</head>
+<body class="login">
+	<script>
+		init();
+		isConnected();
+	</script>
+	
+	
+	<nav class="navbar navbar-default">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="hub.html">ProLab</a>
+			</div>
+			<div>
+				<ul class="nav navbar-nav">
+					<li><a href="hub.html"><span
+							class="glyphicon glyphicon-home"></span> Hub</a></li>
+					<li><a href="members.html"><span
+							class="glyphicon glyphicon-user"></span> Members</a></li>
+			        <li ><a href="fonctionnality.html"><i class="fa fa-paper-plane"></i> Fonctionnality</a></li>
+			        <li><a href="chat.html"><span class="glyphicon glyphicon-chat"></span> Chat</a></li>
+			        
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="about.html"><span
+							class="glyphicon glyphicon-heart-empty"></span> About</a></li>
+					<li><a onclick="deleteCookie('log')"><span
+							class="text-danger glyphicon glyphicon-off"></span> Logout</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<div class="container">
+		<div class="row well">
+			<h1 class="text-primary">Fonctionnality creation wizard</h1>
+			<h2>Step 1 : Fonctionnality ID card</h2>
+			<div class="form col-md-12 center-block">
+				<!-- Error box will display connection errors -->
+				<p class="text-danger" id="errorBox"></p>
+				<!-- form -->
+				<!-- Text input-->
+				<div class="control-group">
+					<label class="control-label" for="pro-name">Name</label>
+					<div class="controls">
+						<input id="name" name="name" placeholder="Project's name"
+							class="form-control" maxlength="20" required="" type="text">
+					</div>
+				</div>
+				<!-- Textarea -->
+				<div class="control-group">
+					<label class="control-label" for="pro-description">Description</label>
+					<div class="controls">
+						<textarea id="description" class="form-control"
+							name="pro-description">Project's description, take your time and make it easy and quick to understand.</textarea>
+					</div>
+				</div>
+
+				<!-- slider -->
+				<div class="control-group">
+					<label class="control-label" for="pro-description">Progress
+						Bar</label>
+					<div class="controls">
+						<input id="avancement" type="range" min="0" max="100" value="0" step="5"
+							onchange="showValue(this.value)" /> <span id="range">0%</span>
+					</div>
+				</div>
+
+				<label class="control-label" for="pro-description">deadLine</label>
+				<div class="controls">
+						<input id="date" name="deadLine" placeholder="deadLine like YEAR,MONTH,DAY : 2015,03,25"
+							class="form-control" maxlength="20" required="" type="text">
+					</div>
+				<!-- Button -->
+				<div class="control-group">
+					<label class="control-label" for="pro-infos-submit"></label>
+				</div>
+				<div class="form-group">
+					<input type="submit" onclick="addFonctionnality()"
+						class="btn btn-primary btn-lg btn-block" id="send"
+						value="Create the fonctionnality">
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
