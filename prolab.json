@@ -1,30 +1,30 @@
 {
-	"project":"eatyouup",
-	"services":[
-	{
-		"id":"frontend",
-		"apps":[
-		{
-			"id":"tomcat",
-			"domain":{
-				"uri":"prolab.sloppy.zone",
-				"type":"HTTP"
-			},
-			"instances":1,
-			"mem":512,
-			"image":"badetitou/prolab-serv",
-			"force_pull_image": true,
-			"port_mappings": [
-			{
-				"container_port": 8080
-			}
-			]
-				,
-				"env":{
-					"POSTGRES_PASSWORD":"titou",
-					"POSTGRES_USER":"titou"
-				}
-		}
-		]
-	}
+    "project": "eatyouup",
+    "services": [
+        {
+            "id": "frontend",
+            "apps": [
+                {
+                    "id": "tomcat",
+                    "domain": {
+                        "uri": "prolab.sloppy.zone",
+                        "type": "HTTP"
+                    },
+                    "instances": 1,
+                    "mem": 512,
+                    "image": "badetitou/prolab-serv",
+                    "force_pull_image": true,
+                    "port_mappings": [
+                        {
+                            "container_port": 8080
+                        }
+                    ],
+                    "env": {
+                        "POSTGRES_PASSWORD": "titou",
+                        "POSTGRES_USER": "titou"
+                    }
+                }
+            ]
+        }
+    ]
 }
