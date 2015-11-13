@@ -24,18 +24,6 @@ public class UserREST {
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public User[] getAllUsers() {
-		List<User> users = UsersRequest.getAllUsers();
-		User[] userTab = new User[users.size()];
-		for (int i = 0; i < userTab.length; ++i) {
-			userTab[i] = users.get(i);
-		}
-		return userTab;
-
-	}
-
-	@GET
-	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/{username}&{userpassword}")
 	public User getUser(@PathParam("username") String username,
 			@PathParam("userpassword") String password) {
