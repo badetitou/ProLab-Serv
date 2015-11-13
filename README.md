@@ -1,2 +1,2 @@
 # ProLab-Serv
-Super server trop cool
+Use this website to manage your Project with github.
