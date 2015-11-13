@@ -7,12 +7,12 @@
 		{
 			"id":"tomcat",
 			"domain":{
-				"uri":"eatyouup.sloppy.zone",
+				"uri":"prolab.sloppy.zone",
 				"type":"HTTP"
 			},
 			"instances":1,
 			"mem":512,
-			"image":"badetitou/eatyouup",
+			"image":"badetitou/prolab-serv",
 			"force_pull_image": true,
 			"port_mappings": [
 			{
@@ -23,28 +23,8 @@
 				"env":{
 					"POSTGRES_PASSWORD":"titou",
 					"POSTGRES_USER":"titou"
-				},
-				"dependencies":[
-					"../../backend/postgres"
-					]
-		}
-		]
-	},
-	{
-		"id":"backend",
-		"apps":[
-		{
-			"id":"postgres",
-			"instances":1,
-			"mem":512,
-			"image":"postgres",
-			"env":{
-					"POSTGRES_PASSWORD":"titou",
-					"POSTGRES_USER":"titou",
-					"PGDATA":"/var/lib/postgresql/data/pgdata"
 				}
 		}
 		]
-	}	
-	]
+	}
 }
